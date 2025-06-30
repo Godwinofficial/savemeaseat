@@ -362,11 +362,23 @@
         } */
       </style>
       <script>
+
+
         // === API URL switch ===
         // Change this to your production or test server as needed
         // const API_URL = "http://localhost:8000";
         const API_URL = "https://savemeaseat-backend.onrender.com";
+        // Helper to get Cloudinary URL
+        function getCloudinaryUrl(filename) {
+          if (!filename) return "";
+          if (filename.startsWith("http")) return filename;
+          return "https://res.cloudinary.com/godwinb/" + filename.replace(/^\/+/, "");
+        }
 
+// --- Dynamic Event Fetch by slug from query string ---
+(function () {
+  // ...rest of your code...
+})();
         // Custom Countdown Timer
         (function () {
           // Find event date from server (eventData) or fallback
@@ -1384,13 +1396,29 @@
 
                   // Hero slider images and titles (bride/groom first names only, all slides)
                   // Ensure correct mapping and avoid duplicate references
+                  // const sliderImgs = [
+                  //   data.slider_image_1,
+                  //   data.slider_image_2,
+                  //   data.slider_image_3,
+                  //   data.slider_image_4,
+                  //   data.slider_image_5,
+                  //   data.slider_image_6,
+                  // ].filter((img) => !!img && img !== "null" && img !== "None");
+
+                  // Helper to get Cloudinary URL
+                  function getCloudinaryUrl(filename) {
+                    if (!filename) return "";
+                    if (filename.startsWith("http")) return filename;
+                    return "https://res.cloudinary.com/godwinb/" + filename.replace(/^\/+/, "");
+                  }
+                  // ...existing code.
                   const sliderImgs = [
-                    data.slider_image_1,
-                    data.slider_image_2,
-                    data.slider_image_3,
-                    data.slider_image_4,
-                    data.slider_image_5,
-                    data.slider_image_6,
+                    getCloudinaryUrl(data.slider_image_1),
+                    getCloudinaryUrl(data.slider_image_2),
+                    getCloudinaryUrl(data.slider_image_3),
+                    getCloudinaryUrl(data.slider_image_4),
+                    getCloudinaryUrl(data.slider_image_5),
+                    getCloudinaryUrl(data.slider_image_6),
                   ].filter((img) => !!img && img !== "null" && img !== "None");
 
                   const bride = data.bride_first_name || "";
@@ -1460,7 +1488,7 @@
                   const brideImg = document.querySelector(
                     ".text-grid.bride .couple-img img"
                   );
-                  if (brideImg) brideImg.src = data.bride_image || "";
+                 if (brideImg) brideImg.src = getCloudinaryUrl(data.bride_image) || "";
                   const brideName = document.querySelector(
                     ".text-grid.bride h3"
                   );
@@ -1474,7 +1502,7 @@
                   const groomImg = document.querySelector(
                     ".text-grid.groom .couple-img img"
                   );
-                  if (groomImg) groomImg.src = data.groom_image || "";
+                  if (groomImg) groomImg.src = getCloudinaryUrl(data.groom_image) || "";
                   const groomName = document.querySelector(
                     ".text-grid.groom h3"
                   );
@@ -1489,13 +1517,11 @@
                   const centerImg = document.querySelector(
                     ".middle-couple-pic img"
                   );
-                  if (centerImg) centerImg.src = data.center_cover_image || "";
+                  if (centerImg) centerImg.src = getCloudinaryUrl(data.center_cover_image) || "";
 
                   // Story section
                   // First meet
-                  const story1 = document.querySelectorAll(
-                    ".story-timeline .row"
-                  )[0];
+                  const story1 = document.querySelectorAll(".story-timeline .row")[0];
                   if (story1) {
                     const h3 = story1.querySelector(".story-text h3");
                     if (h3) h3.textContent = "First time we meet";
@@ -1505,15 +1531,14 @@
                     const p = story1.querySelector(".story-text p");
                     if (p)
                       p.textContent = data.love_story_first_meet_desc || "";
-                    const img = story1.querySelector(".img-holder img");
+                  
+                      const img = story1.querySelector(".img-holder img");
                     if (img && data.love_story_first_meet_image)
-                      img.src = data.love_story_first_meet_image;
-                  }
+                   img.src = getCloudinaryUrl(data.love_story_first_meet_image);
+                    }
                   // First date
-                  const story2 = document.querySelectorAll(
-                    ".story-timeline .row"
-                  )[1];
-                  if (story2) {
+                   const story2 = document.querySelectorAll(".story-timeline .row")[1];
+                    if (story2) {
                     const h3 = story2.querySelector(".story-text h3");
                     if (h3) h3.textContent = "First Date";
                     const date = story2.querySelector(".story-text .date");
@@ -1523,14 +1548,13 @@
                     if (p)
                       p.textContent = data.love_story_first_date_desc || "";
                     const img = story2.querySelector(".img-holder img");
-                    if (img && data.love_story_first_date_image)
-                      img.src = data.love_story_first_date_image;
-                  }
+                  if (img && data.love_story_first_date_image)
+                    img.src = getCloudinaryUrl(data.love_story_first_date_image);
+                   }
+
                   // Proposal
-                  const story3 = document.querySelectorAll(
-                    ".story-timeline .row"
-                  )[2];
-                  if (story3) {
+                     const story3 = document.querySelectorAll(".story-timeline .row")[2];
+                    if (story3) {
                     const h3 = story3.querySelector(".story-text h3");
                     if (h3) h3.textContent = "Marriage Proposal";
                     const date = story3.querySelector(".story-text .date");
@@ -1540,13 +1564,12 @@
                     if (p) p.textContent = data.love_story_proposal_desc || "";
                     const img = story3.querySelector(".img-holder img");
                     if (img && data.love_story_proposal_image)
-                      img.src = data.love_story_proposal_image;
-                  }
+                   img.src = getCloudinaryUrl(data.love_story_proposal_image);
+                    }
+
                   // Engagement
-                  const story4 = document.querySelectorAll(
-                    ".story-timeline .row"
-                  )[3];
-                  if (story4) {
+                    const story4 = document.querySelectorAll(".story-timeline .row")[3];
+                    if (story4) {
                     const h3 = story4.querySelector(".story-text h3");
                     if (h3) h3.textContent = "Our Engagement";
                     const date = story4.querySelector(".story-text .date");
@@ -1555,20 +1578,21 @@
                     const p = story4.querySelector(".story-text p");
                     if (p)
                       p.textContent = data.love_story_engagement_desc || "";
-                    const img = story4.querySelector(".img-holder img");
+                      const img = story4.querySelector(".img-holder img");
                     if (img && data.love_story_engagement_image)
-                      img.src = data.love_story_engagement_image;
-                  }
+                     img.src = getCloudinaryUrl(data.love_story_engagement_image);
+                    }
 
-                  // Sweet Moments gallery
-                  const sweetImgs = [
-                    data.sweet_image_1,
-                    data.sweet_image_2,
-                    data.sweet_image_3,
-                    data.sweet_image_4,
-                    data.sweet_image_5,
-                    data.sweet_image_6,
+                  //  gallery
+                    const sweetImgs = [
+                    getCloudinaryUrl(data.sweet_image_1),
+                    getCloudinaryUrl(data.sweet_image_2),
+                    getCloudinaryUrl(data.sweet_image_3),
+                    getCloudinaryUrl(data.sweet_image_4),
+                    getCloudinaryUrl(data.sweet_image_5),
+                    getCloudinaryUrl(data.sweet_image_6),
                   ].filter(Boolean);
+
                   document
                     .querySelectorAll(
                       ".wpo-portfolio-section-s2 .portfolio-grids .grid"
@@ -2296,7 +2320,7 @@
               const centerImg = document.querySelector(
                 ".middle-couple-pic img"
               );
-              if (centerImg) centerImg.src = data.center_cover_image || "";
+             if (centerImg) centerImg.src = getCloudinaryUrl(data.center_cover_image) || "";
 
               // Story section
               // First meet
@@ -2365,14 +2389,23 @@
               }
 
               // Sweet Moments gallery
+              // const sweetImgs = [
+              //   data.sweet_image_1,
+              //   data.sweet_image_2,
+              //   data.sweet_image_3,
+              //   data.sweet_image_4,
+              //   data.sweet_image_5,
+              //   data.sweet_image_6,
+              // ].filter(Boolean);
               const sweetImgs = [
-                data.sweet_image_1,
-                data.sweet_image_2,
-                data.sweet_image_3,
-                data.sweet_image_4,
-                data.sweet_image_5,
-                data.sweet_image_6,
-              ].filter(Boolean);
+              getCloudinaryUrl(data.sweet_image_1),
+              getCloudinaryUrl(data.sweet_image_2),
+              getCloudinaryUrl(data.sweet_image_3),
+              getCloudinaryUrl(data.sweet_image_4),
+              getCloudinaryUrl(data.sweet_image_5),
+              getCloudinaryUrl(data.sweet_image_6),
+            ].filter(Boolean);
+            // ...existing code...
               document
                 .querySelectorAll(
                   ".wpo-portfolio-section-s2 .portfolio-grids .grid"
@@ -2503,9 +2536,7 @@
                       <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
                         <div class="wpo-product-item text-center">
                           <div class="wpo-product-img" style="margin-bottom:12px;">
-                            <img src="${person.image || ""}" alt="${
-                    person.full_name || ""
-                  }" style="width:180px;height:180px;object-fit:cover;border-radius:50%;background:#f2f2f2;">
+                            <img src="${getCloudinaryUrl(person.image)}" alt="${person.full_name || ""}" style="width:180px;height:180px;object-fit:cover;border-radius:50%;background:#f2f2f2;">
                           </div>
                           <div class="wpo-product-text">
                             <h4 style="margin-bottom:0.2em;">${

@@ -185,61 +185,6 @@
           box-shadow: 0 2px 16px #0001;
           background: #fff;
         }
-        /* .couple-area .couple-img img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 50%;
-          display: block;
-        } */
-        /* .middle-couple-pic {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        } */
-        /* .middle-couple-pic img:first-child {
-          width: 170px;
-          height: 170px;
-          object-fit: cover;
-          border-radius: 50%;
-          z-index: 2;
-          position: relative;
-          box-shadow: 0 4px 24px #0002;
-          background: #fff;
-        } */
-        /* .middle-couple-pic .frame-img {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          width: 200px;
-          height: 200px;
-          transform: translate(-50%, -50%);
-          z-index: 1;
-          pointer-events: none;
-        } */
-        /* .middle-couple-pic .frame-img img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          display: block;
-        } */
-        /* @media (max-width: 991px) {
-          .couple-area {
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-          }
-          .middle-couple-pic img:first-child,
-          .middle-couple-pic .frame-img {
-            width: 120px;
-            height: 120px;
-          }
-          .couple-area .couple-img {
-            width: 100px;
-            height: 100px;
-          }
-        } */
       </style>
       <!-- end preloader -->
       <!-- Start header -->
@@ -332,22 +277,232 @@
           <div class="swiper-button-prev"></div>
         </div>
       </section>
-      <!-- end of wpo-hero-slide-section-->
-      <!-- end of wpo-hero-slide-section-->
-      <!-- start wpo-wedding-date -->
-      <section class="wpo-wedding-date section-padding">
-        <h2 class="hidden">some</h2>
-        <div class="container">
-          <div class="row">
-            <div class="col col-xs-12">
-              <div class="clock-grids">
-                <div id="clock"></div>
+
+      <!-- Here add clock countdoewn -->
+      <div
+        id="timer"
+        class="custom-countdown"
+        style="margin-bottom: 30px"
+      ></div>
+      <style>
+        /* Countdown timer styles */
+        .custom-countdown {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 22px;
+          margin-top: 70px;
+        }
+        .custom-countdown .clock-segment {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .custom-countdown .clock-bg {
+          background: url("assets/images/clock-bg.png") no-repeat center center;
+          background-size: contain;
+          width: 170px;
+          height: 170px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .custom-countdown .clock-value {
+          font-family: "Montserrat", "Poppins", Arial, sans-serif;
+          font-weight: 300;
+          font-size: 2.1rem;
+          color: #848892;
+          letter-spacing: 0.02em;
+          line-height: 1;
+        }
+        .custom-countdown .clock-label {
+          font-family: "Montserrat", "Poppins", Arial, sans-serif;
+          font-weight: 400;
+          font-size: 0.8rem;
+          color: #848892;
+          letter-spacing: 0.01em;
+          margin-top: -70px;
+        }
+
+        @media (max-width: 920px) {
+          .custom-countdown {
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .custom-countdown .clock-bg {
+            width: 120px; /* Adjust as you see fit */
+            height: 120px;
+          }
+
+          .custom-countdown .clock-value {
+            font-size: 1.1rem;
+            font-size: 22px;
+          }
+
+          .custom-countdown .clock-label {
+            font-size: 0.7rem;
+            margin-top: -50px;
+            font-size: 10px;
+          }
+        }
+        /* @media (max-width: 600px) {
+          .custom-countdown {
+            gap: 8px;
+          }
+          .custom-countdown .clock-bg {
+            width: 48px;
+            height: 48px;
+          }
+          .custom-countdown .clock-value {
+            font-size: 1.1rem;
+          }
+          .custom-countdown .clock-label {
+            font-size: 0.8rem;
+          }
+        } */
+      </style>
+      <script>
+        // === API URL switch ===
+        // Change this to your production or test server as needed
+        const API_URL = "http://localhost:8000";
+        // const API_URL = "https://your-production-server.com";
+
+        // Custom Countdown Timer
+        (function () {
+          // Find event date from server (eventData) or fallback
+          function getEventDate() {
+            if (window.eventData && eventData.date) {
+              // Always use server date if available
+              return new Date(eventData.date);
+            }
+            var dateEl = document.getElementById("event-date");
+            if (dateEl) {
+              var txt = dateEl.textContent || dateEl.innerText || "";
+              var d = new Date(txt);
+              if (!isNaN(d)) return d;
+            }
+            return new Date("2025-10-24T10:00:00");
+          }
+
+          function pad(n) {
+            return n < 10 ? "0" + n : n;
+          }
+
+          function renderCountdown(target, diff, isToday) {
+            if (isToday) {
+              target.innerHTML = `
+                <div style="text-align:center;width:100%">
+                  <div style="font-size:2.2rem;color:#e89bae;font-family:Montserrat,Poppins,Arial,sans-serif;font-weight:600;margin-bottom:0.5em;">
+                    🎉 The Wedding is Today! 🎉
+                  </div>
+                  <div style="font-size:1.2rem;color:#353535;font-family:Montserrat,Poppins,Arial,sans-serif;">
+                    We can't wait to celebrate with you.<br>
+                    <span style="color:#b07bce;font-weight:500;">You're warmly invited to join the festivities!</span>
+                  </div>
+                </div>
+              `;
+              return;
+            }
+            var months = diff.months;
+            var days = diff.days;
+            var hours = diff.hours;
+            var minutes = diff.minutes;
+            var seconds = diff.seconds;
+            target.innerHTML = `
+              <div class="clock-segment">
+                <div class="clock-bg"><span class="clock-value">${pad(
+                  months
+                )}</span></div>
+                <span class="clock-label">Month${months === 1 ? "" : "s"}</span>
               </div>
-            </div>
-          </div>
-        </div>
-        <!-- end container -->
-      </section>
+              <div class="clock-segment">
+                <div class="clock-bg"><span class="clock-value">${pad(
+                  days
+                )}</span></div>
+                <span class="clock-label">Day${days === 1 ? "" : "s"}</span>
+              </div>
+              <div class="clock-segment">
+                <div class="clock-bg"><span class="clock-value">${pad(
+                  hours
+                )}</span></div>
+                <span class="clock-label">Hour${hours === 1 ? "" : "s"}</span>
+              </div>
+              <div class="clock-segment">
+                <div class="clock-bg"><span class="clock-value">${pad(
+                  minutes
+                )}</span></div>
+                <span class="clock-label">Minute${
+                  minutes === 1 ? "" : "s"
+                }</span>
+              </div>
+              <div class="clock-segment">
+                <div class="clock-bg"><span class="clock-value">${pad(
+                  seconds
+                )}</span></div>
+                <span class="clock-label">Second${
+                  seconds === 1 ? "" : "s"
+                }</span>
+              </div>
+            `;
+          }
+
+          // Calculate months/days/hours/minutes/seconds between now and event
+          function getCountdownParts(toDate) {
+            var now = new Date();
+            // Only compare date part for "today" logic
+            var isToday =
+              now.getFullYear() === toDate.getFullYear() &&
+              now.getMonth() === toDate.getMonth() &&
+              now.getDate() === toDate.getDate();
+            var y = toDate.getFullYear(),
+              m = toDate.getMonth(),
+              d = toDate.getDate();
+            var eventDate = new Date(
+              y,
+              m,
+              d,
+              toDate.getHours(),
+              toDate.getMinutes(),
+              toDate.getSeconds()
+            );
+            var months =
+              (eventDate.getFullYear() - now.getFullYear()) * 12 +
+              (eventDate.getMonth() - now.getMonth());
+            var temp = new Date(now.getTime());
+            temp.setMonth(temp.getMonth() + months);
+            if (temp > eventDate) {
+              months--;
+              temp.setMonth(temp.getMonth() - 1);
+            }
+            var ms = eventDate - temp;
+            var days = Math.floor(ms / (1000 * 60 * 60 * 24));
+            ms -= days * (1000 * 60 * 60 * 24);
+            var hours = Math.floor(ms / (1000 * 60 * 60));
+            ms -= hours * (1000 * 60 * 60);
+            var minutes = Math.floor(ms / (1000 * 60));
+            ms -= minutes * (1000 * 60);
+            var seconds = Math.floor(ms / 1000);
+            // If event is in the past, show zeroes (not today)
+            if (eventDate < now && !isToday) {
+              months = days = hours = minutes = seconds = 0;
+            }
+            return { months, days, hours, minutes, seconds, isToday };
+          }
+
+          function updateCountdown() {
+            var timer = document.getElementById("timer");
+            if (!timer) return;
+            var eventDate = getEventDate();
+            var diff = getCountdownParts(eventDate);
+            renderCountdown(timer, diff, diff.isToday);
+          }
+
+          updateCountdown();
+          setInterval(updateCountdown, 1000);
+        })();
+      </script>
       <!-- end wpo-wedding-date -->
       <!-- start couple-section -->
       <section class="couple-section section-padding" id="couple">
@@ -796,14 +951,14 @@
                         Viv and Mungi giving up their independence on
                         Independence Day!
                       </li>
-                      <li>
+                      <!-- <li>
                         <a
                           class="popup-gmaps"
                           href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31334.26814781817!2d28.37990615!3d-15.42991365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1940fda1e3e1f64b%3A0x9bc40d2cb0d3d2ef!2sMary%20Immaculate%20Parish!5e0!3m2!1sen!2szm!4v1719352394286"
                           target="_blank"
                           >See Location</a
                         >
-                      </li>
+                      </li> -->
                     </ul>
                   </div>
                   <div class="event-shape-1">
@@ -831,14 +986,14 @@
                         Reception venue: Waterfalls Place, just off Great East
                         Road
                       </li>
-                      <li>
+                      <!-- <li>
                         <a
                           class="popup-gmaps"
                           href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31334.08717251122!2d28.3958122!3d-15.4329229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1940fce17d8c3fd3%3A0x6f69e3a36a9c9c5d!2sWaterfalls%20Place!5e0!3m2!1sen!2szm!4v1719352412345"
                           target="_blank"
                           >See Location</a
                         >
-                      </li>
+                      </li> -->
                     </ul>
                   </div>
                   <div class="event-shape-1">
@@ -864,14 +1019,14 @@
                         October! Ladies, bring your best and don’t forget your
                         hats.
                       </li>
-                      <li>
+                      <!-- <li>
                         <a
                           class="popup-gmaps"
                           href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31334.08717251122!2d28.3958122!3d-15.4329229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1940fce17d8c3fd3%3A0x6f69e3a36a9c9c5d!2sWaterfalls%20Place!5e0!3m2!1sen!2szm!4v1719352412345"
                           target="_blank"
                           >See Location</a
                         >
-                      </li>
+                      </li> -->
                     </ul>
                   </div>
                   <div class="event-shape-1">
@@ -1037,25 +1192,6 @@
                     margin: auto;
                   "
                 >
-                  <h2 style="font-family: serif; color: #e89bae">
-                    You're Invited!
-                  </h2>
-                  <h3 style="margin: 10px 0 0 0">Mungi and Viv's Wedding</h3>
-                  <p
-                    id="invitee-name"
-                    style="font-weight: bold; margin: 10px 0 0 0"
-                  ></p>
-                  <p style="margin: 10px 0 0 0">
-                    Friday, 24th October 2025 (Independence Day)
-                  </p>
-                  <p style="font-size: 0.95em; color: #888">
-                    Mary Immaculate Parish, Leopards Hill Road<br />10:00 hrs
-                  </p>
-                  <p style="font-size: 0.95em; color: #888">
-                    Reception: Waterfalls Place, off Great East Road<br />Blessing
-                    in the garden at 14:00 hrs<br />Cocktail hour at 16:00
-                    hrs<br />Reception at 18:00 hrs
-                  </p>
                   <div style="margin: 20px 0">
                     <button
                       id="download-invite-img"
@@ -1136,7 +1272,7 @@
             };
             try {
               const res = await fetch(
-                `http://localhost:8000/api/events/${eventSlug}rsvp/`,
+                `${API_URL}/api/events/${eventSlug}/rsvp/`,
                 {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -1147,19 +1283,9 @@
               if (res.ok) {
                 msgDiv.style.color = "green";
                 msgDiv.textContent = "RSVP submitted successfully!";
-                // Optionally show invitation modal as before
-                document.getElementById("invitee-name").textContent =
-                  attend === "yes"
-                    ? "For: " +
-                      name +
-                      (guests > 1
-                        ? " (+ " +
-                          (guests - 1) +
-                          " guest" +
-                          (guests > 2 ? "s" : "") +
-                          ")"
-                        : "")
-                    : "Sorry you can't make it, " + name + ".";
+                // Hide the default invitation modal popup
+                // document.getElementById("invitation-modal").style.display = "block";
+                // Instead, just show the custom invitation card block
                 document.getElementById("rsvp-form").style.display = "none";
                 document.getElementById("invitation-modal").style.display =
                   "block";
@@ -1173,7 +1299,373 @@
               msgDiv.textContent = "Network error. Please try again.";
             }
           };
-          // Invitation image download logic
+
+          // Store event data globally for card use
+          let eventData = null;
+
+          (function () {
+            // --- Dynamic Event Fetch by slug from query string ---
+            // Helper: format date as "Mon DD, YYYY"
+            function formatDate(iso) {
+              if (!iso) return "";
+              const d = new Date(iso);
+              if (isNaN(d)) return iso;
+              return d.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "2-digit",
+              });
+            }
+            const params = new URLSearchParams(window.location.search);
+            let slug = params.get("slug");
+            if (slug) {
+              // Remove any trailing slash from slug
+              slug = slug.replace(/\/+$/, "");
+              fetch(`${API_URL}/api/events/` + encodeURIComponent(slug) + "/")
+                .then((res) => {
+                  if (!res.ok) throw new Error("Event not found");
+                  return res.json();
+                })
+                .then((data) => {
+                  eventData = data; // Save for card use
+
+                  // Topbar
+                  document.title =
+                    (data.header_text || "Event") + " – SaveMeASeat";
+                  const topbarTitle = document.getElementById("event-title");
+                  if (topbarTitle)
+                    topbarTitle.textContent =
+                      "Welcome to " + (data.header_text || "");
+                  const dateEl = document.getElementById("event-date");
+                  if (dateEl) dateEl.textContent = formatDate(data.date) || "";
+                  const venueEl = document.getElementById("event-venue");
+                  if (venueEl) venueEl.textContent = data.venue || "";
+                  const countryEl = document.getElementById("event-country");
+                  if (countryEl) countryEl.textContent = data.country || "";
+
+                  // Additional header text (dynamic)
+                  let additionalHeaderText = data.additional_header_text || "";
+                  let additionalHeaderDiv = document.getElementById(
+                    "event-additional-header"
+                  );
+                  if (!additionalHeaderDiv) {
+                    // Insert after event-title
+                    const eventTitle = document.getElementById("event-title");
+                    if (eventTitle) {
+                      additionalHeaderDiv = document.createElement("div");
+                      additionalHeaderDiv.id = "event-additional-header";
+                      additionalHeaderDiv.style =
+                        "font-size:1.1em;color:#333;font-family:serif;margin-top:0.2em;margin-bottom:0.2em;font-weight:500;"; // dark gray
+                      eventTitle.parentNode.insertBefore(
+                        additionalHeaderDiv,
+                        eventTitle.nextSibling
+                      );
+                    }
+                  }
+                  if (additionalHeaderDiv) {
+                    additionalHeaderDiv.textContent = additionalHeaderText;
+                  }
+
+                  // Hero slider images and titles (bride/groom first names only, all slides)
+                  // Ensure correct mapping and avoid duplicate references
+                  const sliderImgs = [
+                    data.slider_image_1,
+                    data.slider_image_2,
+                    data.slider_image_3,
+                    data.slider_image_4,
+                    data.slider_image_5,
+                    data.slider_image_6,
+                  ].filter((img) => !!img && img !== "null" && img !== "None");
+
+                  const bride = data.bride_first_name || "";
+                  const groom = data.groom_first_name || "";
+                  const slideTitle = `${bride} & ${groom}`;
+
+                  // Dynamically update or create slides to match backend images
+                  const swiperWrapper = document.querySelector(
+                    ".wpo-hero-slider .swiper-wrapper"
+                  );
+                  if (swiperWrapper) {
+                    swiperWrapper.innerHTML = "";
+                    // For each image, create a unique slide
+                    sliderImgs.forEach((img, i) => {
+                      const slide = document.createElement("div");
+                      slide.className = "swiper-slide";
+                      slide.innerHTML = `
+                    <div class="slide-inner slide-bg-image" style="background-image: url('${img}');" data-background="${img}">
+                      <div class="container-fluid">
+                        <div class="slide-content">
+                          <div data-swiper-parallax="300" class="slide-title">
+                            <h2>${slideTitle}</h2>
+                          </div>
+                          <div data-swiper-parallax="400" class="slide-text">
+                            <p>
+                              Welcome and open yourself to your truest love this year with us! With the Release Process.
+                            </p>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                      swiperWrapper.appendChild(slide);
+                    });
+
+                    // Destroy and re-initialize Swiper to ensure correct slide mapping and autoplay
+                    if (
+                      window.Swiper &&
+                      document.querySelector(".swiper-container").swiper
+                    ) {
+                      document
+                        .querySelector(".swiper-container")
+                        .swiper.destroy(true, true);
+                    }
+                    setTimeout(function () {
+                      new Swiper(".swiper-container", {
+                        loop: sliderImgs.length > 1,
+                        autoplay: {
+                          delay: 3500,
+                          disableOnInteraction: false,
+                        },
+                        pagination: {
+                          el: ".swiper-pagination",
+                          clickable: true,
+                        },
+                        navigation: {
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                        },
+                        parallax: true,
+                      });
+                    }, 0);
+                  }
+
+                  // Couple section
+                  const brideImg = document.querySelector(
+                    ".text-grid.bride .couple-img img"
+                  );
+                  if (brideImg) brideImg.src = data.bride_image || "";
+                  const brideName = document.querySelector(
+                    ".text-grid.bride h3"
+                  );
+                  if (brideName)
+                    brideName.textContent =
+                      (data.bride_first_name || "") +
+                      (data.bride_last_name ? " " + data.bride_last_name : "");
+                  const brideMsg = document.querySelector(".text-grid.bride p");
+                  if (brideMsg) brideMsg.textContent = data.bride_message || "";
+
+                  const groomImg = document.querySelector(
+                    ".text-grid.groom .couple-img img"
+                  );
+                  if (groomImg) groomImg.src = data.groom_image || "";
+                  const groomName = document.querySelector(
+                    ".text-grid.groom h3"
+                  );
+                  if (groomName)
+                    groomName.textContent =
+                      (data.groom_first_name || "") +
+                      (data.groom_last_name ? " " + data.groom_last_name : "");
+                  const groomMsg = document.querySelector(".text-grid.groom p");
+                  if (groomMsg) groomMsg.textContent = data.groom_message || "";
+
+                  // Center couple image
+                  const centerImg = document.querySelector(
+                    ".middle-couple-pic img"
+                  );
+                  if (centerImg) centerImg.src = data.center_cover_image || "";
+
+                  // Story section
+                  // First meet
+                  const story1 = document.querySelectorAll(
+                    ".story-timeline .row"
+                  )[0];
+                  if (story1) {
+                    const h3 = story1.querySelector(".story-text h3");
+                    if (h3) h3.textContent = "First time we meet";
+                    const date = story1.querySelector(".story-text .date");
+                    if (date)
+                      date.textContent = data.love_story_first_meet_date || "";
+                    const p = story1.querySelector(".story-text p");
+                    if (p)
+                      p.textContent = data.love_story_first_meet_desc || "";
+                    const img = story1.querySelector(".img-holder img");
+                    if (img && data.love_story_first_meet_image)
+                      img.src = data.love_story_first_meet_image;
+                  }
+                  // First date
+                  const story2 = document.querySelectorAll(
+                    ".story-timeline .row"
+                  )[1];
+                  if (story2) {
+                    const h3 = story2.querySelector(".story-text h3");
+                    if (h3) h3.textContent = "First Date";
+                    const date = story2.querySelector(".story-text .date");
+                    if (date)
+                      date.textContent = data.love_story_first_date_date || "";
+                    const p = story2.querySelector(".story-text p");
+                    if (p)
+                      p.textContent = data.love_story_first_date_desc || "";
+                    const img = story2.querySelector(".img-holder img");
+                    if (img && data.love_story_first_date_image)
+                      img.src = data.love_story_first_date_image;
+                  }
+                  // Proposal
+                  const story3 = document.querySelectorAll(
+                    ".story-timeline .row"
+                  )[2];
+                  if (story3) {
+                    const h3 = story3.querySelector(".story-text h3");
+                    if (h3) h3.textContent = "Marriage Proposal";
+                    const date = story3.querySelector(".story-text .date");
+                    if (date)
+                      date.textContent = data.love_story_proposal_date || "";
+                    const p = story3.querySelector(".story-text p");
+                    if (p) p.textContent = data.love_story_proposal_desc || "";
+                    const img = story3.querySelector(".img-holder img");
+                    if (img && data.love_story_proposal_image)
+                      img.src = data.love_story_proposal_image;
+                  }
+                  // Engagement
+                  const story4 = document.querySelectorAll(
+                    ".story-timeline .row"
+                  )[3];
+                  if (story4) {
+                    const h3 = story4.querySelector(".story-text h3");
+                    if (h3) h3.textContent = "Our Engagement";
+                    const date = story4.querySelector(".story-text .date");
+                    if (date)
+                      date.textContent = data.love_story_engagement_date || "";
+                    const p = story4.querySelector(".story-text p");
+                    if (p)
+                      p.textContent = data.love_story_engagement_desc || "";
+                    const img = story4.querySelector(".img-holder img");
+                    if (img && data.love_story_engagement_image)
+                      img.src = data.love_story_engagement_image;
+                  }
+
+                  // Sweet Moments gallery
+                  const sweetImgs = [
+                    data.sweet_image_1,
+                    data.sweet_image_2,
+                    data.sweet_image_3,
+                    data.sweet_image_4,
+                    data.sweet_image_5,
+                    data.sweet_image_6,
+                  ].filter(Boolean);
+                  document
+                    .querySelectorAll(
+                      ".wpo-portfolio-section-s2 .portfolio-grids .grid"
+                    )
+                    .forEach((grid, i) => {
+                      const img = sweetImgs[i] || "";
+                      const a = grid.querySelector("a");
+                      const imgTag = grid.querySelector("img");
+                      if (a && img) a.href = img;
+                      if (imgTag && img) imgTag.src = img;
+                    });
+
+                  // Gifts & Contributions
+                  const giftList = [
+                    data.gift_1,
+                    data.gift_2,
+                    data.gift_3,
+                    data.gift_4,
+                    data.gift_5,
+                  ].filter(Boolean);
+                  const giftsUl = document.getElementById("gifts-list");
+                  if (giftsUl) {
+                    giftsUl.innerHTML = "";
+                    giftList.forEach((g) => {
+                      const li = document.createElement("li");
+                      li.textContent = g;
+                      li.style.color = "#353535";
+                      giftsUl.appendChild(li);
+                    });
+                  }
+                  const thankYou = document.getElementById("thank-you-message");
+                  if (thankYou)
+                    thankYou.textContent = data.thank_you_message || "";
+
+                  // Event cards
+                  const eventCards = [
+                    {
+                      title: data.time_card1_title,
+                      texts: [
+                        data.time_card1_text1,
+                        data.time_card1_text2,
+                        data.time_card1_text3,
+                        data.time_card1_text4,
+                        data.time_card1_text5,
+                      ],
+                      url: data.time_card1_url,
+                    },
+                    {
+                      title: data.time_card2_title,
+                      texts: [
+                        data.time_card2_text1,
+                        data.time_card2_text2,
+                        data.time_card2_text3,
+                        data.time_card2_text4,
+                        data.time_card2_text5,
+                      ],
+                      url: data.time_card2_url,
+                    },
+                    {
+                      title: data.time_card3_title,
+                      texts: [
+                        data.time_card3_text1,
+                        data.time_card3_text2,
+                        data.time_card3_text3,
+                        data.time_card3_text4,
+                        data.time_card3_text5,
+                      ],
+                      url: data.time_card3_url,
+                    },
+                  ];
+                  document
+                    .querySelectorAll(".wpo-event-item")
+                    .forEach((item, i) => {
+                      if (!eventCards[i]) return;
+                      const card = eventCards[i];
+                      const h2 = item.querySelector(".wpo-event-text h2");
+                      if (h2) h2.textContent = card.title || "";
+                      const ul = item.querySelector(".wpo-event-text ul");
+                      if (ul) {
+                        ul.innerHTML = "";
+                        card.texts.forEach((t, idx) => {
+                          if (t) {
+                            const li = document.createElement("li");
+                            li.textContent = t;
+                            ul.appendChild(li);
+                          }
+                        });
+                        // if (card.url) {
+                        //   const li = document.createElement("li");
+                        //   li.innerHTML = `<a class="popup-gmaps" href="${card.url}" target="_blank">See Location</a>`;
+                        //   ul.appendChild(li);
+                        // }
+                      }
+                    });
+
+                  // Main map
+                  const mapIframe = document.querySelector(
+                    ".wpo-event-section iframe"
+                  );
+                  if (mapIframe && data.main_map_url) {
+                    mapIframe.src = data.main_map_url;
+                  } else if (mapIframe && !data.main_map_url) {
+                    // Optionally hide or clear if no map
+                    mapIframe.style.display = "none";
+                  }
+                })
+                .catch((err) => {
+                  console.warn("Could not fetch event:", err);
+                });
+            }
+          })();
+
+          // Invitation image download logic (dynamic)
           document.getElementById("download-invite-img").onclick = function () {
             var name = document.getElementById("fullname").value.trim();
             var guests = document.getElementById("guests").value;
@@ -1183,59 +1675,144 @@
             var canvas = document.getElementById("invite-canvas");
             var ctx = canvas.getContext("2d");
 
-            // Image URLs
-            var topImgUrl = "assets/images/section-title2.png";
-            var bottomImgUrl = "assets/images/slider/slide-2.jpg";
+            // Use backend data for card
+            var d = eventData || {};
+            // Names
+            var bride =
+              (d.bride_first_name || "") +
+              (d.bride_last_name ? " " + d.bride_last_name : "");
+            var groom =
+              (d.groom_first_name || "") +
+              (d.groom_last_name ? " " + d.groom_last_name : "");
+            var coupleNames =
+              bride && groom
+                ? `${bride} & ${groom}`
+                : bride || groom || "The Couple";
+            // Parents (optional, fallback to "The Families")
+            var parents =
+              (d.bride_parents || "The Matongos") +
+              " and " +
+              (d.groom_parents || "the Msokas");
+            // Date
+            var eventDate = d.date
+              ? new Date(d.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "2-digit",
+                })
+              : "";
+            // Venue
+            var venue = d.venue || "";
+            // Country
+            var country = d.country || "";
+            // Top header image
+            var headerImgUrl = "assets/images/section-title2.png";
+            // Main image (big, not touching border)
+            var sliderImgs = [
+              d.slider_image_1,
+              d.slider_image_2,
+              d.slider_image_3,
+              d.slider_image_4,
+              d.slider_image_5,
+              d.slider_image_6,
+            ].filter((img) => !!img && img !== "null" && img !== "None");
+            var mainImgUrl =
+              sliderImgs[0] || "assets/images/slider/slide-2.jpg";
 
-            // Preload images
-            var topImg = new Image();
-            var bottomImg = new Image();
+            // Card layout constants
+            var borderWidth = 9; // thick border
+            var margin = 18;
+            var borderInset = 16; // space between border and card edge
+            var cardW = canvas.width,
+              cardH = canvas.height;
+            var innerW = cardW - 2 * margin,
+              innerH = cardH - 2 * margin;
+
+            // Preload both images
+            var headerImg = new window.Image();
+            var mainImg = new window.Image();
             var loaded = 0;
-
-            topImg.onload = bottomImg.onload = function () {
+            headerImg.crossOrigin = "anonymous";
+            mainImg.crossOrigin = "anonymous";
+            headerImg.onload = mainImg.onload = function () {
               loaded++;
               if (loaded < 2) return;
 
-              // Background
+              // Clear and draw border with margin and no border radius
+              ctx.clearRect(0, 0, cardW, cardH);
+              ctx.save();
+
+              // Card background
               ctx.fillStyle = "#fff";
-              ctx.fillRect(0, 0, canvas.width, canvas.height);
+              ctx.fillRect(margin, margin, innerW, innerH);
 
-              // Decorative borders
+              // Border (no radius, not touching card edge)
+              ctx.lineWidth = borderWidth;
               ctx.strokeStyle = "#e89bae";
-              ctx.lineWidth = 8;
-              ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
-
-              // Draw top image (centered, max width 180px, keep aspect)
-              var topImgW = 180,
-                topImgH = topImg.height * (topImgW / topImg.width);
-              ctx.drawImage(
-                topImg,
-                (canvas.width - topImgW) / 2,
-                36,
-                topImgW,
-                topImgH
+              ctx.strokeRect(
+                margin + borderInset,
+                margin + borderInset,
+                innerW - 2 * borderInset,
+                innerH - 2 * borderInset
               );
 
-              // Title
-              ctx.font = "bold 36px serif";
+              // Header image (fit, not distorted, at top, about 70px high)
+              var headerH = 70,
+                headerPad = 12;
+              var headerScale = Math.min(
+                (innerW - 2 * headerPad) / headerImg.width,
+                (headerH - 2 * headerPad) / headerImg.height
+              );
+              var headerDrawW = headerImg.width * headerScale;
+              var headerDrawH = headerImg.height * headerScale;
+              var headerX = margin + (innerW - headerDrawW) / 2;
+              var headerY = margin + headerPad;
+              ctx.drawImage(
+                headerImg,
+                headerX,
+                headerY,
+                headerDrawW,
+                headerDrawH
+              );
+
+              // Vertical spacing variables
+              var y = margin + headerH + 36;
+
+              // "You're Invited" header
+              ctx.font = "bold 32px serif";
               ctx.fillStyle = "#e89bae";
               ctx.textAlign = "center";
-              ctx.fillText("You're Invited!", canvas.width / 2, 90 + topImgH);
+              ctx.fillText("You're Invited", cardW / 2, y);
+              y += 36;
 
-              // Names
-              ctx.font = "28px serif";
+              // Parents invite text (extra vertical spacing)
+              y += 16;
+              ctx.font = "20px serif";
+              ctx.fillStyle = "#444";
+              ctx.fillText(
+                `${parents} invite you to the wedding of their children`,
+                cardW / 2,
+                y
+              );
+              y += 38;
+
+              // Couple names (first names only)
+              var brideFirst = (d.bride_first_name || "").trim();
+              var groomFirst = (d.groom_first_name || "").trim();
+              var coupleFirstNames =
+                brideFirst && groomFirst
+                  ? `${brideFirst} & ${groomFirst}`
+                  : brideFirst || groomFirst || "The Couple";
+              ctx.font = "bold 30px serif";
+              ctx.fillStyle = "#b07bce";
+              ctx.fillText(coupleFirstNames, cardW / 2, y);
+              y += 36;
+
+              // For: Guest
+              ctx.font = "18px sans-serif";
               ctx.fillStyle = "#333";
               ctx.fillText(
-                "Mungi and Viv's Wedding",
-                canvas.width / 2,
-                150 + topImgH
-              );
-
-              // Invitee name
-              ctx.font = "22px sans-serif";
-              ctx.fillStyle = "#888";
-              if (attend === "yes") {
-                var guestText =
+                "For: " +
                   name +
                   (guests > 1
                     ? " (+ " +
@@ -1243,87 +1820,104 @@
                       " guest" +
                       (guests > 2 ? "s" : "") +
                       ")"
-                    : "");
-                ctx.fillText(
-                  "For: " + guestText,
-                  canvas.width / 2,
-                  200 + topImgH
-                );
-              } else {
-                ctx.fillText(
-                  "Sorry you can't make it, " + name + ".",
-                  canvas.width / 2,
-                  200 + topImgH
-                );
-              }
+                    : ""),
+                cardW / 2,
+                y
+              );
+              y += 32;
 
-              // Date & venue
-              ctx.font = "20px sans-serif";
+              // Date
+              ctx.font = "18px sans-serif";
+              ctx.fillStyle = "#444";
+              ctx.fillText("Date: " + eventDate, cardW / 2, y);
+              y += 28;
+
+              // Venue
+              ctx.font = "18px sans-serif";
               ctx.fillStyle = "#444";
               ctx.fillText(
-                "Friday, 24th October 2025 (Independence Day)",
-                canvas.width / 2,
-                250 + topImgH
+                "Venue: " + venue + (country ? ", " + country : ""),
+                cardW / 2,
+                y
               );
-              ctx.fillText(
-                "Mary Immaculate Parish, Leopards Hill Road",
-                canvas.width / 2,
-                290 + topImgH
-              );
-              ctx.fillText("10:00 hrs", canvas.width / 2, 320 + topImgH);
+              y += 36;
 
-              // Reception details
-              ctx.font = "18px sans-serif";
-              ctx.fillStyle = "#666";
-              ctx.fillText(
-                "Reception: Waterfalls Place, off Great East Road",
-                canvas.width / 2,
-                370 + topImgH
-              );
-              ctx.fillText(
-                "Blessing in the garden at 14:00 hrs",
-                canvas.width / 2,
-                400 + topImgH
-              );
-              ctx.fillText(
-                "Cocktail hour at 16:00 hrs",
-                canvas.width / 2,
-                430 + topImgH
-              );
-              ctx.fillText(
-                "Reception at 18:00 hrs",
-                canvas.width / 2,
-                460 + topImgH
-              );
-
-              // Draw bottom image (centered, much bigger: max width 480px, max height 220px, keep aspect, at y=canvas.height-260)
-              var bottomImgMaxW = 480,
-                bottomImgMaxH = 220;
-              var bottomImgW = bottomImg.width,
-                bottomImgH = bottomImg.height;
-              var scale = Math.min(
-                bottomImgMaxW / bottomImgW,
-                bottomImgMaxH / bottomImgH,
-                1
-              );
-              bottomImgW = bottomImgW * scale;
-              bottomImgH = bottomImgH * scale;
+              // Main image (big, centered, not touching border, about 220px high)
+              var imgPad = 36; // more padding so image doesn't touch border
+              var imgY = y;
+              var imgH = 220,
+                imgW = innerW - 2 * imgPad;
+              // Fit and crop main image (object-fit: cover)
+              var scale = Math.max(imgW / mainImg.width, imgH / mainImg.height);
+              var drawW = mainImg.width * scale;
+              var drawH = mainImg.height * scale;
+              var sx = 0,
+                sy = 0,
+                sw = mainImg.width,
+                sh = mainImg.height;
+              if (drawW > imgW) {
+                sw = imgW / scale;
+                sx = (mainImg.width - sw) / 2;
+                drawW = imgW;
+              }
+              if (drawH > imgH) {
+                sh = imgH / scale;
+                sy = (mainImg.height - sh) / 2;
+                drawH = imgH;
+              }
               ctx.drawImage(
-                bottomImg,
-                (canvas.width - bottomImgW) / 2,
-                canvas.height - 40 - bottomImgH,
-                bottomImgW,
-                bottomImgH
+                mainImg,
+                sx,
+                sy,
+                sw,
+                sh,
+                margin + imgPad,
+                imgY,
+                imgW,
+                imgH
               );
+
+              // Message
+              ctx.font = "18px serif";
+              ctx.fillStyle = "#444";
+              ctx.textAlign = "center";
+              var msg1 =
+                "Your presence will not only honor us but make our celebration truly complete.";
+              var msg2 =
+                "We can't wait to celebrate this new chapter of our lives with the people who mean the most to us.";
+              // Wrap text
+              function wrapText(text, x, y, maxWidth, lineHeight) {
+                var words = text.split(" ");
+                var line = "";
+                for (var n = 0; n < words.length; n++) {
+                  var testLine = line + words[n] + " ";
+                  var metrics = ctx.measureText(testLine);
+                  var testWidth = metrics.width;
+                  if (testWidth > maxWidth && n > 0) {
+                    ctx.fillText(line, x, y);
+                    line = words[n] + " ";
+                    y += lineHeight;
+                  } else {
+                    line = testLine;
+                  }
+                }
+                ctx.fillText(line, x, y);
+                return y;
+              }
+              var msgY = imgY + imgH + 48;
+              msgY = wrapText(msg1, cardW / 2, msgY, innerW - 40, 26) + 32;
+              wrapText(msg2, cardW / 2, msgY, innerW - 40, 26);
 
               // Footer
               ctx.font = "16px sans-serif";
               ctx.fillStyle = "#aaa";
               ctx.fillText(
-                "With love, Mungi & Viv",
-                canvas.width / 2,
-                canvas.height - 20
+                "With love, " + coupleFirstNames,
+                cardW / 2,
+                cardH - margin - 18
               );
+
+              ctx.restore();
 
               // Download
               var link = document.createElement("a");
@@ -1331,7 +1925,9 @@
                 (name ? name.replace(/\s+/g, "_") + "-" : "") +
                 "invitation-card.png";
               link.href = canvas.toDataURL("image/png");
+              document.body.appendChild(link);
               link.click();
+              document.body.removeChild(link);
 
               // Show image preview after download
               var imgPreview = document.getElementById("invite-image");
@@ -1341,10 +1937,8 @@
               imgPreview.src = canvas.toDataURL("image/png");
               imgPreviewDiv.style.display = "block";
             };
-
-            // Set image sources (use relative path for deployment)
-            topImg.src = topImgUrl;
-            bottomImg.src = bottomImgUrl;
+            headerImg.src = headerImgUrl;
+            mainImg.src = mainImgUrl;
           };
         </script>
       </section>
@@ -1482,7 +2076,7 @@
           .wpo-site-footer .wpo-upper-footer .row {
             flex-direction: column !important;
           }
-          .wpo-site-footer .widget.instagram ul.d-flex {
+          .w .wpo-site-footer .widget.instagram ul.d-flex {
             justify-content: flex-start !important;
           }
         }
@@ -1557,6 +2151,29 @@
               if (venueEl) venueEl.textContent = data.venue || "";
               const countryEl = document.getElementById("event-country");
               if (countryEl) countryEl.textContent = data.country || "";
+
+              // Additional header text (dynamic)
+              let additionalHeaderText = data.additional_header_text || "";
+              let additionalHeaderDiv = document.getElementById(
+                "event-additional-header"
+              );
+              if (!additionalHeaderDiv) {
+                // Insert after event-title
+                const eventTitle = document.getElementById("event-title");
+                if (eventTitle) {
+                  additionalHeaderDiv = document.createElement("div");
+                  additionalHeaderDiv.id = "event-additional-header";
+                  additionalHeaderDiv.style =
+                    "font-size:1.1em;color:#333;font-family:serif;margin-top:0.2em;margin-bottom:0.2em;font-weight:500;"; // dark gray
+                  eventTitle.parentNode.insertBefore(
+                    additionalHeaderDiv,
+                    eventTitle.nextSibling
+                  );
+                }
+              }
+              if (additionalHeaderDiv) {
+                additionalHeaderDiv.textContent = additionalHeaderText;
+              }
 
               // Hero slider images and titles (bride/groom first names only, all slides)
               // Ensure correct mapping and avoid duplicate references
@@ -1824,11 +2441,11 @@
                         ul.appendChild(li);
                       }
                     });
-                    if (card.url) {
-                      const li = document.createElement("li");
-                      li.innerHTML = `<a class="popup-gmaps" href="${card.url}" target="_blank">See Location</a>`;
-                      ul.appendChild(li);
-                    }
+                    // if (card.url) {
+                    //   const li = document.createElement("li");
+                    //   li.innerHTML = `<a class="popup-gmaps" href="${card.url}" target="_blank">See Location</a>`;
+                    //   ul.appendChild(li);
+                    // }
                   }
                 });
 
@@ -1845,8 +2462,273 @@
             });
         }
       })();
+
+      // Invitation image download logic (dynamic)
+      document.getElementById("download-invite-img").onclick = function () {
+        var name = document.getElementById("fullname").value.trim();
+        var guests = document.getElementById("guests").value;
+        var attend = document.querySelector(
+          'input[name="attend"]:checked'
+        )?.value;
+        var canvas = document.getElementById("invite-canvas");
+        var ctx = canvas.getContext("2d");
+
+        // Use backend data for card
+        var d = eventData || {};
+        // Names
+        var bride =
+          (d.bride_first_name || "") +
+          (d.bride_last_name ? " " + d.bride_last_name : "");
+        var groom =
+          (d.groom_first_name || "") +
+          (d.groom_last_name ? " " + d.groom_last_name : "");
+        var coupleNames =
+          bride && groom
+            ? `${bride} & ${groom}`
+            : bride || groom || "The Couple";
+        // Parents (optional, fallback to "The Families")
+        var parents =
+          (d.bride_parents || "The Matongos") +
+          " and " +
+          (d.groom_parents || "the Msokas");
+        // Date
+        var eventDate = d.date
+          ? new Date(d.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "2-digit",
+            })
+          : "";
+        // Venue
+        var venue = d.venue || "";
+        // Country
+        var country = d.country || "";
+        // Top header image
+        var headerImgUrl = "assets/images/section-title2.png";
+        // Main image (big, not touching border)
+        var sliderImgs = [
+          d.slider_image_1,
+          d.slider_image_2,
+          d.slider_image_3,
+          d.slider_image_4,
+          d.slider_image_5,
+          d.slider_image_6,
+        ].filter((img) => !!img && img !== "null" && img !== "None");
+        var mainImgUrl = sliderImgs[0] || "assets/images/slider/slide-2.jpg";
+
+        // Card layout constants
+        var borderWidth = 9; // thick border
+        var margin = 18;
+        var borderInset = 16; // space between border and card edge
+        var cardW = canvas.width,
+          cardH = canvas.height;
+        var innerW = cardW - 2 * margin,
+          innerH = cardH - 2 * margin;
+
+        // Preload both images
+        var headerImg = new window.Image();
+        var mainImg = new window.Image();
+        var loaded = 0;
+        headerImg.crossOrigin = "anonymous";
+        mainImg.crossOrigin = "anonymous";
+        headerImg.onload = mainImg.onload = function () {
+          loaded++;
+          if (loaded < 2) return;
+
+          // Clear and draw border with margin and no border radius
+          ctx.clearRect(0, 0, cardW, cardH);
+          ctx.save();
+
+          // Card background
+          ctx.fillStyle = "#fff";
+          ctx.fillRect(margin, margin, innerW, innerH);
+
+          // Border (no radius, not touching card edge)
+          ctx.lineWidth = borderWidth;
+          ctx.strokeStyle = "#e89bae";
+          ctx.strokeRect(
+            margin + borderInset,
+            margin + borderInset,
+            innerW - 2 * borderInset,
+            innerH - 2 * borderInset
+          );
+
+          // Header image (fit, not distorted, at top, about 70px high)
+          var headerH = 70,
+            headerPad = 12;
+          var headerScale = Math.min(
+            (innerW - 2 * headerPad) / headerImg.width,
+            (headerH - 2 * headerPad) / headerImg.height
+          );
+          var headerDrawW = headerImg.width * headerScale;
+          var headerDrawH = headerImg.height * headerScale;
+          var headerX = margin + (innerW - headerDrawW) / 2;
+          var headerY = margin + headerPad;
+          ctx.drawImage(headerImg, headerX, headerY, headerDrawW, headerDrawH);
+
+          // Vertical spacing variables
+          var y = margin + headerH + 36;
+
+          // "You're Invited" header
+          ctx.font = "bold 32px serif";
+          ctx.fillStyle = "#e89bae";
+          ctx.textAlign = "center";
+          ctx.fillText("You're Invited", cardW / 2, y);
+          y += 36;
+
+          // Parents invite text (extra vertical spacing)
+          y += 16;
+          ctx.font = "20px serif";
+          ctx.fillStyle = "#444";
+          ctx.fillText(
+            `${parents} invite you to the wedding of their children`,
+            cardW / 2,
+            y
+          );
+          y += 38;
+
+          // Couple names (first names only)
+          var brideFirst = (d.bride_first_name || "").trim();
+          var groomFirst = (d.groom_first_name || "").trim();
+          var coupleFirstNames =
+            brideFirst && groomFirst
+              ? `${brideFirst} & ${groomFirst}`
+              : brideFirst || groomFirst || "The Couple";
+          ctx.font = "bold 30px serif";
+          ctx.fillStyle = "#b07bce";
+          ctx.fillText(coupleFirstNames, cardW / 2, y);
+          y += 36;
+
+          // For: Guest
+          ctx.font = "18px sans-serif";
+          ctx.fillStyle = "#333";
+          ctx.fillText(
+            "For: " +
+              name +
+              (guests > 1
+                ? " (+ " +
+                  (guests - 1) +
+                  " guest" +
+                  (guests > 2 ? "s" : "") +
+                  ")"
+                : ""),
+            cardW / 2,
+            y
+          );
+          y += 32;
+
+          // Date
+          ctx.font = "18px sans-serif";
+          ctx.fillStyle = "#444";
+          ctx.fillText("Date: " + eventDate, cardW / 2, y);
+          y += 28;
+
+          // Venue
+          ctx.font = "18px sans-serif";
+          ctx.fillStyle = "#444";
+          ctx.fillText(
+            "Venue: " + venue + (country ? ", " + country : ""),
+            cardW / 2,
+            y
+          );
+          y += 36;
+
+          // Main image (big, centered, not touching border, about 220px high)
+          var imgPad = 36; // more padding so image doesn't touch border
+          var imgY = y;
+          var imgH = 220,
+            imgW = innerW - 2 * imgPad;
+          // Fit and crop main image (object-fit: cover)
+          var scale = Math.max(imgW / mainImg.width, imgH / mainImg.height);
+          var drawW = mainImg.width * scale;
+          var drawH = mainImg.height * scale;
+          var sx = 0,
+            sy = 0,
+            sw = mainImg.width,
+            sh = mainImg.height;
+          if (drawW > imgW) {
+            sw = imgW / scale;
+            sx = (mainImg.width - sw) / 2;
+            drawW = imgW;
+          }
+          if (drawH > imgH) {
+            sh = imgH / scale;
+            sy = (mainImg.height - sh) / 2;
+            drawH = imgH;
+          }
+          ctx.drawImage(
+            mainImg,
+            sx,
+            sy,
+            sw,
+            sh,
+            margin + imgPad,
+            imgY,
+            imgW,
+            imgH
+          );
+
+          // Message
+          ctx.font = "18px serif";
+          ctx.fillStyle = "#444";
+          ctx.textAlign = "center";
+          var msg1 =
+            "Your presence will not only honor us but make our celebration truly complete.";
+          var msg2 =
+            "We can't wait to celebrate this new chapter of our lives with the people who mean the most to us.";
+          // Wrap text
+          function wrapText(text, x, y, maxWidth, lineHeight) {
+            var words = text.split(" ");
+            var line = "";
+            for (var n = 0; n < words.length; n++) {
+              var testLine = line + words[n] + " ";
+              var metrics = ctx.measureText(testLine);
+              var testWidth = metrics.width;
+              if (testWidth > maxWidth && n > 0) {
+                ctx.fillText(line, x, y);
+                line = words[n] + " ";
+                y += lineHeight;
+              } else {
+                line = testLine;
+              }
+            }
+            ctx.fillText(line, x, y);
+            return y;
+          }
+          var msgY = imgY + imgH + 48;
+          msgY = wrapText(msg1, cardW / 2, msgY, innerW - 40, 26) + 32;
+          wrapText(msg2, cardW / 2, msgY, innerW - 40, 26);
+
+          // Footer
+          ctx.font = "16px sans-serif";
+          ctx.fillStyle = "#aaa";
+          ctx.fillText(
+            "With love, " + coupleFirstNames,
+            cardW / 2,
+            cardH - margin - 18
+          );
+
+          ctx.restore();
+
+          // Download
+          var link = document.createElement("a");
+          link.download =
+            (name ? name.replace(/\s+/g, "_") + "-" : "") +
+            "invitation-card.png";
+          link.href = canvas.toDataURL("image/png");
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          // Show image preview after download
+          var imgPreview = document.getElementById("invite-image");
+          var imgPreviewDiv = document.getElementById("invite-image-preview");
+          imgPreview.src = canvas.toDataURL("image/png");
+          imgPreviewDiv.style.display = "block";
+        };
+        headerImg.src = headerImgUrl;
+        mainImg.src = mainImgUrl;
+      };
     </script>
   </body>
-
-  <!-- Mirrored from wpocean.com/html/tf/loveme/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 Jun 2025 19:05:41 GMT -->
 </html>

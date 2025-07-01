@@ -38,10 +38,14 @@
   <body>
     <!-- start page-wrapper -->
     <div class="page-wrapper">
-      <!-- start preloader -->
-      <div class="simple-loader" id="simple-loader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#fff;display:flex;align-items:center;justify-content:center;">
-        <div style="font-size:1.3em;color:#b07bce;font-family:inherit;">Loading...</div>
+      <!-- Global fullscreen loader overlay -->
+      <div id="global-loader-overlay" style="position:fixed;z-index:99999;top:0;left:0;width:100vw;height:100vh;background:#fff;display:flex;align-items:center;justify-content:center;">
+        <div class="lds-dual-ring-global"></div>
       </div>
+      <!-- start preloader -->
+      <!-- <div class="simple-loader" id="simple-loader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#fff;display:flex;align-items:center;justify-content:center;">
+        <div style="font-size:1.3em;color:#b07bce;font-family:inherit;">Loading...</div>
+      </div> -->
       <!-- start-header-topbar -->
       <section class="topbar" style="background-color: #f9f9f9">
         <h2 class="hidden">some</h2>
@@ -2770,6 +2774,11 @@
             }
           }
         });
+        // Hide the global loader overlay after all dynamic content is loaded
+        setTimeout(function() {
+          var overlay = document.getElementById('global-loader-overlay');
+          if (overlay) overlay.style.display = 'none';
+        }, 400); // Slight delay to ensure all content is visible
       })();
       // ... existing code ...
     </script>

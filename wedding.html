@@ -312,8 +312,8 @@
 
         // === API URL switch ===
         // Change this to your production or test server as needed
-        // const API_URL = "http://localhost:8000";
-        const API_URL = "https://savemeaseat-backend.onrender.com";
+        const API_URL = "http://localhost:8000";
+        // const API_URL = "https://savemeaseat-backend.onrender.com";
         // Helper to get Cloudinary URL
         function getCloudinaryUrl(filename) {
           if (!filename) return "";
@@ -880,19 +880,28 @@
       <!-- end wpo-portfolio-section -->
 
       <!-- start wpo-product-section -->
-      <section class="wpo-product-section section-padding">
-        <div class="container">
+      <section class="wpo-product-section1 section-padding" id="bridesmaids-groomsmen">
+        <div class="container-fluid">
           <div class="row">
-            <div class="wpo-section-title">
+            <div class="wpo-section-title-s2">
+              <div class="section-title-simg">
+                <img src="assets/images/section-title2.png" alt="" />
+              </div>
               <h2>Bridesmaids and Groomsmen</h2>
               <div class="section-title-img">
-                <img src="assets/images/section-title.png" alt="" />
+                <div class="round-ball"></div>
               </div>
             </div>
           </div>
-          <div class="wpo-product-wrap">
-            <div class="row" id="bridesmaids-groomsmen-list">
-              <!-- Dynamic bridesmaids and groomsmen will be injected here -->
+          <!-- Loader for bridesmaids and groomsmen section -->
+          <div id="bridesmaids-groomsmen-loader" style="display:flex;justify-content:center;align-items:center;height:400px;width:100%;background:#fff;">
+            <div class="lds-dual-ring"></div>
+          </div>
+          <div class="row" id="bridesmaids-groomsmen-content" style="display:none;">
+            <div class="col-lg-12">
+              <div id="bridesmaids-groomsmen-list" class="row">
+                <!-- Bridesmaids and Groomsmen will be dynamically loaded here -->
+              </div>
             </div>
           </div>
         </div>
@@ -2084,7 +2093,7 @@
           // Remove any trailing slash from slug
           slug = slug.replace(/\/+$/, "");
           fetch(
-            `http://${API_URL}/api/events/` + encodeURIComponent(slug) + "/"
+            `${API_URL}/api/events/` + encodeURIComponent(slug) + "/"
           )
             .then((res) => {
               if (!res.ok) throw new Error("Event not found");
@@ -2131,13 +2140,18 @@
 
               // Hero slider images and titles (bride/groom first names only, all slides)
               // Ensure correct mapping and avoid duplicate references
+              function getCloudinaryUrl(filename) {
+                if (!filename) return "";
+                if (filename.startsWith("http")) return filename;
+                return "https://res.cloudinary.com/godwinb/" + filename.replace(/^\/+/, "");
+              }
               const sliderImgs = [
-                data.slider_image_1,
-                data.slider_image_2,
-                data.slider_image_3,
-                data.slider_image_4,
-                data.slider_image_5,
-                data.slider_image_6,
+                getCloudinaryUrl(data.slider_image_1),
+                getCloudinaryUrl(data.slider_image_2),
+                getCloudinaryUrl(data.slider_image_3),
+                getCloudinaryUrl(data.slider_image_4),
+                getCloudinaryUrl(data.slider_image_5),
+                getCloudinaryUrl(data.slider_image_6),
               ].filter((img) => !!img && img !== "null" && img !== "None");
 
               const bride = data.bride_first_name || "";
@@ -2207,7 +2221,7 @@
               const brideImg = document.querySelector(
                 ".text-grid.bride .couple-img img"
               );
-              if (brideImg) brideImg.src = data.bride_image || "";
+              if (brideImg) brideImg.src = getCloudinaryUrl(data.bride_image) || "";
               const brideName = document.querySelector(".text-grid.bride h3");
               if (brideName)
                 brideName.textContent =
@@ -2219,8 +2233,10 @@
               const groomImg = document.querySelector(
                 ".text-grid.groom .couple-img img"
               );
-              if (groomImg) groomImg.src = data.groom_image || "";
-              const groomName = document.querySelector(".text-grid.groom h3");
+              if (groomImg) groomImg.src = getCloudinaryUrl(data.groom_image) || "";
+              const groomName = document.querySelector(
+                ".text-grid.groom h3"
+              );
               if (groomName)
                 groomName.textContent =
                   (data.groom_first_name || "") +
@@ -2232,7 +2248,7 @@
               const centerImg = document.querySelector(
                 ".middle-couple-pic img"
               );
-             if (centerImg) centerImg.src = getCloudinaryUrl(data.center_cover_image) || "";
+              if (centerImg) centerImg.src = getCloudinaryUrl(data.center_cover_image) || "";
 
               // Story section
               // First meet
@@ -2249,7 +2265,7 @@
                 if (p) p.textContent = data.love_story_first_meet_desc || "";
                 const img = story1.querySelector(".img-holder img");
                 if (img && data.love_story_first_meet_image)
-                  img.src = data.love_story_first_meet_image;
+                  img.src = getCloudinaryUrl(data.love_story_first_meet_image);
               }
               // First date
               const story2 = document.querySelectorAll(
@@ -2265,7 +2281,7 @@
                 if (p) p.textContent = data.love_story_first_date_desc || "";
                 const img = story2.querySelector(".img-holder img");
                 if (img && data.love_story_first_date_image)
-                  img.src = data.love_story_first_date_image;
+                  img.src = getCloudinaryUrl(data.love_story_first_date_image);
               }
               // Proposal
               const story3 = document.querySelectorAll(
@@ -2281,7 +2297,7 @@
                 if (p) p.textContent = data.love_story_proposal_desc || "";
                 const img = story3.querySelector(".img-holder img");
                 if (img && data.love_story_proposal_image)
-                  img.src = data.love_story_proposal_image;
+                  img.src = getCloudinaryUrl(data.love_story_proposal_image);
               }
               // Engagement
               const story4 = document.querySelectorAll(
@@ -2297,19 +2313,18 @@
                 if (p) p.textContent = data.love_story_engagement_desc || "";
                 const img = story4.querySelector(".img-holder img");
                 if (img && data.love_story_engagement_image)
-                  img.src = data.love_story_engagement_image;
+                  img.src = getCloudinaryUrl(data.love_story_engagement_image);
               }
 
-            
+              // Gallery
               const sweetImgs = [
-              getCloudinaryUrl(data.sweet_image_1),
-              getCloudinaryUrl(data.sweet_image_2),
-              getCloudinaryUrl(data.sweet_image_3),
-              getCloudinaryUrl(data.sweet_image_4),
-              getCloudinaryUrl(data.sweet_image_5),
-              getCloudinaryUrl(data.sweet_image_6),
-            ].filter(Boolean);
-            // ...existing code...
+                getCloudinaryUrl(data.sweet_image_1),
+                getCloudinaryUrl(data.sweet_image_2),
+                getCloudinaryUrl(data.sweet_image_3),
+                getCloudinaryUrl(data.sweet_image_4),
+                getCloudinaryUrl(data.sweet_image_5),
+                getCloudinaryUrl(data.sweet_image_6),
+              ].filter(Boolean);
               document
                 .querySelectorAll(
                   ".wpo-portfolio-section-s2 .portfolio-grids .grid"
@@ -2341,7 +2356,8 @@
                 });
               }
               const thankYou = document.getElementById("thank-you-message");
-              if (thankYou) thankYou.textContent = data.thank_you_message || "";
+              if (thankYou)
+                thankYou.textContent = data.thank_you_message || "";
 
               // Event cards
               const eventCards = [
@@ -2396,11 +2412,6 @@
                         ul.appendChild(li);
                       }
                     });
-                    // if (card.url) {
-                    //   const li = document.createElement("li");
-                    //   li.innerHTML = `<a class="popup-gmaps" href="${card.url}" target="_blank">See Location</a>`;
-                    //   ul.appendChild(li);
-                    // }
                   }
                 });
 
@@ -2411,7 +2422,6 @@
               if (mapIframe && data.main_map_url) {
                 mapIframe.src = data.main_map_url;
               } else if (mapIframe && !data.main_map_url) {
-                // Optionally hide or clear if no map
                 mapIframe.style.display = "none";
               }
 
@@ -2453,7 +2463,6 @@
 
                 if (bridesmaids.length === 0 && groomsmen.length === 0) {
                   container.innerHTML = "<div class='col-12 text-center text-muted'>No bridesmaids or groomsmen listed for this event.</div>";
-                  // Optionally: section.style.display = "none";
                   return;
                 }
 
@@ -2757,6 +2766,8 @@
         document.getElementById('couple-content').style.display = '';
         document.getElementById('story-loader').style.display = 'none';
         document.getElementById('story-content').style.display = '';
+        document.getElementById('bridesmaids-groomsmen-loader').style.display = 'none';
+        document.getElementById('bridesmaids-groomsmen-content').style.display = '';
 
         // For story images: show placeholder until image loads
         document.querySelectorAll('.story-img-placeholder').forEach(function(holder) {
@@ -2779,6 +2790,75 @@
           var overlay = document.getElementById('global-loader-overlay');
           if (overlay) overlay.style.display = 'none';
         }, 400); // Slight delay to ensure all content is visible
+      })();
+      // ... existing code ...
+    </script>
+    <script>
+      // ... existing code ...
+      // --- Dynamic Event Fetch by slug from query string ---
+      (function () {
+        // ...rest of your code...
+        // Bridesmaids & Groomsmen (populate 6 slots, always show number, name, role, round image)
+        const bgGrids = document.querySelectorAll('#bridesmaids-groomsmen-grids .grid');
+        if (window.eventData) {
+          const bridesmaids = Array.isArray(eventData.bridesmaids) ? eventData.bridesmaids : [];
+          const groomsmen = Array.isArray(eventData.groomsmen) ? eventData.groomsmen : [];
+          const people = [...bridesmaids, ...groomsmen];
+          for (let i = 0; i < 6; i++) {
+            const grid = bgGrids[i];
+            if (!grid) continue;
+            // Remove hover-content if present
+            const hover = grid.querySelector('.hover-content');
+            if (hover) hover.remove();
+            // Remove any previous info
+            let infoBelow = grid.querySelector('.bg-info-below');
+            if (infoBelow) infoBelow.remove();
+            const img = grid.querySelector('img');
+            if (people[i]) {
+              const p = people[i];
+              if (img) {
+                img.src = getCloudinaryUrl(p.image);
+                img.alt = p.full_name || '';
+                img.style.width = '140px';
+                img.style.height = '140px';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '50%';
+                img.style.background = '#f2f2f2';
+                img.style.display = 'block';
+                img.style.margin = '0 auto 10px auto';
+              }
+              // Create info below image
+              infoBelow = document.createElement('div');
+              infoBelow.className = 'bg-info-below';
+              infoBelow.style.textAlign = 'center';
+              infoBelow.style.marginTop = '10px';
+              infoBelow.innerHTML = `
+                <div style="font-size:1.1em;font-weight:bold;">${i+1}</div>
+                <div style="font-weight:bold;">${p.full_name || ''}</div>
+                <div style="font-size:0.95em;color:#999;">${p.role || ''}</div>
+              `;
+              img.parentNode.appendChild(infoBelow);
+            } else {
+              if (img) {
+                img.src = 'https://ui-avatars.com/api/?name=No+Data&background=f2f2f2&color=aaa&size=140';
+                img.alt = 'No data';
+                img.style.width = '140px';
+                img.style.height = '140px';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '50%';
+                img.style.background = '#f2f2f2';
+                img.style.display = 'block';
+                img.style.margin = '0 auto 10px auto';
+              }
+              infoBelow = document.createElement('div');
+              infoBelow.className = 'bg-info-below';
+              infoBelow.style.textAlign = 'center';
+              infoBelow.style.marginTop = '10px';
+              infoBelow.innerHTML = `<div style='color:#aaa;'>No data</div>`;
+              img.parentNode.appendChild(infoBelow);
+            }
+          }
+        }
       })();
       // ... existing code ...
     </script>

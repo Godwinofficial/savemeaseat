@@ -42,6 +42,29 @@
       <div id="global-loader-overlay" style="position:fixed;z-index:99999;top:0;left:0;width:100vw;height:100vh;background:#fff;display:flex;align-items:center;justify-content:center;">
         <div class="lds-dual-ring-global"></div>
       </div>
+      <style>
+        /* App-colored spinner for global loader */
+        .lds-dual-ring-global {
+          display: inline-block;
+          width: 72px;
+          height: 72px;
+        }
+        .lds-dual-ring-global:after {
+          content: " ";
+          display: block;
+          width: 56px;
+          height: 56px;
+          margin: 4px;
+          border-radius: 50%;
+          border: 2px solid #738ea5;
+          border-color: #738ea5 transparent #738ea5 transparent;
+          animation: lds-dual-ring-global 1.2s linear infinite;
+        }
+        @keyframes lds-dual-ring-global {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      </style>
       <!-- start preloader -->
       <!-- <div class="simple-loader" id="simple-loader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#fff;display:flex;align-items:center;justify-content:center;">
         <div style="font-size:1.3em;color:#b07bce;font-family:inherit;">Loading...</div>

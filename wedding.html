@@ -39,16 +39,8 @@
     <!-- start page-wrapper -->
     <div class="page-wrapper">
       <!-- start preloader -->
-      <div class="preloader">
-        <div class="vertical-centered-box">
-          <div class="content">
-            <div class="loader-circle"></div>
-            <div class="loader-line-mask">
-              <div class="loader-line"></div>
-            </div>
-            <img src="assets/images/favicon.png" alt="" />
-          </div>
-        </div>
+      <div class="simple-loader" id="simple-loader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#fff;display:flex;align-items:center;justify-content:center;">
+        <div style="font-size:1.3em;color:#b07bce;font-family:inherit;">Loading...</div>
       </div>
       <!-- start-header-topbar -->
       <section class="topbar" style="background-color: #f9f9f9">
@@ -71,15 +63,15 @@
                     font-weight: bold;
                   "
                 >
-                  Welcome to Viv &amp; Mungi Wedding
+            
                 </h2>
                 <ul class="contact-inline-list mb-0" style="color: #353535">
-                  <li id="event-date" style="color: #353535">Oct 24, 2025</li>
+                  <li id="event-date" style="color: #353535"></li>
                   <li id="event-venue" style="color: #353535">
-                    Waterfalls Place
+            
                   </li>
                   <li id="event-country" style="color: #353535">
-                    Lusaka, Zambia
+              
                   </li>
                 </ul>
               </div>
@@ -190,92 +182,42 @@
       <!-- end of header -->
       <!-- start of hero -->
       <section class="wpo-hero-slider">
-        <div class="swiper-container">
+        <!-- Loader for hero/slider -->
+        <div id="hero-loader" style="display:flex;justify-content:center;align-items:center;height:350px;width:100%;background:#fff;">
+          <div class="lds-dual-ring"></div>
+        </div>
+        <div class="swiper-container" id="hero-swiper" style="display:none;">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div
-                class="slide-inner slide-bg-image"
-                data-background="assets/images/slider/slide-1.jpg"
-              >
-                <!-- <div class="gradient-overlay"></div> -->
-                <div class="container-fluid">
-                  <div class="slide-content">
-                    <div data-swiper-parallax="300" class="slide-title">
-                      <h2>Viv And Mungi</h2>
-                    </div>
-                    <div data-swiper-parallax="400" class="slide-text">
-                      <p>
-                        Welcome and open yourself to your truest love this year
-                        with us! With the Release Process
-                      </p>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </div>
-              </div>
-              <!-- end slide-inner -->
-            </div>
-            <!-- end swiper-slide -->
-
-            <div class="swiper-slide">
-              <div
-                class="slide-inner slide-bg-image"
-                data-background="assets/images/slider/slide-2.jpg"
-              >
-                <!-- <div class="gradient-overlay"></div> -->
-                <div class="container-fluid">
-                  <div class="slide-content">
-                    <div data-swiper-parallax="300" class="slide-title">
-                      <h2>Mungi And Viv's</h2>
-                    </div>
-                    <div data-swiper-parallax="400" class="slide-text">
-                      <p>
-                        Welcome and open yourself to your truest love this year
-                        with us! With the Release Process.
-                      </p>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </div>
-              </div>
-              <!-- end slide-inner -->
-            </div>
-            <!-- end swiper-slide -->
-
-            <div class="swiper-slide">
-              <div
-                class="slide-inner slide-bg-image"
-                data-background="assets/images/slider/slide-3.jpg"
-              >
-                <!-- <div class="gradient-overlay"></div> -->
-                <div class="container-fluid">
-                  <div class="slide-content">
-                    <div data-swiper-parallax="300" class="slide-title">
-                      <h2>Viv And Mungi</h2>
-                    </div>
-                    <div data-swiper-parallax="400" class="slide-text">
-                      <p>
-                        Welcome and open yourself to your truest love this year
-                        with us! With the Release Process.
-                      </p>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </div>
-              </div>
-              <!-- end slide-inner -->
-            </div>
-            <!-- end swiper-slide -->
+            <!-- Slides will be injected here -->
           </div>
-          <!-- end swiper-wrapper -->
-
           <!-- swipper controls -->
           <div class="swiper-pagination"></div>
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </div>
       </section>
-
+      <style>
+        .lds-dual-ring {
+          display: inline-block;
+          width: 64px;
+          height: 64px;
+        }
+        .lds-dual-ring:after {
+          content: " ";
+          display: block;
+          width: 46px;
+          height: 46px;
+          margin: 1px;
+          border-radius: 50%;
+          border: 6px solid #b07bce;
+          border-color: #b07bce transparent #e89bae transparent;
+          animation: lds-dual-ring 1.2s linear infinite;
+        }
+        @keyframes lds-dual-ring {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      </style>
       <!-- Here add clock countdoewn -->
       <div
         id="timer"
@@ -520,32 +462,32 @@
         <div class="container">
           <div class="row align-items-center">
             <div class="col col-xs-12">
-              <div class="couple-area clearfix">
+              <!-- Loader for couple section -->
+              <div id="couple-loader" style="display:flex;justify-content:center;align-items:center;height:220px;width:100%;background:#fff;">
+                <div class="lds-dual-ring"></div>
+              </div>
+              <div class="couple-area clearfix" id="couple-content" style="display:none;">
                 <div class="text-grid bride">
                   <div class="couple-img">
-                    <img src="assets/images/couple/2.jpg" alt="" />
+                    <img  alt="" />
                   </div>
-                  <h3>Mungi</h3>
+                  <h3></h3>
                   <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Recusandae quidem beatae voluptatem harum voluptatibus quas.
-                  </p>
+                        </p>
                 </div>
                 <div class="middle-couple-pic">
-                  <img src="assets/images/couple/1.jpg" alt="" />
+                  <img " alt="" />
                   <div class="frame-img">
                     <img src="assets/images/couple/shape.png" alt="" />
                   </div>
                 </div>
                 <div class="text-grid groom">
                   <div class="couple-img">
-                    <img src="assets/images/couple/3.jpg" alt="" />
+                    <img alt="" />
                   </div>
-                  <h3>Viv</h3>
+                  <h3></h3>
                   <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Recusandae quidem beatae voluptatem harum voluptatibus quas.
-                  </p>
+                         </p>
                 </div>
               </div>
             </div>
@@ -659,8 +601,11 @@
               </div>
             </div>
           </div>
-
-          <div class="row">
+          <!-- Loader for story section -->
+          <div id="story-loader" style="display:flex;justify-content:center;align-items:center;height:400px;width:100%;background:#fff;">
+            <div class="lds-dual-ring"></div>
+          </div>
+          <div class="row" id="story-content" style="display:none;">
             <div class="col col-xs-12">
               <div class="story-timeline">
                 <div class="round-shape"></div>
@@ -677,10 +622,10 @@
                     </div>
                   </div>
                   <div class="col col-lg-6 col-12">
-                    <div class="img-holder">
+                    <div class="img-holder story-img-placeholder">
+                      <div class="img-placeholder"></div>
                       <img
-                        style="width: 300px; height: 300px; object-fit: cover"
-                        src="assets/images/story/1.jpg"
+                        style="width: 300px; height: 300px; object-fit: cover; display:none;"
                         alt
                         class="img img-responsive"
                       />
@@ -692,10 +637,10 @@
                 </div>
                 <div class="row">
                   <div class="col col-lg-6 col-12">
-                    <div class="img-holder right-align-text left-site">
+                    <div class="img-holder right-align-text left-site story-img-placeholder">
+                      <div class="img-placeholder"></div>
                       <img
-                        style="width: 300px; height: 300px; object-fit: cover"
-                        src="assets/images/story/2.jpg"
+                        style="width: 300px; height: 300px; object-fit: cover; display:none;"
                         alt
                         class="img img-responsive"
                       />
@@ -735,10 +680,10 @@
                     </div>
                   </div>
                   <div class="col col-lg-6 col-12">
-                    <div class="img-holder right-align-text">
+                    <div class="img-holder right-align-text story-img-placeholder">
+                      <div class="img-placeholder"></div>
                       <img
-                        style="width: 300px; height: 300px; object-fit: cover"
-                        src="assets/images/story/3.jpg"
+                        style="width: 300px; height: 300px; object-fit: cover; display:none;"
                         alt
                         class="img img-responsive"
                       />
@@ -750,10 +695,10 @@
                 </div>
                 <div class="row">
                   <div class="col col-lg-6 col-12">
-                    <div class="img-holder video-holder left-site">
+                    <div class="img-holder video-holder left-site story-img-placeholder">
+                      <div class="img-placeholder"></div>
                       <img
-                        style="width: 300px; height: 300px; object-fit: cover"
-                        src="assets/images/story/4.jpg"
+                        style="width: 300px; height: 300px; object-fit: cover; display:none;"
                         alt
                         class="img img-responsive"
                       />
@@ -791,6 +736,16 @@
         </div>
         <!-- end container -->
       </section>
+      <style>
+        .img-placeholder {
+          width: 300px;
+          height: 300px;
+          background: #fff;
+          border-radius: 12px;
+          box-shadow: 0 2px 8px #0001;
+          display: block;
+        }
+      </style>
       <!-- end story-section -->
 
       <!-- start wpo-portfolio-section -->
@@ -818,10 +773,7 @@
                         class="fancybox"
                         data-fancybox-group="gall-1"
                       >
-                        <img
-                          src="assets/images/portfolio/7.jpg"
-                          alt
-                          class="img img-responsive"
+                        <img class="img img-responsive"
                         />
                         <div class="hover-content">
                           <i class="ti-plus"></i>
@@ -837,8 +789,7 @@
                         data-fancybox-group="gall-1"
                       >
                         <img
-                          src="assets/images/portfolio/8.jpg"
-                          alt
+                        
                           class="img img-responsive"
                         />
                         <div class="hover-content">
@@ -855,8 +806,7 @@
                         data-fancybox-group="gall-1"
                       >
                         <img
-                          src="assets/images/portfolio/9.jpg"
-                          alt
+                         
                           class="img img-responsive"
                         />
                         <div class="hover-content">
@@ -873,8 +823,7 @@
                         data-fancybox-group="gall-1"
                       >
                         <img
-                          src="assets/images/portfolio/10.jpg"
-                          alt
+                         
                           class="img img-responsive"
                         />
                         <div class="hover-content">
@@ -891,8 +840,7 @@
                         data-fancybox-group="gall-1"
                       >
                         <img
-                          src="assets/images/portfolio/11.jpg"
-                          alt
+                       
                           class="img img-responsive"
                         />
                         <div class="hover-content">
@@ -909,8 +857,7 @@
                         data-fancybox-group="gall-1"
                       >
                         <img
-                          src="assets/images/portfolio/12.jpg"
-                          alt
+                        
                           class="img img-responsive"
                         />
                         <div class="hover-content">
@@ -967,27 +914,13 @@
               <div class="col col-lg-4 col-md-6 col-12">
                 <div class="wpo-event-item">
                   <div class="wpo-event-text">
-                    <h2>Marriage Service</h2>
+                    <h2></h2>
                     <ul>
-                      <li>
-                        <strong
-                          >Friday, 24th October 2025 (Independence Day)</strong
-                        ><br />
-                        10:00 hrs
+                      <li> 
                       </li>
-                      <li>Mary Immaculate Parish, Leopards Hill Road</li>
+                      <li></li>
                       <li>
-                        Viv and Mungi giving up their independence on
-                        Independence Day!
                       </li>
-                      <!-- <li>
-                        <a
-                          class="popup-gmaps"
-                          href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31334.26814781817!2d28.37990615!3d-15.42991365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1940fda1e3e1f64b%3A0x9bc40d2cb0d3d2ef!2sMary%20Immaculate%20Parish!5e0!3m2!1sen!2szm!4v1719352394286"
-                          target="_blank"
-                          >See Location</a
-                        >
-                      </li> -->
                     </ul>
                   </div>
                   <div class="event-shape-1">
@@ -1001,28 +934,16 @@
               <div class="col col-lg-4 col-md-6 col-12">
                 <div class="wpo-event-item">
                   <div class="wpo-event-text">
-                    <h2>Blessing & Cocktail</h2>
+                    <h2></h2>
                     <ul>
                       <li>
-                        Blessing in the garden at Waterfalls Place<br />
-                        14:00 hrs
+                        
+                      </li>
+                    
                       </li>
                       <li>
-                        Cocktail hour in the garden at Waterfalls<br />
-                        16:00 hrs
+                      
                       </li>
-                      <li>
-                        Reception venue: Waterfalls Place, just off Great East
-                        Road
-                      </li>
-                      <!-- <li>
-                        <a
-                          class="popup-gmaps"
-                          href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31334.08717251122!2d28.3958122!3d-15.4329229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1940fce17d8c3fd3%3A0x6f69e3a36a9c9c5d!2sWaterfalls%20Place!5e0!3m2!1sen!2szm!4v1719352412345"
-                          target="_blank"
-                          >See Location</a
-                        >
-                      </li> -->
                     </ul>
                   </div>
                   <div class="event-shape-1">
@@ -1036,26 +957,13 @@
               <div class="col col-lg-4 col-md-6 col-12">
                 <div class="wpo-event-item">
                   <div class="wpo-event-text">
-                    <h2>Wedding Reception</h2>
+                    <h2></h2>
                     <ul>
                       <li>
-                        Reception at 18:00 hrs in the hall at Waterfalls Place
                       </li>
                       <li>
-                        <strong>Theme:</strong> Summer pastels.<br />
-                        Gentlemen, please wear light material summer pastel
-                        suits and add some colour—it will be blazing hot in
-                        October! Ladies, bring your best and don't forget your
-                        hats.
+                        <strong></strong><br />
                       </li>
-                      <!-- <li>
-                        <a
-                          class="popup-gmaps"
-                          href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31334.08717251122!2d28.3958122!3d-15.4329229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1940fce17d8c3fd3%3A0x6f69e3a36a9c9c5d!2sWaterfalls%20Place!5e0!3m2!1sen!2szm!4v1719352412345"
-                          target="_blank"
-                          >See Location</a
-                        >
-                      </li> -->
                     </ul>
                   </div>
                   <div class="event-shape-1">
@@ -2825,6 +2733,45 @@
         headerImg.src = headerImgUrl;
         mainImg.src = mainImgUrl;
       };
+    </script>
+    <script>
+      window.addEventListener('load', function() {
+        var loader = document.getElementById('simple-loader');
+        if(loader) loader.style.display = 'none';
+      });
+    </script>
+    <script>
+      // ... existing code ...
+      // --- Dynamic Event Fetch by slug from query string ---
+      (function () {
+        // ...rest of your code...
+        // After data is loaded and DOM is updated:
+        // Hide loaders and show content
+        document.getElementById('hero-loader').style.display = 'none';
+        document.getElementById('hero-swiper').style.display = '';
+        document.getElementById('couple-loader').style.display = 'none';
+        document.getElementById('couple-content').style.display = '';
+        document.getElementById('story-loader').style.display = 'none';
+        document.getElementById('story-content').style.display = '';
+
+        // For story images: show placeholder until image loads
+        document.querySelectorAll('.story-img-placeholder').forEach(function(holder) {
+          var img = holder.querySelector('img');
+          var placeholder = holder.querySelector('.img-placeholder');
+          if (img) {
+            img.onload = function() {
+              if (placeholder) placeholder.style.display = 'none';
+              img.style.display = '';
+            };
+            // If image is already cached
+            if (img.complete && img.naturalWidth > 0) {
+              if (placeholder) placeholder.style.display = 'none';
+              img.style.display = '';
+            }
+          }
+        });
+      })();
+      // ... existing code ...
     </script>
   </body>
 </html>

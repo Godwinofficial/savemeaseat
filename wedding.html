@@ -1045,7 +1045,7 @@
                         <strong>Theme:</strong> Summer pastels.<br />
                         Gentlemen, please wear light material summer pastel
                         suits and add some colour—it will be blazing hot in
-                        October! Ladies, bring your best and don’t forget your
+                        October! Ladies, bring your best and don't forget your
                         hats.
                       </li>
                       <!-- <li>
@@ -1384,7 +1384,7 @@
                       additionalHeaderDiv = document.createElement("div");
                       additionalHeaderDiv.id = "event-additional-header";
                       additionalHeaderDiv.style =
-                        "color:#444;font-size:1.1em;font-family:inherit;margin-top:0.2em;margin-bottom:0.2em;font-weight:400;text-align:center;";
+                        "color:#353535;font-size:1.1em;font-family:inherit;margin-top:0.2em;margin-bottom:0.2em;font-weight:400;text-align:center;";
                       eventTitle.parentNode.insertBefore(
                         additionalHeaderDiv,
                         eventTitle.nextSibling
@@ -1757,8 +1757,7 @@
               d.slider_image_5,
               d.slider_image_6,
             ].filter((img) => !!img && img !== "null" && img !== "None");
-            var mainImgUrl =
-              sliderImgs[0] || "assets/images/slider/slide-2.jpg";
+            var mainImgUrl = sliderImgs[0] || "assets/images/slider/slide-2.jpg";
 
             // Card layout constants
             var borderWidth = 9; // thick border
@@ -2207,7 +2206,7 @@
                   additionalHeaderDiv = document.createElement("div");
                   additionalHeaderDiv.id = "event-additional-header";
                   additionalHeaderDiv.style =
-                    "color:#444;font-size:1.1em;font-family:inherit;margin-top:0.2em;margin-bottom:0.2em;font-weight:400;text-align:center;";
+                    "color:#353535;font-size:1.1em;font-family:inherit;margin-top:0.2em;margin-bottom:0.2em;font-weight:400;text-align:center;";
                   eventTitle.parentNode.insertBefore(
                     additionalHeaderDiv,
                     eventTitle.nextSibling
@@ -2389,15 +2388,7 @@
                   img.src = data.love_story_engagement_image;
               }
 
-              // Sweet Moments gallery
-              // const sweetImgs = [
-              //   data.sweet_image_1,
-              //   data.sweet_image_2,
-              //   data.sweet_image_3,
-              //   data.sweet_image_4,
-              //   data.sweet_image_5,
-              //   data.sweet_image_6,
-              // ].filter(Boolean);
+            
               const sweetImgs = [
               getCloudinaryUrl(data.sweet_image_1),
               getCloudinaryUrl(data.sweet_image_2),
@@ -2530,28 +2521,33 @@
                   return;
                 }
                 if (!container) return;
-                container.innerHTML = "";
-                // Helper for cards
-             // ...existing code...
-function makeCard(person, type) {
-  return `
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-      <div class="wpo-product-item text-center">
-        <div class="wpo-product-img" style="margin-bottom:12px;">
-          <img src="${getCloudinaryUrl(person.image)}" alt="${person.full_name || ""}" style="width:180px;height:180px;object-fit:cover;border-radius:50%;background:#f2f2f2;">
-        </div>
-        <div class="wpo-product-text">
-          <h4 style="margin-bottom:0.2em;">${person.full_name || ""}</h4>
-          <span style="color:#b07bce;font-size:0.7em;">${person.role || (type === "bridesmaid" ? "Bridesmaid" : "Groomsman")}</span>
-        </div>
-      </div>
-    </div>
-  `;
-}           // Bridesmaids
+                container.innerHTML = ""; // Clear previous
+
+                function makeCard(person, type) {
+                  return `
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                      <div class="wpo-product-item text-center">
+                        <div class="wpo-product-img" style="margin-bottom:12px;">
+                          <img src="${getCloudinaryUrl(person.image)}" alt="${person.full_name || ""}" style="width:180px;height:180px;object-fit:cover;border-radius:50%;background:#f2f2f2;">
+                        </div>
+                        <div class="wpo-product-text">
+                          <h4 style="margin-bottom:0.2em;">${person.full_name || ""}</h4>
+                          <span style="color:#999999;font-size:0.7em;">${person.role || (type === "bridesmaid" ? "Bridesmaid" : "Groomsman")}</span>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                }
+
+                if (bridesmaids.length === 0 && groomsmen.length === 0) {
+                  container.innerHTML = "<div class='col-12 text-center text-muted'>No bridesmaids or groomsmen listed for this event.</div>";
+                  // Optionally: section.style.display = "none";
+                  return;
+                }
+
                 bridesmaids.forEach((b) => {
                   container.innerHTML += makeCard(b, "bridesmaid");
                 });
-                // Groomsmen
                 groomsmen.forEach((g) => {
                   container.innerHTML += makeCard(g, "groomsman");
                 });

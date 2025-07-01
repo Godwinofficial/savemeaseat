@@ -1682,14 +1682,14 @@
             var country = d.country || "";
             // Top header image
             var headerImgUrl = "assets/images/section-title2.png";
-            // Main image (big, not touching border)
+            // Main image (big, not touching border) - always use first valid slider image
             var sliderImgs = [
-              d.slider_image_1,
-              d.slider_image_2,
-              d.slider_image_3,
-              d.slider_image_4,
-              d.slider_image_5,
-              d.slider_image_6,
+              getCloudinaryUrl(d.slider_image_1),
+              getCloudinaryUrl(d.slider_image_2),
+              getCloudinaryUrl(d.slider_image_3),
+              getCloudinaryUrl(d.slider_image_4),
+              getCloudinaryUrl(d.slider_image_5),
+              getCloudinaryUrl(d.slider_image_6),
             ].filter((img) => !!img && img !== "null" && img !== "None");
             var mainImgUrl = sliderImgs[0] || "assets/images/slider/slide-2.jpg";
 
@@ -1858,7 +1858,7 @@
               var msg1 =
                 "Your presence will not only honor us but make our celebration truly complete.";
               var msg2 =
-                "Thnak you for confirming your attendance. A physical card will now be prepared and delivered to you.";
+                "Thank you for confirming your attendance. A physical card will now be prepared and delivered to you.";
               // Wrap text
               function wrapText(text, x, y, maxWidth, lineHeight) {
                 var words = text.split(" ");
@@ -2535,14 +2535,14 @@
         var country = d.country || "";
         // Top header image
         var headerImgUrl = "assets/images/section-title2.png";
-        // Main image (big, not touching border)
+        // Main image (big, not touching border) - always use first valid slider image
         var sliderImgs = [
-          d.slider_image_1,
-          d.slider_image_2,
-          d.slider_image_3,
-          d.slider_image_4,
-          d.slider_image_5,
-          d.slider_image_6,
+          getCloudinaryUrl(d.slider_image_1),
+          getCloudinaryUrl(d.slider_image_2),
+          getCloudinaryUrl(d.slider_image_3),
+          getCloudinaryUrl(d.slider_image_4),
+          getCloudinaryUrl(d.slider_image_5),
+          getCloudinaryUrl(d.slider_image_6),
         ].filter((img) => !!img && img !== "null" && img !== "None");
         var mainImgUrl = sliderImgs[0] || "assets/images/slider/slide-2.jpg";
 
@@ -2594,7 +2594,13 @@
           var headerDrawH = headerImg.height * headerScale;
           var headerX = margin + (innerW - headerDrawW) / 2;
           var headerY = margin + headerPad;
-          ctx.drawImage(headerImg, headerX, headerY, headerDrawW, headerDrawH);
+          ctx.drawImage(
+            headerImg,
+            headerX,
+            headerY,
+            headerDrawW,
+            headerDrawH
+          );
 
           // Vertical spacing variables
           var y = margin + headerH + 36;
@@ -2705,7 +2711,7 @@
           var msg1 =
             "Your presence will not only honor us but make our celebration truly complete.";
           var msg2 =
-            "Thnak you for confirming your attendance. A physical card will now be prepared and delivered to you.";
+            "Thank you for confirming your attendance. A physical card will now be prepared and delivered to you.";
           // Wrap text
           function wrapText(text, x, y, maxWidth, lineHeight) {
             var words = text.split(" ");

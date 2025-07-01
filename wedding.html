@@ -375,6 +375,7 @@
           return "https://res.cloudinary.com/godwinb/" + filename.replace(/^\/+/, "");
         }
 
+
 // --- Dynamic Event Fetch by slug from query string ---
 (function () {
   // ...rest of your code...
@@ -2531,29 +2532,22 @@
                 if (!container) return;
                 container.innerHTML = "";
                 // Helper for cards
-                function makeCard(person, type) {
-                  return `
-                      <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-                        <div class="wpo-product-item text-center">
-                          <div class="wpo-product-img" style="margin-bottom:12px;">
-                            <img src="${getCloudinaryUrl(person.image)}" alt="${person.full_name || ""}" style="width:180px;height:180px;object-fit:cover;border-radius:50%;background:#f2f2f2;">
-                          </div>
-                          <div class="wpo-product-text">
-                            <h4 style="margin-bottom:0.2em;">${
-                              person.full_name || ""
-                            }</h4>
-                            <span style="color:#b07bce;font-size:0.98em;">${
-                              person.role ||
-                              (type === "bridesmaid"
-                                ? "Bridesmaid"
-                                : "Groomsman")
-                            }</span>
-                          </div>
-                        </div>
-                      </div>
-                    `;
-                }
-                // Bridesmaids
+             // ...existing code...
+function makeCard(person, type) {
+  return `
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+      <div class="wpo-product-item text-center">
+        <div class="wpo-product-img" style="margin-bottom:12px;">
+          <img src="${getCloudinaryUrl(person.image)}" alt="${person.full_name || ""}" style="width:180px;height:180px;object-fit:cover;border-radius:50%;background:#f2f2f2;">
+        </div>
+        <div class="wpo-product-text">
+          <h4 style="margin-bottom:0.2em;">${person.full_name || ""}</h4>
+          <span style="color:#b07bce;font-size:0.7em;">${person.role || (type === "bridesmaid" ? "Bridesmaid" : "Groomsman")}</span>
+        </div>
+      </div>
+    </div>
+  `;
+}           // Bridesmaids
                 bridesmaids.forEach((b) => {
                   container.innerHTML += makeCard(b, "bridesmaid");
                 });

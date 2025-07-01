@@ -1328,7 +1328,7 @@
                       additionalHeaderDiv = document.createElement("div");
                       additionalHeaderDiv.id = "event-additional-header";
                       additionalHeaderDiv.style =
-                        "color:#353535;font-size:1.1em;font-family:inherit;margin-top:0.2em;margin-bottom:0.2em;font-weight:400;text-align:center;";
+                        "color:#353535;font-size:0.8em;font-family:inherit;margin-top:0.2em;margin-bottom:0.2em;font-weight:400;text-align:center;";
                       eventTitle.parentNode.insertBefore(
                         additionalHeaderDiv,
                         eventTitle.nextSibling
@@ -1339,17 +1339,7 @@
                     additionalHeaderDiv.textContent = additionalHeaderText;
                   }
 
-                  // Hero slider images and titles (bride/groom first names only, all slides)
-                  // Ensure correct mapping and avoid duplicate references
-                  // const sliderImgs = [
-                  //   data.slider_image_1,
-                  //   data.slider_image_2,
-                  //   data.slider_image_3,
-                  //   data.slider_image_4,
-                  //   data.slider_image_5,
-                  //   data.slider_image_6,
-                  // ].filter((img) => !!img && img !== "null" && img !== "None");
-
+               
                   // Helper to get Cloudinary URL
                   function getCloudinaryUrl(filename) {
                     if (!filename) return "";

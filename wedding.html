@@ -2084,7 +2084,7 @@
           // Remove any trailing slash from slug
           slug = slug.replace(/\/+$/, "");
           fetch(
-            "http://localhost:8000/api/events/" + encodeURIComponent(slug) + "/"
+            `http://${API_URL}/api/events/` + encodeURIComponent(slug) + "/"
           )
             .then((res) => {
               if (!res.ok) throw new Error("Event not found");

@@ -1245,7 +1245,7 @@
             };
             try {
               const res = await fetch(
-                `${API_URL}/api/events/${eventSlug}/rsvp/`,
+                `${API_URL}/api/events/${eventSlug}rsvp/`,
                 {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -1328,7 +1328,7 @@
                       additionalHeaderDiv = document.createElement("div");
                       additionalHeaderDiv.id = "event-additional-header";
                       additionalHeaderDiv.style =
-                        "color:#353535;font-size:0.8em;font-family:inherit;margin-top:0.2em;margin-bottom:0.2em;font-weight:400;text-align:center;";
+                        "color:#353535;font-size:1.1em;font-family:inherit;margin-top:0.2em;margin-bottom:0.2em;font-weight:400;text-align:center;";
                       eventTitle.parentNode.insertBefore(
                         additionalHeaderDiv,
                         eventTitle.nextSibling

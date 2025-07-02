@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#738ea5">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#fff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!-- <link
       rel="shortcut icon"
       type="image/png"
@@ -35,6 +35,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <!-- Enables fullscreen mode -->
     <meta name="apple-mobile-web-app-status-bar-style" content="#default" />
+    <!-- AOS Animate On Scroll CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <style>
       html, body {
         height: 100%;
@@ -101,7 +103,7 @@
         <div style="font-size:1.3em;color:#b07bce;font-family:inherit;">Loading...</div>
       </div> -->
       <!-- start-header-topbar -->
-      <section class="wpo-hero-slider">
+      <section class="wpo-hero-slider" data-aos="fade-up" data-aos-duration="1200">
         <!-- Loader for hero/slider -->
         <div id="hero-loader" style="display:flex;justify-content:center;align-items:center;height:350px;width:100%;background:#fff;">
           <div class="lds-dual-ring"></div>
@@ -378,7 +380,7 @@
       </script>
       <!-- end wpo-wedding-date -->
       <!-- start couple-section -->
-      <section class="couple-section section-padding" id="couple">
+      <section class="couple-section section-padding" id="couple" data-aos="fade-up" data-aos-delay="100">
         <div class="container">
           <div class="row align-items-center">
             <div class="col col-xs-12">
@@ -508,7 +510,7 @@
       <!-- end wpo-video-section-->
 
       <!-- start story-section -->
-      <section class="story-section section-padding" id="story">
+      <section class="story-section section-padding" id="story" data-aos="fade-up" data-aos-delay="200">
         <div class="container">
           <div class="row">
             <div class="wpo-section-title-s2">
@@ -669,7 +671,7 @@
       <!-- end story-section -->
 
       <!-- start wpo-portfolio-section -->
-      <section class="wpo-portfolio-section-s2 section-padding" id="gallery">
+      <section class="wpo-portfolio-section-s2 section-padding" id="gallery" data-aos="fade-up" data-aos-delay="300">
         <div class="container-fluid">
           <div class="row">
             <div class="wpo-section-title-s2">
@@ -796,7 +798,7 @@
       <!-- end wpo-portfolio-section -->
 
       <!-- start wpo-product-section -->
-      <section class="wpo-product-section1 section-padding" id="bridesmaids-groomsmen">
+      <section class="wpo-product-section1 section-padding" id="bridesmaids-groomsmen" data-aos="fade-up" data-aos-delay="400">
         <div class="container-fluid">
           <div class="row">
             <div class="wpo-section-title-s2">
@@ -825,7 +827,7 @@
       </section>
       <!-- end wpo-product-section -->
       <!-- start wpo-event-section -->
-      <section class="wpo-event-section section-padding" id="event">
+      <section class="wpo-event-section section-padding" id="event" data-aos="fade-up" data-aos-delay="500">
         <div class="container">
           <div class="row">
             <div class="wpo-section-title-s2">
@@ -971,6 +973,8 @@
         class="wpo-contact-section section-padding1"
         style="margin-bottom: 100px"
         id="RSVP"
+        data-aos="fade-up"
+        data-aos-delay="600"
       >
         <div class="container">
           <div class="wpo-contact-section-wrapper">
@@ -1829,7 +1833,7 @@
       </section>
       <!-- end of wpo-contact-section -->
 
-      <footer class="wpo-site-footer">
+      <footer class="wpo-site-footer" data-aos="fade-up" data-aos-delay="700">
         <div class="wpo-upper-footer">
           <div class="container-fluid">
             <div class="row" style="display: flex; flex-wrap: wrap">
@@ -1997,700 +2001,9 @@
     <script src="assets/js/jquery-plugin-collection.js"></script>
     <!-- Custom script for this template -->
     <script src="assets/js/script.js"></script>
-    <script>
-      // --- Dynamic Event Fetch by slug from query string ---
-      (function () {
-        // Helper: format date as "Mon DD, YYYY"
-        function formatDate(iso) {
-          if (!iso) return "";
-          const d = new Date(iso);
-          if (isNaN(d)) return iso;
-          return d.toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "short",
-            day: "2-digit",
-          });
-        }
-        const params = new URLSearchParams(window.location.search);
-        let slug = params.get("slug");
-        if (slug) {
-          // Remove any trailing slash from slug
-          slug = slug.replace(/\/+$/, "");
-          fetch(
-            `${API_URL}/api/events/` + encodeURIComponent(slug) + "/"
-          )
-            .then((res) => {
-              if (!res.ok) throw new Error("Event not found");
-              return res.json();
-            })
-            .then((data) => {
-              eventData = data; // Save for card use
-
-              // Topbar
-              document.title = (data.header_text || "Event") + " – SaveMeASeat";
-              const topbarTitle = document.getElementById("event-title");
-              if (topbarTitle)
-                topbarTitle.textContent =
-                  "Welcome to " + (data.header_text || "");
-              const dateEl = document.getElementById("event-date");
-              if (dateEl) dateEl.textContent = formatDate(data.date) || "";
-              const venueEl = document.getElementById("event-venue");
-              if (venueEl) venueEl.textContent = data.venue || "";
-              const countryEl = document.getElementById("event-country");
-              if (countryEl) countryEl.textContent = data.country || "";
-
-              // Additional header text (dynamic)
-              let additionalHeaderText = data.additional_header_text || "";
-              let additionalHeaderDiv = document.getElementById(
-                "event-additional-header"
-              );
-              if (!additionalHeaderDiv) {
-                // Insert after event-title
-                const eventTitle = document.getElementById("event-title");
-                if (eventTitle) {
-                  additionalHeaderDiv = document.createElement("div");
-                  additionalHeaderDiv.id = "event-additional-header";
-                  additionalHeaderDiv.style =
-                    "color:#353535;font-size:1.1em;font-family:inherit;margin-top:0.2em;margin-bottom:0.2em;font-weight:400;text-align:center;";
-                  eventTitle.parentNode.insertBefore(
-                    additionalHeaderDiv,
-                    eventTitle.nextSibling
-                  );
-                }
-              }
-              if (additionalHeaderDiv) {
-                additionalHeaderDiv.textContent = additionalHeaderText;
-              }
-
-              // Hero slider images and titles (bride/groom first names only, all slides)
-              // Ensure correct mapping and avoid duplicate references
-              function getCloudinaryUrl(filename) {
-                if (!filename) return "";
-                if (filename.startsWith("http")) return filename;
-                return "https://res.cloudinary.com/godwinb/" + filename.replace(/^\/+/, "");
-              }
-              const sliderImgs = [
-                getCloudinaryUrl(data.slider_image_1),
-                getCloudinaryUrl(data.slider_image_2),
-                getCloudinaryUrl(data.slider_image_3),
-                getCloudinaryUrl(data.slider_image_4),
-                getCloudinaryUrl(data.slider_image_5),
-                getCloudinaryUrl(data.slider_image_6),
-              ].filter((img) => !!img && img !== "null" && img !== "None");
-
-              // Prepare event details for slider
-              const eventTitle = data.header_text || "";
-              const additionalHeader = data.additional_header_text || "";
-              const eventDate = data.date ? formatDate(data.date) : "";
-              const eventVenue = data.venue || "";
-              const eventCountry = data.country || "";
-
-              // Build event details HTML for slider
-              function buildEventDetailsHTML() {
-                return `
-                  <div class="slider-event-details-overlay" style="position:relative;display:flex;justify-content:center;align-items:center;min-height:220px;">
-                    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(34,34,34,0.45);border-radius:18px;"></div>
-                    <div style="position:relative;z-index:2;width:100%;padding:32px 18px;text-align:center;max-width:600px;margin:0 auto;">
-                      <h2 style="color:#fff;font-size:2.2rem;font-weight:bold;margin-bottom:0.2em;text-shadow:0 2px 8px #0007;">${eventTitle}</h2>
-                      ${additionalHeader ? `<div style=\"color:#fff;font-size:1.1em;font-family:inherit;margin-bottom:0.2em;font-weight:400;text-shadow:0 2px 8px #0007;\">${additionalHeader}</div>` : ""}
-                      <ul style="list-style:none;padding:0;margin:0 0 0.5em 0;font-size:1.1em;color:#fff;display:flex;flex-wrap:wrap;justify-content:center;gap:1.5em;text-shadow:0 2px 8px #0007;">
-                        ${eventDate ? `<li><i class='fa fa-calendar'></i> ${eventDate}</li>` : ""}
-                        ${eventVenue ? `<li><i class='fa fa-map-marker'></i> ${eventVenue}</li>` : ""}
-                        ${eventCountry ? `<li><i class='fa fa-globe'></i> ${eventCountry}</li>` : ""}
-                      </ul>
-                    </div>
-                  </div>
-                `;
-              }
-
-              const bride = data.bride_first_name || "";
-              const groom = data.groom_first_name || "";
-              const slideTitle = `${bride} & ${groom}`;
-
-              // Dynamically update or create slides to match backend images
-              const swiperWrapper = document.querySelector(
-                ".wpo-hero-slider .swiper-wrapper"
-              );
-              if (swiperWrapper) {
-                swiperWrapper.innerHTML = "";
-                // For each image, create a unique slide
-                sliderImgs.forEach((img, i) => {
-                  const slide = document.createElement("div");
-                  slide.className = "swiper-slide";
-                  slide.innerHTML = `
-                <div class="slide-inner slide-bg-image" style="background-image: url('${img}');" data-background="${img}">
-                  <div class="container-fluid">
-                    <div class="slide-content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:350px;">
-                      ${buildEventDetailsHTML()}
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </div>
-              `;
-                  swiperWrapper.appendChild(slide);
-                });
-
-                // Destroy and re-initialize Swiper to ensure correct slide mapping and autoplay
-                if (
-                  window.Swiper &&
-                  document.querySelector(".swiper-container").swiper
-                ) {
-                  document
-                    .querySelector(".swiper-container")
-                    .swiper.destroy(true, true);
-                }
-                setTimeout(function () {
-                  new Swiper(".swiper-container", {
-                    loop: sliderImgs.length > 1,
-                    autoplay: {
-                      delay: 3500,
-                      disableOnInteraction: false,
-                    },
-                    pagination: {
-                      el: ".swiper-pagination",
-                      clickable: true,
-                    },
-                    navigation: {
-                      nextEl: ".swiper-button-next",
-                      prevEl: ".swiper-button-prev",
-                    },
-                    parallax: true,
-                  });
-                }, 0);
-              }
-
-              // Couple section
-              const brideImg = document.querySelector(
-                ".text-grid.bride .couple-img img"
-              );
-              if (brideImg) brideImg.src = getCloudinaryUrl(data.bride_image) || "";
-              const brideName = document.querySelector(
-                ".text-grid.bride h3"
-              );
-              if (brideName)
-                brideName.textContent =
-                  (data.bride_first_name || "") +
-                  (data.bride_last_name ? " " + data.bride_last_name : "");
-              const brideMsg = document.querySelector(".text-grid.bride p");
-              if (brideMsg) brideMsg.textContent = data.bride_message || "";
-
-              const groomImg = document.querySelector(
-                ".text-grid.groom .couple-img img"
-              );
-              if (groomImg) groomImg.src = getCloudinaryUrl(data.groom_image) || "";
-              const groomName = document.querySelector(
-                ".text-grid.groom h3"
-              );
-              if (groomName)
-                groomName.textContent =
-                  (data.groom_first_name || "") +
-                  (data.groom_last_name ? " " + data.groom_last_name : "");
-              const groomMsg = document.querySelector(".text-grid.groom p");
-              if (groomMsg) groomMsg.textContent = data.groom_message || "";
-
-              // Center couple image
-              const centerImg = document.querySelector(
-                ".middle-couple-pic img"
-              );
-              if (centerImg) centerImg.src = getCloudinaryUrl(data.center_cover_image) || "";
-
-              // Story section
-              // First meet
-              const story1 = document.querySelectorAll(
-                ".story-timeline .row"
-              )[0];
-              if (story1) {
-                const h3 = story1.querySelector(".story-text h3");
-                if (h3) h3.textContent = "First time we meet";
-                const date = story1.querySelector(".story-text .date");
-                if (date)
-                  date.textContent = data.love_story_first_meet_date || "";
-                const p = story1.querySelector(".story-text p");
-                if (p) p.textContent = data.love_story_first_meet_desc || "";
-                const img = story1.querySelector(".img-holder img");
-                if (img && data.love_story_first_meet_image)
-                  img.src = getCloudinaryUrl(data.love_story_first_meet_image);
-              }
-              // First date
-              const story2 = document.querySelectorAll(
-                ".story-timeline .row"
-              )[1];
-              if (story2) {
-                const h3 = story2.querySelector(".story-text h3");
-                if (h3) h3.textContent = "First Date";
-                const date = story2.querySelector(".story-text .date");
-                if (date)
-                  date.textContent = data.love_story_first_date_date || "";
-                const p = story2.querySelector(".story-text p");
-                if (p) p.textContent = data.love_story_first_date_desc || "";
-                const img = story2.querySelector(".img-holder img");
-                if (img && data.love_story_first_date_image)
-                  img.src = getCloudinaryUrl(data.love_story_first_date_image);
-              }
-              // Proposal
-              const story3 = document.querySelectorAll(
-                ".story-timeline .row"
-              )[2];
-              if (story3) {
-                const h3 = story3.querySelector(".story-text h3");
-                if (h3) h3.textContent = "Marriage Proposal";
-                const date = story3.querySelector(".story-text .date");
-                if (date)
-                  date.textContent = data.love_story_proposal_date || "";
-                const p = story3.querySelector(".story-text p");
-                if (p) p.textContent = data.love_story_proposal_desc || "";
-                const img = story3.querySelector(".img-holder img");
-                if (img && data.love_story_proposal_image)
-                  img.src = getCloudinaryUrl(data.love_story_proposal_image);
-              }
-              // Engagement
-              const story4 = document.querySelectorAll(
-                ".story-timeline .row"
-              )[3];
-              if (story4) {
-                const h3 = story4.querySelector(".story-text h3");
-                if (h3) h3.textContent = "Our Engagement";
-                const date = story4.querySelector(".story-text .date");
-                if (date)
-                  date.textContent = data.love_story_engagement_date || "";
-                const p = story4.querySelector(".story-text p");
-                if (p) p.textContent = data.love_story_engagement_desc || "";
-                const img = story4.querySelector(".img-holder img");
-                if (img && data.love_story_engagement_image)
-                  img.src = getCloudinaryUrl(data.love_story_engagement_image);
-              }
-
-              // Gallery
-              const sweetImgs = [
-                getCloudinaryUrl(data.sweet_image_1),
-                getCloudinaryUrl(data.sweet_image_2),
-                getCloudinaryUrl(data.sweet_image_3),
-                getCloudinaryUrl(data.sweet_image_4),
-                getCloudinaryUrl(data.sweet_image_5),
-                getCloudinaryUrl(data.sweet_image_6),
-              ].filter(Boolean);
-              document
-                .querySelectorAll(
-                  ".wpo-portfolio-section-s2 .portfolio-grids .grid"
-                )
-                .forEach((grid, i) => {
-                  const img = sweetImgs[i] || "";
-                  const a = grid.querySelector("a");
-                  const imgTag = grid.querySelector("img");
-                  if (a && img) a.href = img;
-                  if (imgTag && img) imgTag.src = img;
-                });
-
-              // Gifts & Contributions
-              const giftList = [
-                data.gift_1,
-                data.gift_2,
-                data.gift_3,
-                data.gift_4,
-                data.gift_5,
-              ].filter(Boolean);
-              const giftsUl = document.getElementById("gifts-list");
-              if (giftsUl) {
-                giftsUl.innerHTML = "";
-                giftList.forEach((g) => {
-                  const li = document.createElement("li");
-                  li.textContent = g;
-                  li.style.color = "#353535";
-                  giftsUl.appendChild(li);
-                });
-              }
-              const thankYou = document.getElementById("thank-you-message");
-              if (thankYou)
-                thankYou.textContent = data.thank_you_message || "";
-
-              // Event cards
-              const eventCards = [
-                {
-                  title: data.time_card1_title,
-                  texts: [
-                    data.time_card1_text1,
-                    data.time_card1_text2,
-                    data.time_card1_text3,
-                    data.time_card1_text4,
-                    data.time_card1_text5,
-                  ],
-                  url: data.time_card1_url,
-                },
-                {
-                  title: data.time_card2_title,
-                  texts: [
-                    data.time_card2_text1,
-                    data.time_card2_text2,
-                    data.time_card2_text3,
-                    data.time_card2_text4,
-                    data.time_card2_text5,
-                  ],
-                  url: data.time_card2_url,
-                },
-                {
-                  title: data.time_card3_title,
-                  texts: [
-                    data.time_card3_text1,
-                    data.time_card3_text2,
-                    data.time_card3_text3,
-                    data.time_card3_text4,
-                    data.time_card3_text5,
-                  ],
-                  url: data.time_card3_url,
-                },
-              ];
-              document
-                .querySelectorAll(".wpo-event-item")
-                .forEach((item, i) => {
-                  if (!eventCards[i]) return;
-                  const card = eventCards[i];
-                  const h2 = item.querySelector(".wpo-event-text h2");
-                  if (h2) h2.textContent = card.title || "";
-                  const ul = item.querySelector(".wpo-event-text ul");
-                  if (ul) {
-                    ul.innerHTML = "";
-                    card.texts.forEach((t, idx) => {
-                      if (t) {
-                        const li = document.createElement("li");
-                        li.textContent = t;
-                        ul.appendChild(li);
-                      }
-                    });
-                  }
-                });
-
-              // Main map
-              const mapIframe = document.querySelector(
-                ".wpo-event-section iframe"
-              );
-              if (mapIframe && data.main_map_url) {
-                mapIframe.src = data.main_map_url;
-              } else if (mapIframe && !data.main_map_url) {
-                mapIframe.style.display = "none";
-              }
-
-              // Bridesmaids & Groomsmen
-              (function () {
-                const bridesmaids = Array.isArray(data.bridesmaids)
-                  ? data.bridesmaids
-                  : [];
-                const groomsmen = Array.isArray(data.groomsmen)
-                  ? data.groomsmen
-                  : [];
-                const container = document.getElementById(
-                  "bridesmaids-groomsmen-list"
-                );
-                const section =
-                  container && container.closest(".wpo-product-section");
-                if (!bridesmaids.length && !groomsmen.length && section) {
-                  section.style.display = "none";
-                  return;
-                }
-                if (!container) return;
-                container.innerHTML = ""; // Clear previous
-
-                function makeCard(person, type) {
-                  return `
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-                      <div class="wpo-product-item text-center">
-                        <div class="wpo-product-img" style="margin-bottom:12px;">
-                          <img src="${getCloudinaryUrl(person.image)}" alt="${person.full_name || ""}" style="width:180px;height:180px;object-fit:cover;border-radius:50%;background:#f2f2f2;">
-                        </div>
-                        <div class="wpo-product-text">
-                          <h4 style="margin-bottom:0.2em;">${person.full_name || ""}</h4>
-                          <span style="color:#999999;font-size:0.7em;">${person.role || (type === "bridesmaid" ? "Bridesmaid" : "Groomsman")}</span>
-                        </div>
-                      </div>
-                    </div>
-                  `;
-                }
-
-                if (bridesmaids.length === 0 && groomsmen.length === 0) {
-                  container.innerHTML = "<div class='col-12 text-center text-muted'>No bridesmaids or groomsmen listed for this event.</div>";
-                  return;
-                }
-
-                bridesmaids.forEach((b) => {
-                  container.innerHTML += makeCard(b, "bridesmaid");
-                });
-                groomsmen.forEach((g) => {
-                  container.innerHTML += makeCard(g, "groomsman");
-                });
-              })();
-            })
-            .catch((err) => {
-              console.warn("Could not fetch event:", err);
-            });
-        }
-      })();
-
-      // Invitation image download logic (dynamic)
-      document.getElementById("download-invite-img").onclick = function () {
-        var name = document.getElementById("fullname").value.trim();
-        var guests = document.getElementById("guests").value;
-        var attend = document.querySelector(
-          'input[name="attend"]:checked'
-        )?.value;
-        var canvas = document.getElementById("invite-canvas");
-        var ctx = canvas.getContext("2d");
-
-        // Use backend data for card
-        var d = eventData || {};
-        // Names
-        var bride =
-          (d.bride_first_name || "") +
-          (d.bride_last_name ? " " + d.bride_last_name : "");
-        var groom =
-          (d.groom_first_name || "") +
-          (d.groom_last_name ? " " + d.groom_last_name : "");
-        var coupleNames =
-          bride && groom
-            ? `${bride} & ${groom}`
-            : bride || groom || "The Couple";
-        // Parents (optional, fallback to "The Families")
-        var parents =
-          (d.bride_parents || "The Matongos") +
-          " and " +
-          (d.groom_parents || "the Msokas");
-        // Date
-        var eventDate = d.date
-          ? new Date(d.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "2-digit",
-            })
-          : "";
-        // Venue
-        var venue = d.venue || "";
-        // Country
-        var country = d.country || "";
-        // Top header image
-        var headerImgUrl = "assets/images/section-title2.png";
-        // Main image (big, not touching border)
-        var sliderImgs = [
-          d.slider_image_1,
-          d.slider_image_2,
-          d.slider_image_3,
-          d.slider_image_4,
-          d.slider_image_5,
-          d.slider_image_6,
-        ].filter((img) => !!img && img !== "null" && img !== "None");
-        var mainImgUrl = sliderImgs[0] || "assets/images/slider/slide-2.jpg";
-
-        // Card layout constants
-        var borderWidth = 9; // thick border
-        var margin = 18;
-        var borderInset = 16; // space between border and card edge
-        var cardW = canvas.width,
-          cardH = canvas.height;
-        var innerW = cardW - 2 * margin,
-          innerH = cardH - 2 * margin;
-
-        // Preload both images
-        var headerImg = new window.Image();
-        var mainImg = new window.Image();
-        var loaded = 0;
-        headerImg.crossOrigin = "anonymous";
-        mainImg.crossOrigin = "anonymous";
-        headerImg.onload = mainImg.onload = function () {
-          loaded++;
-          if (loaded < 2) return;
-
-          // Clear and draw border with margin and no border radius
-          ctx.clearRect(0, 0, cardW, cardH);
-          ctx.save();
-
-          // Card background
-          ctx.fillStyle = "#fff";
-          ctx.fillRect(margin, margin, innerW, innerH);
-
-          // Border (no radius, not touching card edge)
-          ctx.lineWidth = borderWidth;
-          ctx.strokeStyle = "#e89bae";
-          ctx.strokeRect(
-            margin + borderInset,
-            margin + borderInset,
-            innerW - 2 * borderInset,
-            innerH - 2 * borderInset
-          );
-
-          // Header image (fit, not distorted, at top, about 70px high)
-          var headerH = 70,
-            headerPad = 12;
-          var headerScale = Math.min(
-            (innerW - 2 * headerPad) / headerImg.width,
-            (headerH - 2 * headerPad) / headerImg.height
-          );
-          var headerDrawW = headerImg.width * headerScale;
-          var headerDrawH = headerImg.height * headerScale;
-          var headerX = margin + (innerW - headerDrawW) / 2;
-          var headerY = margin + headerPad;
-          ctx.drawImage(headerImg, headerX, headerY, headerDrawW, headerDrawH);
-
-          // Vertical spacing variables
-          var y = margin + headerH + 36;
-
-          // "You're Invited" header
-          ctx.font = "bold 32px serif";
-          ctx.fillStyle = "#e89bae";
-          ctx.textAlign = "center";
-          ctx.fillText("You're Invited", cardW / 2, y);
-          y += 36;
-
-          // Parents invite text (extra vertical spacing)
-          y += 16;
-          ctx.font = "20px serif";
-          ctx.fillStyle = "#444";
-          ctx.fillText(
-            `${parents} invite you to their children's wedding`,
-            cardW / 2,
-            y
-          );
-          y += 38;
-
-          // Couple names (first names only)
-          var brideFirst = (d.bride_first_name || "").trim();
-          var groomFirst = (d.groom_first_name || "").trim();
-          var coupleFirstNames =
-            brideFirst && groomFirst
-              ? `${brideFirst} & ${groomFirst}`
-              : brideFirst || groomFirst || "The Couple";
-          ctx.font = "bold 30px serif";
-          ctx.fillStyle = "#b07bce";
-          ctx.fillText(coupleFirstNames, cardW / 2, y);
-          y += 36;
-
-          // For: Guest
-          ctx.font = "18px sans-serif";
-          ctx.fillStyle = "#333";
-          ctx.fillText(
-            "For: " +
-              name +
-              (guests > 1
-                ? " (+ " +
-                  (guests - 1) +
-                  " guest" +
-                  (guests > 2 ? "s" : "") +
-                  ")"
-                : ""),
-            cardW / 2,
-            y
-          );
-          y += 32;
-
-          // Date
-          ctx.font = "18px sans-serif";
-          ctx.fillStyle = "#444";
-          ctx.fillText("Date: " + eventDate, cardW / 2, y);
-          y += 28;
-
-          // Venue
-          ctx.font = "18px sans-serif";
-          ctx.fillStyle = "#444";
-          ctx.fillText(
-            "Venue: " + venue + (country ? ", " + country : ""),
-            cardW / 2,
-            y
-          );
-          y += 36;
-
-          // Main image (big, centered, not touching border, about 220px high)
-          var imgPad = 36; // more padding so image doesn't touch border
-          var imgY = y;
-          var imgH = 220,
-            imgW = innerW - 2 * imgPad;
-          // Fit and crop main image (object-fit: cover)
-          var scale = Math.max(imgW / mainImg.width, imgH / mainImg.height);
-          var drawW = mainImg.width * scale;
-          var drawH = mainImg.height * scale;
-          var sx = 0,
-            sy = 0,
-            sw = mainImg.width,
-            sh = mainImg.height;
-          if (drawW > imgW) {
-            sw = imgW / scale;
-            sx = (mainImg.width - sw) / 2;
-            drawW = imgW;
-          }
-          if (drawH > imgH) {
-            sh = imgH / scale;
-            sy = (mainImg.height - sh) / 2;
-            drawH = imgH;
-          }
-          ctx.drawImage(
-            mainImg,
-            sx,
-            sy,
-            sw,
-            sh,
-            margin + imgPad,
-            imgY,
-            imgW,
-            imgH
-          );
-
-          // Message
-          ctx.font = "18px serif";
-          ctx.fillStyle = "#444";
-          ctx.textAlign = "center";
-          var msg1 =
-            "Your presence will not only honor us but make our celebration truly complete.";
-          var msg2 =
-            "Thnak you for confirming your attendance. A physical card will now be prepared and delivered to you.";
-          // Wrap text
-          function wrapText(text, x, y, maxWidth, lineHeight) {
-            var words = text.split(" ");
-            var line = "";
-            for (var n = 0; n < words.length; n++) {
-              var testLine = line + words[n] + " ";
-              var metrics = ctx.measureText(testLine);
-              var testWidth = metrics.width;
-              if (testWidth > maxWidth && n > 0) {
-                ctx.fillText(line, x, y);
-                line = words[n] + " ";
-                y += lineHeight;
-              } else {
-                line = testLine;
-              }
-            }
-            ctx.fillText(line, x, y);
-            return y;
-          }
-          var msgY = imgY + imgH + 48;
-          msgY = wrapText(msg1, cardW / 2, msgY, innerW - 40, 26) + 32;
-          wrapText(msg2, cardW / 2, msgY, innerW - 40, 26);
-
-          // Footer
-          ctx.font = "16px sans-serif";
-          ctx.fillStyle = "#aaa";
-          ctx.fillText(
-            "With love, " + coupleFirstNames,
-            cardW / 2,
-            cardH - margin - 18
-          );
-
-          ctx.restore();
-
-          // Download
-          var link = document.createElement("a");
-          link.download =
-            (name ? name.replace(/\s+/g, "_") + "-" : "") +
-            "invitation-card.png";
-          link.href = canvas.toDataURL("image/png");
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-
-          // Show image preview after download
-          var imgPreview = document.getElementById("invite-image");
-          var imgPreviewDiv = document.getElementById("invite-image-preview");
-          imgPreview.src = canvas.toDataURL("image/png");
-          imgPreviewDiv.style.display = "block";
-        };
-        headerImg.src = headerImgUrl;
-        mainImg.src = mainImgUrl;
-      };
-    </script>
+    <!-- AOS Animate On Scroll JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>AOS.init({ once: false, duration: 900, easing: 'ease-out-cubic' });</script>
     <script>
       window.addEventListener('load', function() {
         var loader = document.getElementById('simple-loader');

@@ -818,7 +818,12 @@
           <div class="row" id="bridesmaids-groomsmen-content" style="display:none;">
             <div class="col-lg-12">
               <div id="bridesmaids-groomsmen-list" class="row">
-                <!-- Bridesmaids and Groomsmen will be dynamically loaded here -->
+                <div class="grid"><div class="img-holder"><img class="img img-responsive" /></div></div>
+                <div class="grid"><div class="img-holder"><img class="img img-responsive" /></div></div>
+                <div class="grid"><div class="img-holder"><img class="img img-responsive" /></div></div>
+                <div class="grid"><div class="img-holder"><img class="img img-responsive" /></div></div>
+                <div class="grid"><div class="img-holder"><img class="img img-responsive" /></div></div>
+                <div class="grid"><div class="img-holder"><img class="img img-responsive" /></div></div>
               </div>
             </div>
           </div>
@@ -1142,7 +1147,7 @@
             };
             try {
               const res = await fetch(
-                `${API_URL}/api/events/${eventSlug}/rsvp/`,
+                `${API_URL}/api/events/${eventSlug}rsvp/`,
                 {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -1198,7 +1203,8 @@
                 })
                 .then((data) => {
                   eventData = data; // Save for card use
-
+                  window.eventData = data; // Make sure it's global!
+                  console.log('Fetched event data:', data);
                   // Topbar
                   document.title =
                     (data.header_text || "Event") + " – SaveMeASeat";
@@ -1547,6 +1553,40 @@
                   } else if (mapIframe && !data.main_map_url) {
                     // Optionally hide or clear if no map
                     mapIframe.style.display = "none";
+                  }
+
+                  // Bridesmaids & Groomsmen (render as separate sections with cards)
+                  const listContainer = document.getElementById('bridesmaids-groomsmen-list');
+                  if (listContainer) {
+                    const bridesmaids = Array.isArray(data.bridesmaids) ? data.bridesmaids : [];
+                    const groomsmen = Array.isArray(data.groomsmen) ? data.groomsmen : [];
+                    const people = [...bridesmaids, ...groomsmen];
+                    listContainer.innerHTML = '';
+                    const peopleRow = document.createElement('div');
+                    peopleRow.className = 'row';
+                    peopleRow.style.display = 'flex';
+                    peopleRow.style.flexWrap = 'wrap';
+                    peopleRow.style.gap = '32px';
+                    peopleRow.style.marginTop = '24px';
+                    people.forEach((person) => {
+                      const card = document.createElement('div');
+                      card.className = 'grid';
+                      card.style.marginBottom = '32px';
+                      card.innerHTML = `
+                        <div class="img-holder" style="display:flex;justify-content:center;align-items:center;">
+                          <img class="img img-responsive" src="${getCloudinaryUrl(person.image)}" alt="${person.full_name}" style="width:200px;height:200px;object-fit:cover;border-radius:50%;display:block;" />
+                        </div>
+                        <div style="text-align:center;margin-top:10px;">
+                          <div style="font-weight:bold;">${person.full_name || ''}</div>
+                          <div style="font-size:0.95em;color:#999;">${person.role || ''}</div>
+                        </div>
+                      `;
+                      peopleRow.appendChild(card);
+                    });
+                    listContainer.appendChild(peopleRow);
+                    if (people.length === 0) {
+                      listContainer.innerHTML = '<div style="width:100%;text-align:center;color:#aaa;">No Bridesmaids or Groomsmen data available.</div>';
+                    }
                   }
                 })
                 .catch((err) => {
@@ -1984,69 +2024,67 @@
       // --- Dynamic Event Fetch by slug from query string ---
       (function () {
         // ...rest of your code...
-        // Bridesmaids & Groomsmen (populate 6 slots, always show number, name, role, round image)
-        const bgGrids = document.querySelectorAll('#bridesmaids-groomsmen-grids .grid');
+        // Bridesmaids & Groomsmen (render as separate sections with cards)
+        const listContainer = document.getElementById('bridesmaids-groomsmen-list');
         if (window.eventData) {
           const bridesmaids = Array.isArray(eventData.bridesmaids) ? eventData.bridesmaids : [];
           const groomsmen = Array.isArray(eventData.groomsmen) ? eventData.groomsmen : [];
-          const people = [...bridesmaids, ...groomsmen];
-          for (let i = 0; i < 6; i++) {
-            const grid = bgGrids[i];
-            if (!grid) continue;
-            // Remove hover-content if present
-            const hover = grid.querySelector('.hover-content');
-            if (hover) hover.remove();
-            // Remove any previous info
-            let infoBelow = grid.querySelector('.bg-info-below');
-            if (infoBelow) infoBelow.remove();
-            const img = grid.querySelector('img');
-            if (people[i]) {
-              const p = people[i];
-              if (img) {
-                img.src = getCloudinaryUrl(p.image);
-                img.alt = p.full_name || '';
-                img.style.width = '140px';
-                img.style.height = '140px';
-                img.style.objectFit = 'cover';
-                img.style.borderRadius = '50%';
-                img.style.background = '#f2f2f2';
-                img.style.display = 'block';
-                img.style.margin = '0 auto 10px auto';
-              }
-              // Create info below image
-              infoBelow = document.createElement('div');
-              infoBelow.className = 'bg-info-below';
-              infoBelow.style.textAlign = 'center';
-              infoBelow.style.marginTop = '10px';
-              infoBelow.innerHTML = `
-                <div style="font-size:1.1em;font-weight:bold;">${i+1}</div>
-                <div style="font-weight:bold;">${p.full_name || ''}</div>
-                <div style="font-size:0.95em;color:#999;">${p.role || ''}</div>
+          listContainer.innerHTML = '';
+          // Bridesmaids section
+          if (bridesmaids.length > 0) {
+            const bridesmaidsHeader = document.createElement('h3');
+            bridesmaidsHeader.textContent = 'Bridesmaids';
+            bridesmaidsHeader.style = 'width:100%;text-align:center;margin:24px 0 12px 0;color:#b07bce;font-weight:700;';
+            listContainer.appendChild(bridesmaidsHeader);
+            const bridesmaidsRow = document.createElement('div');
+            bridesmaidsRow.className = 'row';
+            bridesmaids.forEach((bm) => {
+              const card = document.createElement('div');
+              card.className = 'grid';
+              card.innerHTML = `
+                <div class="img-holder" style="display:flex;justify-content:center;align-items:center;">
+                  <img class="img img-responsive" src="${getCloudinaryUrl(bm.image)}" alt="${bm.full_name}" style="width:200px;height:200px;object-fit:cover;border-radius:50%;display:block;" />
+                </div>
+                <div style="text-align:center;margin-top:10px;">
+                  <div style="font-weight:bold;">${bm.full_name || ''}</div>
+                  <div style="font-size:0.95em;color:#999;">${bm.role || ''}</div>
+                </div>
               `;
-              img.parentNode.appendChild(infoBelow);
-            } else {
-              if (img) {
-                img.src = 'https://ui-avatars.com/api/?name=No+Data&background=f2f2f2&color=aaa&size=140';
-                img.alt = 'No data';
-                img.style.width = '140px';
-                img.style.height = '140px';
-                img.style.objectFit = 'cover';
-                img.style.borderRadius = '50%';
-                img.style.background = '#f2f2f2';
-                img.style.display = 'block';
-                img.style.margin = '0 auto 10px auto';
-              }
-              infoBelow = document.createElement('div');
-              infoBelow.className = 'bg-info-below';
-              infoBelow.style.textAlign = 'center';
-              infoBelow.style.marginTop = '10px';
-              infoBelow.innerHTML = `<div style='color:#aaa;'>No data</div>`;
-              img.parentNode.appendChild(infoBelow);
-            }
+              bridesmaidsRow.appendChild(card);
+            });
+            listContainer.appendChild(bridesmaidsRow);
+          }
+          // Groomsmen section
+          if (groomsmen.length > 0) {
+            const groomsmenHeader = document.createElement('h3');
+            groomsmenHeader.textContent = 'Groomsmen';
+            groomsmenHeader.style = 'width:100%;text-align:center;margin:32px 0 12px 0;color:#738ea5;font-weight:700;';
+            listContainer.appendChild(groomsmenHeader);
+            const groomsmenRow = document.createElement('div');
+            groomsmenRow.className = 'row';
+            groomsmen.forEach((gm) => {
+              const card = document.createElement('div');
+              card.className = 'grid';
+              card.innerHTML = `
+                <div class="img-holder" style="display:flex;justify-content:center;align-items:center;">
+                  <img class="img img-responsive" src="${getCloudinaryUrl(gm.image)}" alt="${gm.full_name}" style="width:200px;height:200px;object-fit:cover;border-radius:50%;display:block;" />
+                </div>
+                <div style="text-align:center;margin-top:10px;">
+                  <div style="font-weight:bold;">${gm.full_name || ''}</div>
+                  <div style="font-size:0.95em;color:#999;">${gm.role || ''}</div>
+                </div>
+              `;
+              groomsmenRow.appendChild(card);
+            });
+            listContainer.appendChild(groomsmenRow);
+          }
+          // If no data
+          if (bridesmaids.length === 0 && groomsmen.length === 0) {
+            listContainer.innerHTML = '<div style="width:100%;text-align:center;color:#aaa;">No Bridesmaids or Groomsmen data available.</div>';
           }
         }
       })();
-      // ... existing code ...
+
     </script>
   </body>
 </html>

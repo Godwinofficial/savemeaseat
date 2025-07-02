@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://savemeseatzambia.com/sitemap.xml 

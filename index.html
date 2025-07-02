@@ -53,6 +53,13 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <style>
       /* ===== Base Styles ===== */
       :root {
@@ -695,15 +702,14 @@
       }
 
       .pricing-features li:before {
-        content: "\f00c";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
+        content: "✓";
         position: absolute;
         left: 0;
         top: 50%;
         transform: translateY(-50%);
         color: var(--primary);
-        font-size: 1.1em;
+        font-size: 1.2em;
+        font-weight: bold;
       }
 
       .pricing-features li:last-child {
@@ -795,12 +801,12 @@
       }
 
       .payment-details p:before {
-        content: "\f054";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
+        content: "✓";
         position: absolute;
         left: 0;
         color: var(--primary);
+        font-size: 1.1em;
+        font-weight: bold;
       }
 
       /* ===== Testimonials ===== */
@@ -1131,6 +1137,69 @@
         font-size: 1.3rem;
         color: #888;
         cursor: pointer;
+      }
+
+      /* Package Popup Styles */
+      .package-popup {
+        max-width: 600px;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 40px 30px;
+      }
+
+      .package-tagline {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--secondary);
+        margin-bottom: 1rem;
+        font-style: italic;
+      }
+
+      .package-description {
+        color: var(--gray);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .package-section {
+        margin-bottom: 2rem;
+      }
+
+      .package-section h4 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .package-section ul,
+      .package-section ol {
+        padding-left: 20px;
+        margin-bottom: 1rem;
+      }
+
+      .package-section li {
+        margin-bottom: 0.5rem;
+        color: var(--gray);
+        line-height: 1.5;
+      }
+
+      .package-section ul li {
+        position: relative;
+        padding-left: 5px;
+      }
+
+      .package-section ol li {
+        font-weight: 500;
+        color: var(--dark);
+      }
+
+      .package-section ul li:before {
+        content: "✓";
+        position: absolute;
+        left: -20px;
+        color: var(--primary);
+        font-weight: bold;
       }
       /* ===== Animations ===== */
       @keyframes fadeIn {
@@ -1508,14 +1577,18 @@
                 Classic design with romantic accents perfect for formal
                 weddings.
               </p>
-              <a href="wedding.html" class="btn">Preview Template</a>
+              <a
+                href="http://www.savemeaseatzambia.com/wedding.html?slug=mike-natasha-2026-6-6"
+                class="btn"
+                >Preview Template</a
+              >
             </div>
           </div>
           <div class="template-card">
             <div class="template-image">
               <img
-                src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                alt="Corporate RSVP Template"
+                src="https://images.unsplash.com/photo-1614332287897-cdc485fa562d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Template Not Available Placeholder"
               />
             </div>
             <div class="template-info">
@@ -1524,20 +1597,20 @@
                 Sleek, professional design for business conferences and
                 meetings.
               </p>
-              <a href="#" class="btn">Preview Template</a>
+              <a href="#" class="btn show-popup">Preview Template</a>
             </div>
           </div>
           <div class="template-card">
             <div class="template-image">
               <img
-                src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                alt="Birthday RSVP Template"
+                src="https://images.unsplash.com/photo-1614332287897-cdc485fa562d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Template Not Available Placeholder"
               />
             </div>
             <div class="template-info">
               <h3>Birthday Bash</h3>
               <p>Colorful and fun design perfect for birthday celebrations.</p>
-              <a href="#" class="btn">Preview Template</a>
+              <a href="#" class="btn show-popup">Preview Template</a>
             </div>
           </div>
         </div>
@@ -1559,7 +1632,9 @@
               <li>Up to 250 guests</li>
               <li>Standard template design</li>
             </ul>
-            <a href="#" class="btn">Get Started</a>
+            <a href="#" class="btn view-package" data-package="standard"
+              >View Package</a
+            >
           </div>
           <div class="pricing-card">
             <h3>Custom</h3>
@@ -1570,7 +1645,9 @@
               <li>Custom design</li>
               <li>Advanced customization</li>
             </ul>
-            <a href="#" class="btn">Get Started</a>
+            <a href="#" class="btn view-package" data-package="custom"
+              >View Package</a
+            >
           </div>
           <div class="pricing-card">
             <h3>Custom Plus</h3>
@@ -1581,7 +1658,9 @@
               <li>Full custom design & branding</li>
               <li>Priority support</li>
             </ul>
-            <a href="#" class="btn">Get Started</a>
+            <a href="#" class="btn view-package" data-package="custom-plus"
+              >View Package</a
+            >
           </div>
         </div>
       </div>
@@ -1624,91 +1703,16 @@
           </p>
           <p>
             After payment, send proof to WhatsApp
-            <strong>+260973848066</strong> with your event information.
+            <strong
+              ><a
+                href="https://wa.me/260973848066"
+                target="_blank"
+                style="color: var(--primary); text-decoration: none"
+                >+260973848066</a
+              ></strong
+            >
+            with your event information.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials">
-      <div class="container">
-        <h2>Trusted by Event Planners</h2>
-        <!-- Modern Carousel -->
-        <div class="testimonial-carousel" id="testimonial-carousel">
-          <div class="carousel-track">
-            <div class="carousel-slide active">
-              <div class="testimonial-content">
-                <p>
-                  SaveMeASeat transformed how we manage wedding RSVPs. The
-                  elegant templates matched our brand perfectly, and the guest
-                  tracking saved us countless hours. Our clients love the
-                  professional look!
-                </p>
-              </div>
-              <div class="testimonial-author">
-                <div class="author-image">
-                  <img
-                    src="https://randomuser.me/api/portraits/women/65.jpg"
-                    alt="Sarah M."
-                  />
-                </div>
-                <div class="author-info">
-                  <h4>Sarah M.</h4>
-                  <p>Wedding Planner | Lusaka</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-slide">
-              <div class="testimonial-content">
-                <p>
-                  For our annual corporate conference, we needed a reliable RSVP
-                  system. SaveMeASeat delivered with a sleek design and robust
-                  features. The analytics helped us plan seating and catering
-                  perfectly.
-                </p>
-              </div>
-              <div class="testimonial-author">
-                <div class="author-image">
-                  <img
-                    src="https://randomuser.me/api/portraits/men/32.jpg"
-                    alt="David K."
-                  />
-                </div>
-                <div class="author-info">
-                  <h4>David K.</h4>
-                  <p>Event Manager | Ndola</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-slide">
-              <div class="testimonial-content">
-                <p>
-                  I was hesitant at first, but the RSVP page for my 40th
-                  birthday was a hit! Guests loved how easy it was to respond,
-                  and I appreciated having all dietary preferences in one place.
-                  Worth every kwacha!
-                </p>
-              </div>
-              <div class="testimonial-author">
-                <div class="author-image">
-                  <img
-                    src="https://randomuser.me/api/portraits/women/43.jpg"
-                    alt="Grace T."
-                  />
-                </div>
-                <div class="author-info">
-                  <h4>Grace T.</h4>
-                  <p>Client | Livingstone</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-controls">
-            <button class="carousel-dot active" data-slide="0"></button>
-            <button class="carousel-dot" data-slide="1"></button>
-            <button class="carousel-dot" data-slide="2"></button>
-          </div>
         </div>
       </div>
     </section>
@@ -1925,6 +1929,161 @@
       </div>
     </div>
 
+    <!-- Template Unavailable Popup -->
+    <div class="popup-overlay" id="templateUnavailablePopup">
+      <div class="popup-content">
+        <button
+          class="popup-close"
+          onclick="closePopup('templateUnavailablePopup')"
+        >
+          &times;
+        </button>
+        <h3>Template Not Available</h3>
+        <p>Template not available. Check back in a few days.</p>
+      </div>
+    </div>
+
+    <!-- Standard Package Popup -->
+    <div class="popup-overlay" id="standardPackagePopup">
+      <div class="popup-content package-popup">
+        <button
+          class="popup-close"
+          onclick="closePopup('standardPackagePopup')"
+        >
+          &times;
+        </button>
+        <h3>Standard Package</h3>
+        <p class="package-tagline">Simple. Smart. Seamless.</p>
+        <p class="package-description">
+          Perfect for quick events or low-fuss weddings. Our Standard Package
+          delivers a sleek RSVP or invitation page using one of our curated
+          templates — fast, beautiful, and easy to share.
+        </p>
+
+        <div class="package-section">
+          <h4>What You Get:</h4>
+          <ul>
+            <li>One-page digital invite or RSVP page</li>
+            <li>Choose from a selection of designer templates</li>
+            <li>Custom event link (e.g. savemeaseatzambia.com/benandlisa)</li>
+            <li>RSVP form with instant WhatsApp confirmation</li>
+            <li>Downloadable program card included in RSVP confirmation</li>
+            <li>Guest list tracked in a Google Sheet</li>
+            <li>Open or closed RSVP option</li>
+            <li>Some templates include gallery or map</li>
+            <li>2 free edit rounds (extra changes: K300 per round)</li>
+          </ul>
+        </div>
+
+        <div class="package-section">
+          <h4>How It Works:</h4>
+          <ol>
+            <li>Choose Your Template</li>
+            <li>Pay & Send Receipt via WhatsApp or Email</li>
+            <li>Fill Out Event Info via Short Form</li>
+            <li>Your Page Goes Live in 24 Hours</li>
+            <li>You Review & Request Up to 2 Changes</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Package Popup -->
+    <div class="popup-overlay" id="customPackagePopup">
+      <div class="popup-content package-popup">
+        <button class="popup-close" onclick="closePopup('customPackagePopup')">
+          &times;
+        </button>
+        <h3>Custom Package</h3>
+        <p class="package-tagline">Tailored to You. Designed with Care.</p>
+        <p class="package-description">
+          For couples and hosts who want something personal and polished. We
+          build your page from scratch — with your story and style at the
+          center.
+        </p>
+
+        <div class="package-section">
+          <h4>What You Get:</h4>
+          <ul>
+            <li>Custom-designed single-page RSVP or invite</li>
+            <li>Personalized planning call with our team</li>
+            <li>Event link like savemeaseatzambia.com/emmaandpatrick</li>
+            <li>WhatsApp RSVP confirmation + program card download</li>
+            <li>Guest list managed in real-time via Google Sheets</li>
+            <li>
+              Optional: dress code, gift info, gallery, location, downloads
+            </li>
+            <li>Open or private RSVP</li>
+            <li>2 free edit rounds (extra changes: K300 per round)</li>
+          </ul>
+        </div>
+
+        <div class="package-section">
+          <h4>How It Works:</h4>
+          <ol>
+            <li>Book the Custom Package</li>
+            <li>Pay & Send Proof</li>
+            <li>Complete Our Form</li>
+            <li>Hop on a Quick Planning Call</li>
+            <li>We Build and Launch Your Page Within 48 Hours</li>
+            <li>You Get 2 Free Revisions</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Plus Package Popup -->
+    <div class="popup-overlay" id="customPlusPackagePopup">
+      <div class="popup-content package-popup">
+        <button
+          class="popup-close"
+          onclick="closePopup('customPlusPackagePopup')"
+        >
+          &times;
+        </button>
+        <h3>Custom Plus</h3>
+        <p class="package-tagline">
+          More Pages. More Features. Maximum Impact.
+        </p>
+        <p class="package-description">
+          Ideal for larger celebrations, multi-day events, or when you just need
+          more room to share details. This full RSVP website comes with
+          everything — and then some.
+        </p>
+
+        <div class="package-section">
+          <h4>What You Get:</h4>
+          <ul>
+            <li>Multi-page custom RSVP or invitation website</li>
+            <li>Unlimited guests and responses</li>
+            <li>Personalized layout and strategy call</li>
+            <li>Custom link (e.g. savemeaseatzambia.com/thekundaunion2025)</li>
+            <li>
+              RSVP form with WhatsApp confirmation + program card download
+            </li>
+            <li>Sections for: Agenda, Travel, Gift Registry</li>
+            <li>Photo Galleries, Maps, Videos</li>
+            <li>Downloads, FAQs, and more</li>
+            <li>Google Sheet for live guest tracking</li>
+            <li>Open or invite-only registration</li>
+            <li>2 edit rounds included (K300 for each extra)</li>
+          </ul>
+        </div>
+
+        <div class="package-section">
+          <h4>How It Works:</h4>
+          <ol>
+            <li>Confirm Your Custom Plus Booking</li>
+            <li>Make Payment & Share Proof</li>
+            <li>Submit Event Info via Form</li>
+            <li>Join a Planning Call with Our Team</li>
+            <li>Your Website Goes Live in 48 Hours</li>
+            <li>Refinements? You Get 2 Free</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
@@ -1984,7 +2143,7 @@
       );
       heroSlider.addEventListener("mouseleave", startSlider);
 
-      // Smooth scrolling for anchor links
+      // Smooth scrolling for anchor links and close mobile menu
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
@@ -1998,6 +2157,12 @@
               top: targetElement.offsetTop - 80,
               behavior: "smooth",
             });
+          }
+
+          // Close mobile menu if open
+          if (nav.classList.contains("active")) {
+            nav.classList.remove("active");
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
           }
         });
       });
@@ -2091,6 +2256,47 @@
             );
           });
         }
+      });
+
+      // Template preview button logic
+      document
+        .querySelectorAll(".gallery .template-card")
+        .forEach(function (card, idx) {
+          const btn = card.querySelector(".btn");
+          if (idx === 0) {
+            // Elegant Wedding
+            btn.addEventListener("click", function (e) {
+              // Go to the wedding template
+              window.location.href =
+                "http://www.savemeaseatzambia.com/wedding.html?slug=mike-natasha-2026-6-6";
+            });
+          } else {
+            // Corporate Pro and Birthday Bash
+            btn.addEventListener("click", function (e) {
+              e.preventDefault();
+              openPopup("templateUnavailablePopup");
+            });
+          }
+        });
+
+      // Package view button logic
+      document.querySelectorAll(".view-package").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          const packageType = this.getAttribute("data-package");
+
+          switch (packageType) {
+            case "standard":
+              openPopup("standardPackagePopup");
+              break;
+            case "custom":
+              openPopup("customPackagePopup");
+              break;
+            case "custom-plus":
+              openPopup("customPlusPackagePopup");
+              break;
+          }
+        });
       });
     </script>
   </body>

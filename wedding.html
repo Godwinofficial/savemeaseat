@@ -1558,276 +1558,205 @@
           // Invitation image download logic (dynamic)
           document.getElementById("download-invite-img").onclick = function () {
             var name = document.getElementById("fullname").value.trim();
-            var guests = document.getElementById("guests").value;
-            var attend = document.querySelector(
-              'input[name="attend"]:checked'
-            )?.value;
             var canvas = document.getElementById("invite-canvas");
             var ctx = canvas.getContext("2d");
-
-            // Use backend data for card
             var d = eventData || {};
-            // Names
-            var bride =
-              (d.bride_first_name || "") +
-              (d.bride_last_name ? " " + d.bride_last_name : "");
-            var groom =
-              (d.groom_first_name || "") +
-              (d.groom_last_name ? " " + d.groom_last_name : "");
-            var coupleNames =
-              bride && groom
-                ? `${bride} & ${groom}`
-                : bride || groom || "The Couple";
-            // Parents (optional, fallback to "The Families")
-            var parents =
-              (d.bride_parents || "The Matongos") +
-              " and " +
-              (d.groom_parents || "the Msokas");
-            // Date
-            var eventDate = d.date
-              ? new Date(d.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "2-digit",
-                })
-              : "";
-            // Venue
-            var venue = d.venue || "";
-            // Country
-            var country = d.country || "";
-            // Top header image
-            var headerImgUrl = "assets/images/section-title2.png";
-            // Main image (big, not touching border)
-            var sliderImgs = [
-              getCloudinaryUrl(d.slider_image_1),
-              getCloudinaryUrl(d.slider_image_2),
-              getCloudinaryUrl(d.slider_image_3),
-              getCloudinaryUrl(d.slider_image_4),
-              getCloudinaryUrl(d.slider_image_5),
-              getCloudinaryUrl(d.slider_image_6),
-            ].filter((img) => !!img && img !== "null" && img !== "None");
-            var mainImgUrl = sliderImgs[0] || "assets/images/slider/slide-2.jpg";
-
-            // Card layout constants
-            var borderWidth = 9; // thick border
+            var program = (d.program && d.program.length) ? d.program[0] : null;
+            // Card layout
+            var borderWidth = 9;
             var margin = 18;
-            var borderInset = 16; // space between border and card edge
-            var cardW = canvas.width,
-              cardH = canvas.height;
-            var innerW = cardW - 2 * margin,
-              innerH = cardH - 2 * margin;
-
-            // Preload both images
-            var headerImg = new window.Image();
-            var mainImg = new window.Image();
-            var loaded = 0;
-            headerImg.crossOrigin = "anonymous";
-            mainImg.crossOrigin = "anonymous";
-            headerImg.onload = mainImg.onload = function () {
-              loaded++;
-              if (loaded < 2) return;
-
-              // Clear and draw border with margin and no border radius
-              ctx.clearRect(0, 0, cardW, cardH);
-              ctx.save();
-
-              // Card background
-              ctx.fillStyle = "#fff";
-              ctx.fillRect(margin, margin, innerW, innerH);
-
-              // Border (no radius, not touching card edge)
-              ctx.lineWidth = borderWidth;
-              ctx.strokeStyle = "#e89bae";
-              ctx.strokeRect(
-                margin + borderInset,
-                margin + borderInset,
-                innerW - 2 * borderInset,
-                innerH - 2 * borderInset
-              );
-
-              // Header image (fit, not distorted, at top, about 70px high)
-              var headerH = 70,
-                headerPad = 12;
-              var headerScale = Math.min(
-                (innerW - 2 * headerPad) / headerImg.width,
-                (headerH - 2 * headerPad) / headerImg.height
-              );
-              var headerDrawW = headerImg.width * headerScale;
-              var headerDrawH = headerImg.height * headerScale;
-              var headerX = margin + (innerW - headerDrawW) / 2;
-              var headerY = margin + headerPad;
-              ctx.drawImage(
-                headerImg,
-                headerX,
-                headerY,
-                headerDrawW,
-                headerDrawH
-              );
-
-              // Vertical spacing variables
-              var y = margin + headerH + 36;
-
-              // "You're Invited" header
-              ctx.font = "bold 32px serif";
-              ctx.fillStyle = "#e89bae";
-              ctx.textAlign = "center";
-              ctx.fillText("You're Invited", cardW / 2, y);
-              y += 36;
-
-              // Parents invite text (extra vertical spacing)
-              y += 16;
-              ctx.font = "20px serif";
-              ctx.fillStyle = "#444";
-              ctx.fillText(
-                `${parents} invite you to their children's wedding`,
-                cardW / 2,
-                y
-              );
+            var borderInset = 16;
+            var cardW = canvas.width, cardH = canvas.height;
+            var innerW = cardW - 2 * margin, innerH = cardH - 2 * margin;
+            ctx.clearRect(0, 0, cardW, cardH);
+            ctx.save();
+            // Card background gradient
+            var cardGrad = ctx.createLinearGradient(cardW / 2, margin, cardW / 2, cardH - margin);
+            cardGrad.addColorStop(0, "#f8fafd");
+            cardGrad.addColorStop(1, "#f2f2f7");
+            ctx.fillStyle = cardGrad;
+            // Rounded rectangle for card
+            var r = 32;
+            ctx.beginPath();
+            ctx.moveTo(margin + r, margin);
+            ctx.lineTo(cardW - margin - r, margin);
+            ctx.quadraticCurveTo(cardW - margin, margin, cardW - margin, margin + r);
+            ctx.lineTo(cardW - margin, cardH - margin - r);
+            ctx.quadraticCurveTo(cardW - margin, cardH - margin, cardW - margin - r, cardH - margin);
+            ctx.lineTo(margin + r, cardH - margin);
+            ctx.quadraticCurveTo(margin, cardH - margin, margin, cardH - margin - r);
+            ctx.lineTo(margin, margin + r);
+            ctx.quadraticCurveTo(margin, margin, margin + r, margin);
+            ctx.closePath();
+            ctx.fill();
+            // Drop shadow (outside card)
+            ctx.save();
+            ctx.shadowColor = "#b07bce33";
+            ctx.shadowBlur = 32;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 8;
+            ctx.strokeStyle = "#e89bae";
+            ctx.lineWidth = borderWidth;
+            ctx.stroke();
+            ctx.restore();
+            // Inner shadow (for depth)
+            ctx.save();
+            ctx.globalAlpha = 0.13;
+            ctx.strokeStyle = "#b07bce";
+            ctx.lineWidth = 8;
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+            ctx.restore();
+            // Gradient header bar
+            var grad = ctx.createLinearGradient(cardW / 2, margin, cardW / 2, margin + 90);
+            grad.addColorStop(0, "#b07bce");
+            grad.addColorStop(1, "#fff0");
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.moveTo(margin + borderInset + r, margin + borderInset);
+            ctx.lineTo(cardW - margin - borderInset - r, margin + borderInset);
+            ctx.quadraticCurveTo(cardW - margin - borderInset, margin + borderInset, cardW - margin - borderInset, margin + borderInset + r);
+            ctx.lineTo(cardW - margin - borderInset, margin + borderInset + 60);
+            ctx.lineTo(margin + borderInset, margin + borderInset + 60);
+            ctx.lineTo(margin + borderInset, margin + borderInset + r);
+            ctx.quadraticCurveTo(margin + borderInset, margin + borderInset, margin + borderInset + r, margin + borderInset);
+            ctx.closePath();
+            ctx.fill();
+            // Title (modern sans-serif, bold, easy to read)
+            var y = margin + 70;
+            ctx.font = "bold 38px 'Montserrat', 'Poppins', Arial, sans-serif";
+            ctx.fillStyle = "#b07bce";
+            ctx.textAlign = "center";
+            ctx.fillText("Event Program", cardW / 2, y);
+            y += 18;
+            // RSVP confirmation message (below title, wrapped)
+            ctx.font = "20px 'Montserrat', 'Poppins', Arial, sans-serif";
+            ctx.fillStyle = "#444";
+            ctx.textAlign = "center";
+            var brideFirst = (d.bride_first_name || '').trim();
+            var groomFirst = (d.groom_first_name || '').trim();
+            var coupleNames = brideFirst && groomFirst ? `${brideFirst} & ${groomFirst}` : (brideFirst || groomFirst || 'the couple');
+            var rsvpMsg = `Hello ${name}, your RSVP to ${coupleNames} wedding has been received.`;
+            function wrapText(text, x, y, maxWidth, lineHeight) {
+              var words = text.split(' ');
+              var line = '';
+              for (var n = 0; n < words.length; n++) {
+                var testLine = line + words[n] + ' ';
+                var metrics = ctx.measureText(testLine);
+                if (metrics.width > maxWidth && n > 0) {
+                  ctx.fillText(line, x, y);
+                  line = words[n] + ' ';
+                  y += lineHeight;
+                } else {
+                  line = testLine;
+                }
+              }
+              ctx.fillText(line, x, y);
+              return y + lineHeight;
+            }
+            y = wrapText(rsvpMsg, cardW / 2, y + 10, innerW - 60, 28);
+            // Gold divider under title (now after RSVP message)
+            ctx.beginPath();
+            ctx.moveTo(cardW / 2 - 120, y);
+            ctx.lineTo(cardW / 2 + 120, y);
+            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = "#d4af37";
+            ctx.stroke();
+            y += 30;
+            // Program section background highlight
+            var progBoxY = y - 10;
+            var progBoxH = 240;
+            ctx.save();
+            ctx.globalAlpha = 0.10;
+            ctx.fillStyle = "#b07bce";
+            ctx.fillRect(margin + borderInset + 10, progBoxY, innerW - 2 * borderInset - 20, progBoxH);
+            ctx.globalAlpha = 1;
+            ctx.restore();
+            // Program title
+            if (program && program.title) {
+              ctx.font = "bold 26px 'Montserrat', 'Poppins', Arial, sans-serif";
+              ctx.fillStyle = "#353535";
+              ctx.fillText(program.title, cardW / 2, y + 18);
               y += 38;
-
-              // Couple names (first names only)
-              var brideFirst = (d.bride_first_name || "").trim();
-              var groomFirst = (d.groom_first_name || "").trim();
-              var coupleFirstNames =
-                brideFirst && groomFirst
-                  ? `${brideFirst} & ${groomFirst}`
-                  : brideFirst || groomFirst || "The Couple";
-              ctx.font = "bold 30px serif";
-              ctx.fillStyle = "#b07bce";
-              ctx.fillText(coupleFirstNames, cardW / 2, y);
-              y += 36;
-
-              // For: Guest
-              ctx.font = "18px sans-serif";
-              ctx.fillStyle = "#333";
-              ctx.fillText(
-                "For: " +
-                  name +
-                  (guests > 1
-                    ? " (+ " +
-                      (guests - 1) +
-                      " guest" +
-                      (guests > 2 ? "s" : "") +
-                      ")"
-                    : ""),
-                cardW / 2,
-                y
-              );
-              y += 32;
-
-              // Date
-              ctx.font = "18px sans-serif";
-              ctx.fillStyle = "#444";
-              ctx.fillText("Date: " + eventDate, cardW / 2, y);
-              y += 28;
-
-              // Venue
-              ctx.font = "18px sans-serif";
-              ctx.fillStyle = "#444";
-              ctx.fillText(
-                "Venue: " + venue + (country ? ", " + country : ""),
-                cardW / 2,
-                y
-              );
-              y += 36;
-
-              // Main image (big, centered, not touching border, about 220px high)
-              var imgPad = 36; // more padding so image doesn't touch border
-              var imgY = y;
-              var imgH = 220,
-                imgW = innerW - 2 * imgPad;
-              // Fit and crop main image (object-fit: cover)
-              var scale = Math.max(imgW / mainImg.width, imgH / mainImg.height);
-              var drawW = mainImg.width * scale;
-              var drawH = mainImg.height * scale;
-              var sx = 0,
-                sy = 0,
-                sw = mainImg.width,
-                sh = mainImg.height;
-              if (drawW > imgW) {
-                sw = imgW / scale;
-                sx = (mainImg.width - sw) / 2;
-                drawW = imgW;
-              }
-              if (drawH > imgH) {
-                sh = imgH / scale;
-                sy = (mainImg.height - sh) / 2;
-                drawH = imgH;
-              }
-              ctx.drawImage(
-                mainImg,
-                sx,
-                sy,
-                sw,
-                sh,
-                margin + imgPad,
-                imgY,
-                imgW,
-                imgH
-              );
-
-              // Message
-              ctx.font = "18px serif";
-              ctx.fillStyle = "#444";
-              ctx.textAlign = "center";
-              var msg1 =
-                "Your presence will not only honor us but make our celebration truly complete.";
-              var msg2 =
-                "Thnak you for confirming your attendance. A physical card will now be prepared and delivered to you.";
-              // Wrap text
-              function wrapText(text, x, y, maxWidth, lineHeight) {
-                var words = text.split(" ");
-                var line = "";
-                for (var n = 0; n < words.length; n++) {
-                  var testLine = line + words[n] + " ";
+            }
+            // Program description (multi-line, left-aligned, with bullet points if detected)
+            if (program && program.description) {
+              ctx.font = "21px 'Montserrat', 'Poppins', Arial, sans-serif";
+              ctx.fillStyle = "#222";
+              ctx.textAlign = "left";
+              var lines = program.description.split(/\r?\n/);
+              var descY = y;
+              var lineHeight = 36;
+              var maxWidth = innerW - 80;
+              var xStart = margin + borderInset + 44;
+              lines.forEach(function(line) {
+                // Bullet if line starts with time (e.g., 3:00 PM)
+                var bullet = /^(\d{1,2}:\d{2}\s*[AP]M?\s*-?)/i.test(line.trim()) ? '\u2022 ' : '';
+                // Wrap long lines
+                var words = line.trim().split(' ');
+                var l = bullet;
+                for (var i = 0; i < words.length; i++) {
+                  var testLine = l + words[i] + ' ';
                   var metrics = ctx.measureText(testLine);
-                  var testWidth = metrics.width;
-                  if (testWidth > maxWidth && n > 0) {
-                    ctx.fillText(line, x, y);
-                    line = words[n] + " ";
-                    y += lineHeight;
+                  if (metrics.width > maxWidth && i > 0) {
+                    ctx.fillText(l, xStart, descY);
+                    l = '    ' + words[i] + ' ';
+                    descY += lineHeight;
                   } else {
-                    line = testLine;
+                    l = testLine;
                   }
                 }
-                ctx.fillText(line, x, y);
-                return y;
-              }
-              var msgY = imgY + imgH + 48;
-              msgY = wrapText(msg1, cardW / 2, msgY, innerW - 40, 26) + 32;
-              wrapText(msg2, cardW / 2, msgY, innerW - 40, 26);
-
-              // Footer
-              ctx.font = "16px sans-serif";
-              ctx.fillStyle = "#aaa";
-              ctx.fillText(
-                "With love, " + coupleFirstNames,
-                cardW / 2,
-                cardH - margin - 18
-              );
-
-              ctx.restore();
-
-              // Download
-              var link = document.createElement("a");
-              link.download =
-                (name ? name.replace(/\s+/g, "_") + "-" : "") +
-                "invitation-card.png";
-              link.href = canvas.toDataURL("image/png");
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-
-              // Show image preview after download
-              var imgPreview = document.getElementById("invite-image");
-              var imgPreviewDiv = document.getElementById(
-                "invite-image-preview"
-              );
-              imgPreview.src = canvas.toDataURL("image/png");
-              imgPreviewDiv.style.display = "block";
-            };
-            headerImg.src = headerImgUrl;
-            mainImg.src = mainImgUrl;
+                ctx.fillText(l, xStart, descY);
+                descY += lineHeight;
+              });
+              y = descY + 38; // Add extra margin after program section
+            }
+            // Gold divider before footer
+            ctx.beginPath();
+            ctx.moveTo(cardW / 2 - 100, y);
+            ctx.lineTo(cardW / 2 + 100, y);
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = "#d4af37";
+            ctx.stroke();
+            y += 44;
+            // Footer message
+            ctx.font = "22px 'Montserrat', 'Poppins', Arial, sans-serif";
+            ctx.fillStyle = "#444";
+            ctx.textAlign = "center";
+            var brideFirst = (d.bride_first_name || '').trim();
+            var groomFirst = (d.groom_first_name || '').trim();
+            var coupleNames = brideFirst && groomFirst ? `${brideFirst} & ${groomFirst}` : (brideFirst || groomFirst || 'the couple');
+            
+            ctx.font = "bold 20px 'Montserrat', 'Poppins', Arial, sans-serif";
+            ctx.fillStyle = "#b07bce";
+            ctx.fillText(
+              "Show this card at the entrance.",
+              cardW / 2,
+              y
+            );
+            y += 38;
+            ctx.font = "italic 28px 'Dancing Script', 'Brush Script MT', 'Pacifico', 'Montserrat', Arial, cursive";
+            ctx.fillStyle = "#d4af37";
+            ctx.fillText(
+              "Yours truly, SaveMeASeat.",
+              cardW / 2,
+              y
+            );
+            ctx.restore();
+            // Download
+            var link = document.createElement("a");
+            link.download =
+              (name ? name.replace(/\s+/g, "_") + "-" : "") +
+              "program-card.png";
+            link.href = canvas.toDataURL("image/png");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            // Show image preview after download
+            var imgPreview = document.getElementById("invite-image");
+            var imgPreviewDiv = document.getElementById("invite-image-preview");
+            imgPreview.src = canvas.toDataURL("image/png");
+            imgPreviewDiv.style.display = "block";
           };
         </script>
       </section>

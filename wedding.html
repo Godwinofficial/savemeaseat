@@ -40,16 +40,24 @@
         height: 100%;
         margin: 0;
         padding: 0;
+        background: #fff;
+      }
+      body {
+        /* Remove any default padding/margin */
+        margin: 0 !important;
+        padding: 0 !important;
       }
       .page-wrapper {
         margin: 0 !important;
         padding: 0 !important;
       }
-      .wpo-hero-slider {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-        position: relative;
-        z-index: 1;
+      .wpo-hero-slider,
+      .wpo-hero-slider .swiper-container,
+      .wpo-hero-slider .swiper-wrapper,
+      .wpo-hero-slider .swiper-slide,
+      .wpo-hero-slider .slide-inner {
+        height: 100vh !important;
+        min-height: 100vh !important;
       }
       .wpo-hero-slider .slide-content,
       .wpo-hero-slider .slider-event-details-overlay {

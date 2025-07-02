@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#738ea5">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <!-- <link
       rel="shortcut icon"
       type="image/png"
@@ -33,6 +35,27 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <!-- Enables fullscreen mode -->
     <meta name="apple-mobile-web-app-status-bar-style" content="#default" />
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .page-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .wpo-hero-slider {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        position: relative;
+        z-index: 1;
+      }
+      .wpo-hero-slider .slide-content,
+      .wpo-hero-slider .slider-event-details-overlay {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    </style>
   </head>
 
   <body>
@@ -70,145 +93,6 @@
         <div style="font-size:1.3em;color:#b07bce;font-family:inherit;">Loading...</div>
       </div> -->
       <!-- start-header-topbar -->
-      <section class="topbar" style="background-color: #f9f9f9">
-        <h2 class="hidden">some</h2>
-        <div class="container-fluid">
-          <div
-            class="row justify-content-center align-items-center"
-            style="min-height: 70px"
-          >
-            <div
-              class="col-12 col-md-10 col-lg-7 d-flex justify-content-center"
-            >
-              <div class="contact-intro text-center py-2" style="width: 100%">
-                <h2
-                  id="event-title"
-                  style="
-                  display: none;
-                    color: #353535;
-                    font-size: 1.7rem;
-                    margin-bottom: 0.3em;
-                    font-weight: bold;
-                  "
-                >
-            
-                </h2>
-                <ul class="contact-inline-list mb-0" style="color: #353535">
-                  <li id="event-date" style="color: #353535"></li>
-                  <li id="event-venue" style="color: #353535">
-            
-                  </li>
-                  <li id="event-country" style="color: #353535">
-              
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <style>
-        /* Responsive topbar styles */
-        .topbar .contact-intro {
-          padding-top: 0.5em;
-          padding-bottom: 0.5em;
-        }
-        @media (max-width: 991px) {
-          .topbar .contact-intro h2 {
-            font-size: 1.3rem;
-          }
-          .topbar .contact-intro ul.list-inline {
-            font-size: 1em;
-            padding-left: 0;
-          }
-          .topbar .contact-intro ul.list-inline li {
-            margin-right: 0.7em !important;
-            margin-bottom: 0.3em;
-            display: inline-block;
-            color: #86a0b6;
-          }
-        }
-        @media (max-width: 600px) {
-          .topbar .contact-intro {
-            text-align: center !important;
-          }
-          .topbar .contact-intro ul.list-inline {
-            display: block;
-          }
-          .topbar .contact-intro ul.list-inline li {
-            display: block;
-            margin-right: 0 !important;
-            margin-bottom: 0.2em;
-          }
-        }
-        .contact-inline-list {
-          display: flex;
-          flex-wrap: nowrap;
-          justify-content: center;
-          align-items: center;
-          gap: 2em;
-          list-style: none;
-          padding: 0;
-          margin: 0 auto;
-          font-size: 1.1em;
-          width: 100%;
-          text-align: center;
-        }
-        .contact-inline-list li {
-          color: #86a0b6;
-          white-space: nowrap;
-          margin: 0;
-          padding: 0;
-        }
-        @media (max-width: 600px) {
-          .contact-inline-list {
-            gap: 0.5em;
-            font-size: 1em;
-          }
-        }
-        /* Fix for Sweet Moments gallery images */
-        .portfolio-grids .img-holder img {
-          width: 100%;
-          height: 220px;
-          object-fit: cover;
-
-          background: #f2f2f2;
-          display: block;
-        }
-        /* Ensure text is visible */
-        .contact-inline-list li,
-        .contact-intro h2 {
-          color: #353535 !important;
-        }
-        /* Couple Section Fixes */
-        .couple-area {
-          display: flex;
-          justify-content: center;
-          align-items: flex-end;
-          gap: 30px;
-        }
-        .couple-area .text-grid.bride,
-        .couple-area .text-grid.groom {
-          flex: 1 1 180px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        .couple-area .couple-img {
-          width: 140px;
-          height: 140px;
-          border-radius: 50%;
-          overflow: hidden;
-          margin-bottom: 18px;
-          box-shadow: 0 2px 16px #0001;
-          background: #fff;
-        }
-      </style>
-      <!-- end preloader -->
-      <!-- Start header -->
-
-      <!-- end of header -->
-      <!-- start of hero -->
       <section class="wpo-hero-slider">
         <!-- Loader for hero/slider -->
         <div id="hero-loader" style="display:flex;justify-content:center;align-items:center;height:350px;width:100%;background:#fff;">
@@ -1361,6 +1245,31 @@
                   const groom = data.groom_first_name || "";
                   const slideTitle = `${bride} & ${groom}`;
 
+                  // Prepare event details for slider
+                  const eventTitle = data.header_text || "";
+                  const additionalHeader = data.additional_header_text || "";
+                  const eventDate = data.date ? formatDate(data.date) : "";
+                  const eventVenue = data.venue || "";
+                  const eventCountry = data.country || "";
+
+                  // Build event details HTML for slider
+                  function buildEventDetailsHTML() {
+                    return `
+                      <div class="slider-event-details-overlay" style="position:relative;display:flex;justify-content:center;align-items:center;min-height:220px;">
+                        <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(34,34,34,0.45);border-radius:18px;"></div>
+                        <div style="position:relative;z-index:2;width:100%;padding:32px 18px;text-align:center;max-width:600px;margin:0 auto;">
+                          <h2 style="color:#fff;font-size:2.2rem;font-weight:bold;margin-bottom:0.2em;text-shadow:0 2px 8px #0007;">${eventTitle}</h2>
+                          ${additionalHeader ? `<div style=\"color:#fff;font-size:1.1em;font-family:inherit;margin-bottom:0.2em;font-weight:400;text-shadow:0 2px 8px #0007;\">${additionalHeader}</div>` : ""}
+                          <ul style="list-style:none;padding:0;margin:0 0 0.5em 0;font-size:1.1em;color:#fff;display:flex;flex-wrap:wrap;justify-content:center;gap:1.5em;text-shadow:0 2px 8px #0007;">
+                            ${eventDate ? `<li><i class='fa fa-calendar'></i> ${eventDate}</li>` : ""}
+                            ${eventVenue ? `<li><i class='fa fa-map-marker'></i> ${eventVenue}</li>` : ""}
+                            ${eventCountry ? `<li><i class='fa fa-globe'></i> ${eventCountry}</li>` : ""}
+                          </ul>
+                        </div>
+                      </div>
+                    `;
+                  }
+
                   // Dynamically update or create slides to match backend images
                   const swiperWrapper = document.querySelector(
                     ".wpo-hero-slider .swiper-wrapper"
@@ -1374,17 +1283,10 @@
                       slide.innerHTML = `
                     <div class="slide-inner slide-bg-image" style="background-image: url('${img}');" data-background="${img}">
                       <div class="container-fluid">
-                        <div class="slide-content">
-                          <div data-swiper-parallax="300" class="slide-title">
-                            <h2>${slideTitle}</h2>
-                          </div>
-                          <div data-swiper-parallax="400" class="slide-text">
-                            <p>
-                              Welcome and open yourself to your truest love this year with us! With the Release Process.
-                            </p>
-                          </div>
-                          <div class="clearfix"></div>
+                        <div class="slide-content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:350px;">
+                          ${buildEventDetailsHTML()}
                         </div>
+                        <div class="clearfix"></div>
                       </div>
                     </div>
                   `;
@@ -2168,6 +2070,31 @@
                 getCloudinaryUrl(data.slider_image_6),
               ].filter((img) => !!img && img !== "null" && img !== "None");
 
+              // Prepare event details for slider
+              const eventTitle = data.header_text || "";
+              const additionalHeader = data.additional_header_text || "";
+              const eventDate = data.date ? formatDate(data.date) : "";
+              const eventVenue = data.venue || "";
+              const eventCountry = data.country || "";
+
+              // Build event details HTML for slider
+              function buildEventDetailsHTML() {
+                return `
+                  <div class="slider-event-details-overlay" style="position:relative;display:flex;justify-content:center;align-items:center;min-height:220px;">
+                    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(34,34,34,0.45);border-radius:18px;"></div>
+                    <div style="position:relative;z-index:2;width:100%;padding:32px 18px;text-align:center;max-width:600px;margin:0 auto;">
+                      <h2 style="color:#fff;font-size:2.2rem;font-weight:bold;margin-bottom:0.2em;text-shadow:0 2px 8px #0007;">${eventTitle}</h2>
+                      ${additionalHeader ? `<div style=\"color:#fff;font-size:1.1em;font-family:inherit;margin-bottom:0.2em;font-weight:400;text-shadow:0 2px 8px #0007;\">${additionalHeader}</div>` : ""}
+                      <ul style="list-style:none;padding:0;margin:0 0 0.5em 0;font-size:1.1em;color:#fff;display:flex;flex-wrap:wrap;justify-content:center;gap:1.5em;text-shadow:0 2px 8px #0007;">
+                        ${eventDate ? `<li><i class='fa fa-calendar'></i> ${eventDate}</li>` : ""}
+                        ${eventVenue ? `<li><i class='fa fa-map-marker'></i> ${eventVenue}</li>` : ""}
+                        ${eventCountry ? `<li><i class='fa fa-globe'></i> ${eventCountry}</li>` : ""}
+                      </ul>
+                    </div>
+                  </div>
+                `;
+              }
+
               const bride = data.bride_first_name || "";
               const groom = data.groom_first_name || "";
               const slideTitle = `${bride} & ${groom}`;
@@ -2183,22 +2110,15 @@
                   const slide = document.createElement("div");
                   slide.className = "swiper-slide";
                   slide.innerHTML = `
-                    <div class="slide-inner slide-bg-image" style="background-image: url('${img}');" data-background="${img}">
-                      <div class="container-fluid">
-                        <div class="slide-content">
-                          <div data-swiper-parallax="300" class="slide-title">
-                            <h2>${slideTitle}</h2>
-                          </div>
-                          <div data-swiper-parallax="400" class="slide-text">
-                            <p>
-                              Welcome and open yourself to your truest love this year with us! With the Release Process.
-                            </p>
-                          </div>
-                          <div class="clearfix"></div>
-                        </div>
-                      </div>
+                <div class="slide-inner slide-bg-image" style="background-image: url('${img}');" data-background="${img}">
+                  <div class="container-fluid">
+                    <div class="slide-content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:350px;">
+                      ${buildEventDetailsHTML()}
                     </div>
-                  `;
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              `;
                   swiperWrapper.appendChild(slide);
                 });
 
@@ -2236,7 +2156,9 @@
                 ".text-grid.bride .couple-img img"
               );
               if (brideImg) brideImg.src = getCloudinaryUrl(data.bride_image) || "";
-              const brideName = document.querySelector(".text-grid.bride h3");
+              const brideName = document.querySelector(
+                ".text-grid.bride h3"
+              );
               if (brideName)
                 brideName.textContent =
                   (data.bride_first_name || "") +

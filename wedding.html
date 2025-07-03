@@ -1607,6 +1607,23 @@
                       listContainer.innerHTML = '<div style="width:100%;text-align:center;color:#aaa;">No Bridesmaids or Groomsmen data available.</div>';
                     }
                   }
+
+                  // Prepare event meta details
+                  const coupleNames = [data.bride_first_name, data.groom_first_name].filter(Boolean).join(' & ');
+                  const eventTitle = data.header_text || coupleNames || "Wedding Event";
+                  const eventDesc = data.additional_header_text || data.description || "Join us for a special celebration!";
+                  let eventThumb = '';
+                  if (data.slider_image_1) {
+                    eventThumb = getCloudinaryUrl(data.slider_image_1);
+                  } else if (data.center_cover_image) {
+                    eventThumb = getCloudinaryUrl(data.center_cover_image);
+                  }
+
+                  setEventMetaTags({
+                    title: eventTitle,
+                    description: eventDesc,
+                    image: eventThumb
+                  });
                 })
                 .catch((err) => {
                   window.location.href = "404.html";

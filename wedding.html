@@ -1607,23 +1607,6 @@
                       listContainer.innerHTML = '<div style="width:100%;text-align:center;color:#aaa;">No Bridesmaids or Groomsmen data available.</div>';
                     }
                   }
-
-                  // Prepare event meta details
-                  const coupleNames = [data.bride_first_name, data.groom_first_name].filter(Boolean).join(' & ');
-                  const eventTitle = data.header_text || coupleNames || "Wedding Event";
-                  const eventDesc = data.additional_header_text || data.description || "Join us for a special celebration!";
-                  let eventThumb = '';
-                  if (data.slider_image_1) {
-                    eventThumb = getCloudinaryUrl(data.slider_image_1);
-                  } else if (data.center_cover_image) {
-                    eventThumb = getCloudinaryUrl(data.center_cover_image);
-                  }
-
-                  setEventMetaTags({
-                    title: eventTitle,
-                    description: eventDesc,
-                    image: eventThumb
-                  });
                 })
                 .catch((err) => {
                   window.location.href = "404.html";
@@ -2147,27 +2130,6 @@
         // ... rest of your code ...
       })();
       // ... existing code ...
-    </script>
-    <script>
-      function setEventMetaTags({ title, description, image }) {
-        document.title = title;
-        let ogTitle = document.querySelector('meta[property="og:title"]');
-        let twTitle = document.querySelector('meta[property="twitter:title"]');
-        if (ogTitle) ogTitle.setAttribute('content', title);
-        if (twTitle) twTitle.setAttribute('content', title);
-
-        let ogDesc = document.querySelector('meta[property="og:description"]');
-        let twDesc = document.querySelector('meta[property="twitter:description"]');
-        let descTag = document.querySelector('meta[name="description"]');
-        if (ogDesc) ogDesc.setAttribute('content', description);
-        if (twDesc) twDesc.setAttribute('content', description);
-        if (descTag) descTag.setAttribute('content', description);
-
-        let ogImg = document.querySelector('meta[property="og:image"]#ogImageMeta');
-        let twImg = document.querySelector('meta[property="twitter:image"]#twitterImageMeta');
-        if (ogImg) ogImg.setAttribute('content', image);
-        if (twImg) twImg.setAttribute('content', image);
-      }
     </script>
   </body>
 </html>

@@ -19,13 +19,13 @@
     <meta property="og:url" content="https://savemeseatzambia.com/">
     <meta property="og:title" content="SaveMeASeat Zambia – Effortless RSVP Management for All Events">
     <meta property="og:description" content="SaveMeASeat Zambia is a modern RSVP management platform for weddings, parties, and events. Create beautiful RSVP pages, manage guest lists, and simplify your event planning.">
-    <meta property="og:image" content="https://savemeseatzambia.com/imgs/wedding.png">
+    <meta property="og:image" id="ogImageMeta" content="https://www.savemeaseatzambia.com/imgs/logo1.png">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://savemeseatzambia.com/">
     <meta property="twitter:title" content="SaveMeASeat Zambia – Effortless RSVP Management for All Events">
     <meta property="twitter:description" content="SaveMeASeat Zambia is a modern RSVP management platform for weddings, parties, and events. Create beautiful RSVP pages, manage guest lists, and simplify your event planning.">
-    <meta property="twitter:image" content="https://savemeseatzambia.com/imgs/wedding.png">
+    <meta property="twitter:image" id="twitterImageMeta" content="https://www.savemeaseatzambia.com/imgs/logo1.png">
     <!-- Canonical URL -->
     <link rel="canonical" href="https://savemeseatzambia.com/">
     <!-- Robots -->
@@ -2105,6 +2105,31 @@
         }
       })();
 
+    </script>
+    <script>
+      // ... existing code ...
+      // --- Dynamic Event Fetch by slug from query string ---
+      (function () {
+        // ...rest of your code...
+        function setEventThumbnail(url) {
+          if (!url) return;
+          var ogImg = document.querySelector('meta[property="og:image"]#ogImageMeta');
+          var twImg = document.querySelector('meta[property="twitter:image"]#twitterImageMeta');
+          if (ogImg) ogImg.setAttribute('content', url);
+          if (twImg) twImg.setAttribute('content', url);
+        }
+        // ... inside the .then((data) => { ... }) after eventData is set ...
+        // Find the best event image for sharing
+        let eventThumb = '';
+        if (data.slider_image_1) {
+          eventThumb = getCloudinaryUrl(data.slider_image_1);
+        } else if (data.center_cover_image) {
+          eventThumb = getCloudinaryUrl(data.center_cover_image);
+        }
+        if (eventThumb) setEventThumbnail(eventThumb);
+        // ... rest of your code ...
+      })();
+      // ... existing code ...
     </script>
   </body>
 </html>

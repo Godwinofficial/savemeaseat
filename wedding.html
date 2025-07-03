@@ -87,6 +87,7 @@
   </head>
 
   <body>
+    <div id="event-error-message" style="display:none;text-align:center;color:#b07bce;font-size:2em;margin:40px 0 0 0;">No event found 404.</div>
     <!-- start page-wrapper -->
     <div class="page-wrapper">
       <!-- Global fullscreen loader overlay -->
@@ -1154,7 +1155,7 @@
             var params = new URLSearchParams(window.location.search);
             var eventSlug = params.get("slug");
             if (!eventSlug) {
-              msgDiv.textContent = "Event not found.";
+              window.location.href = "404.html";
               return;
             }
             var formData = {
@@ -1608,6 +1609,7 @@
                   }
                 })
                 .catch((err) => {
+                  window.location.href = "404.html";
                   console.warn("Could not fetch event:", err);
                 });
             }

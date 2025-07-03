@@ -2131,5 +2131,29 @@
       })();
       // ... existing code ...
     </script>
+    <script>
+      function setEventMetaTags({ title, description, image }) {
+        // Title
+        document.title = title;
+        let ogTitle = document.querySelector('meta[property="og:title"]');
+        let twTitle = document.querySelector('meta[property="twitter:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', title);
+        if (twTitle) twTitle.setAttribute('content', title);
+
+        // Description
+        let ogDesc = document.querySelector('meta[property="og:description"]');
+        let twDesc = document.querySelector('meta[property="twitter:description"]');
+        let descTag = document.querySelector('meta[name="description"]');
+        if (ogDesc) ogDesc.setAttribute('content', description);
+        if (twDesc) twDesc.setAttribute('content', description);
+        if (descTag) descTag.setAttribute('content', description);
+
+        // Image
+        let ogImg = document.querySelector('meta[property="og:image"]#ogImageMeta');
+        let twImg = document.querySelector('meta[property="twitter:image"]#twitterImageMeta');
+        if (ogImg) ogImg.setAttribute('content', image);
+        if (twImg) twImg.setAttribute('content', image);
+      }
+    </script>
   </body>
 </html>

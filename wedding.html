@@ -1,0 +1,2151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="shortcut icon" type="image/png" href="/imgs/favicon.png" />
+  <title>SaveMeASeat Zambia – Effortless RSVP Management for All Events</title>
+  <meta name="title" content="SaveMeASeat Zambia – Effortless RSVP Management for All Events">
+  <meta name="description"
+    content="SaveMeASeat Zambia is a modern RSVP management platform for weddings, parties, and events. Create beautiful RSVP pages, manage guest lists, and simplify your event planning.">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://savemeseatzambia.com/">
+  <meta property="og:title" content="SaveMeASeat Zambia – Effortless RSVP Management for All Events">
+  <meta property="og:description"
+    content="SaveMeASeat Zambia is a modern RSVP management platform for weddings, parties, and events. Create beautiful RSVP pages, manage guest lists, and simplify your event planning.">
+  <meta property="og:image" id="ogImageMeta" content="https://www.savemeaseatzambia.com/imgs/logo1.png">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://savemeseatzambia.com/">
+  <meta property="twitter:title" content="SaveMeASeat Zambia – Effortless RSVP Management for All Events">
+  <meta property="twitter:description"
+    content="SaveMeASeat Zambia is a modern RSVP management platform for weddings, parties, and events. Create beautiful RSVP pages, manage guest lists, and simplify your event planning.">
+  <meta property="twitter:image" id="twitterImageMeta" content="https://www.savemeaseatzambia.com/imgs/logo1.png">
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://savemeseatzambia.com/">
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
+  <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="assets/css/flaticon.css" rel="stylesheet" />
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/magnific-popup.css" rel="stylesheet" />
+  <link href="assets/css/animate.css" rel="stylesheet" />
+  <link href="assets/css/owl.carousel.css" rel="stylesheet" />
+  <link href="assets/css/owl.theme.css" rel="stylesheet" />
+  <link href="assets/css/slick.css" rel="stylesheet" />
+  <link href="assets/css/slick-theme.css" rel="stylesheet" />
+  <link href="assets/css/swiper.min.css" rel="stylesheet" />
+  <link href="assets/css/nice-select.css" rel="stylesheet" />
+  <link href="assets/css/owl.transitions.css" rel="stylesheet" />
+  <link href="assets/css/jquery.fancybox.css" rel="stylesheet" />
+  <link href="assets/css/odometer-theme-default.css" rel="stylesheet" />
+  <link href="assets/css/style.css" rel="stylesheet" />
+  <!-- Theme Color for Android Chrome (light gray instead of pure white for contrast) -->
+  <meta name="theme-color" content="#f9f9f9" />
+  <!-- Light gray is safer than pure white -->
+
+  <!-- iOS Safari Status Bar Customization -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!-- Enables fullscreen mode -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#default" />
+  <!-- AOS Animate On Scroll CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+
+    body {
+      /* Remove any default padding/margin */
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .page-wrapper {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .wpo-hero-slider,
+    .wpo-hero-slider .swiper-container,
+    .wpo-hero-slider .swiper-wrapper,
+    .wpo-hero-slider .swiper-slide,
+    .wpo-hero-slider .slide-inner {
+      height: 100vh !important;
+      min-height: 100vh !important;
+    }
+
+    .wpo-hero-slider .slide-content,
+    .wpo-hero-slider .slider-event-details-overlay {
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    /* Bridesmaids and Groomsmen Cards Responsive Styles */
+    #bridesmaids-groomsmen-list .row {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    #bridesmaids-groomsmen-list .grid {
+      flex: 0 0 auto !important;
+      margin: 0 15px 30px 15px !important;
+    }
+
+    @media (max-width: 768px) {
+      .grid .img-holder {
+        max-width: 100% !important;
+      }
+
+      .grid .img-holder img {
+        height: 450px !important;
+      }
+
+      .grid .img-holder>div {
+        padding: 15px !important;
+      }
+
+      .grid .img-holder>div>div {
+        gap: 10px !important;
+      }
+
+      .grid .img-holder>div>div>div:first-child {
+        width: 35px !important;
+        height: 35px !important;
+      }
+
+      .grid .img-holder>div>div>div:first-child i {
+        font-size: 16px !important;
+      }
+
+      .grid .img-holder>div>div>div:last-child>div:first-child {
+        font-size: 1rem !important;
+      }
+
+      .grid .img-holder>div>div>div:last-child>div:last-child {
+        font-size: 0.85rem !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid .img-holder img {
+        height: 400px !important;
+      }
+
+      .grid .img-holder>div {
+        padding: 12px !important;
+      }
+
+      .grid .img-holder>div>div>div:first-child {
+        width: 30px !important;
+        height: 30px !important;
+      }
+
+      .grid .img-holder>div>div>div:first-child i {
+        font-size: 14px !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="event-error-message" style="display:none;text-align:center;color:#b07bce;font-size:2em;margin:40px 0 0 0;">No
+    event found 404.</div>
+  <!-- start page-wrapper -->
+  <div class="page-wrapper">
+    <!-- Global fullscreen loader overlay -->
+    <div id="global-loader-overlay"
+      style="position:fixed;z-index:99999;top:0;left:0;width:100vw;height:100vh;background:#fff;display:flex;align-items:center;justify-content:center;">
+      <div class="lds-dual-ring-global"></div>
+    </div>
+    <style>
+      /* App-colored spinner for global loader */
+      .lds-dual-ring-global {
+        display: inline-block;
+        width: 72px;
+        height: 72px;
+      }
+
+      .lds-dual-ring-global:after {
+        content: " ";
+        display: block;
+        width: 56px;
+        height: 56px;
+        margin: 4px;
+        border-radius: 50%;
+        border: 2px solid #738ea5;
+        border-color: #738ea5 transparent #738ea5 transparent;
+        animation: lds-dual-ring-global 1.2s linear infinite;
+      }
+
+      @keyframes lds-dual-ring-global {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <!-- start preloader -->
+    <!-- <div class="simple-loader" id="simple-loader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#fff;display:flex;align-items:center;justify-content:center;">
+        <div style="font-size:1.3em;color:#b07bce;font-family:inherit;">Loading...</div>
+      </div> -->
+    <!-- start-header-topbar -->
+    <section class="wpo-hero-slider" data-aos="fade-up" data-aos-duration="1200">
+      <!-- Loader for hero/slider -->
+      <div id="hero-loader"
+        style="display:flex;justify-content:center;align-items:center;height:350px;width:100%;background:#fff;">
+        <div class="lds-dual-ring"></div>
+      </div>
+      <div class="swiper-container" id="hero-swiper" style="display:none;">
+        <div class="swiper-wrapper">
+          <!-- Slides will be injected here -->
+        </div>
+        <!-- swipper controls -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </section>
+    <style>
+      .lds-dual-ring {
+        display: inline-block;
+        width: 64px;
+        height: 64px;
+      }
+
+      .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 46px;
+        height: 46px;
+        margin: 1px;
+        border-radius: 50%;
+        border: 6px solid #b07bce;
+        border-color: #b07bce transparent #e89bae transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+      }
+
+      @keyframes lds-dual-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <!-- Here add clock countdoewn -->
+    <div id="timer" class="custom-countdown" style="margin-bottom: 30px"></div>
+    <style>
+      /* Countdown timer styles */
+      .custom-countdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 22px;
+        margin-top: 70px;
+      }
+
+      .custom-countdown .clock-segment {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .custom-countdown .clock-bg {
+        background: url("assets/images/clock-bg.png") no-repeat center center;
+        background-size: contain;
+        width: 170px;
+        height: 170px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .custom-countdown .clock-value {
+        font-family: "Montserrat", "Poppins", Arial, sans-serif;
+        font-weight: 300;
+        font-size: 2.1rem;
+        color: #848892;
+        letter-spacing: 0.02em;
+        line-height: 1;
+      }
+
+      .custom-countdown .clock-label {
+        font-family: "Montserrat", "Poppins", Arial, sans-serif;
+        font-weight: 400;
+        font-size: 0.8rem;
+        color: #848892;
+        letter-spacing: 0.01em;
+        margin-top: -70px;
+      }
+
+      @media (max-width: 920px) {
+        .custom-countdown {
+          gap: 30px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .custom-countdown .clock-bg {
+          width: 120px;
+          /* Adjust as you see fit */
+          height: 120px;
+        }
+
+        .custom-countdown .clock-value {
+          font-size: 1.1rem;
+          font-size: 22px;
+        }
+
+        .custom-countdown .clock-label {
+          font-size: 0.7rem;
+          margin-top: -50px;
+          font-size: 10px;
+        }
+      }
+
+      /* @media (max-width: 600px) {
+          .custom-countdown {
+            gap: 8px;
+          }
+          .custom-countdown .clock-bg {
+            width: 48px;
+            height: 48px;
+          }
+          .custom-countdown .clock-value {
+            font-size: 1.1rem;
+          }
+          .custom-countdown .clock-label {
+            font-size: 0.8rem;
+          }
+        } */
+    </style>
+    <script>
+
+
+      // === API URL switch ===
+      // Change this to your production or test server as needed
+      //const API_URL = "http://localhost:8000";
+      const API_URL = "https://savemeaseat-backend.onrender.com";
+      // Helper to get Cloudinary URL
+      function getCloudinaryUrl(filename) {
+        if (!filename) return "";
+        if (filename.startsWith("http")) return filename;
+        return "https://res.cloudinary.com/godwinb/" + filename.replace(/^\/+/, "");
+      }
+
+
+      // --- Dynamic Event Fetch by slug from query string ---
+      (function () {
+        // ...rest of your code...
+      })();
+      // Custom Countdown Timer
+      (function () {
+        // Find event date from server (eventData) or fallback
+        function getEventDate() {
+          if (window.eventData && eventData.date) {
+            // Always use server date if available
+            return new Date(eventData.date);
+          }
+          var dateEl = document.getElementById("event-date");
+          if (dateEl) {
+            var txt = dateEl.textContent || dateEl.innerText || "";
+            var d = new Date(txt);
+            if (!isNaN(d)) return d;
+          }
+          return new Date("2025-10-24T10:00:00");
+        }
+
+        function pad(n) {
+          return n < 10 ? "0" + n : n;
+        }
+
+        function renderCountdown(target, diff, isToday) {
+          if (isToday) {
+            target.innerHTML = `
+                <div style="text-align:center;width:100%">
+                  <div style="font-size:2.2rem;color:#e89bae;font-family:Montserrat,Poppins,Arial,sans-serif;font-weight:600;margin-bottom:0.5em;">
+                    🎉 The Wedding is Today! 🎉
+                  </div>
+                  <div style="font-size:1.2rem;color:#353535;font-family:Montserrat,Poppins,Arial,sans-serif;">
+                    We can't wait to celebrate with you.<br>
+                    <span style="color:#b07bce;font-weight:500;">You're warmly invited to join the festivities!</span>
+                  </div>
+                </div>
+              `;
+            return;
+          }
+          var months = diff.months;
+          var days = diff.days;
+          var hours = diff.hours;
+          var minutes = diff.minutes;
+          var seconds = diff.seconds;
+          target.innerHTML = `
+              <div class="clock-segment">
+                <div class="clock-bg"><span class="clock-value">${pad(
+            months
+          )}</span></div>
+                <span class="clock-label">Month${months === 1 ? "" : "s"}</span>
+              </div>
+              <div class="clock-segment">
+                <div class="clock-bg"><span class="clock-value">${pad(
+            days
+          )}</span></div>
+                <span class="clock-label">Day${days === 1 ? "" : "s"}</span>
+              </div>
+              <div class="clock-segment">
+                <div class="clock-bg"><span class="clock-value">${pad(
+            hours
+          )}</span></div>
+                <span class="clock-label">Hour${hours === 1 ? "" : "s"}</span>
+              </div>
+              <div class="clock-segment">
+                <div class="clock-bg"><span class="clock-value">${pad(
+            minutes
+          )}</span></div>
+                <span class="clock-label">Minute${minutes === 1 ? "" : "s"
+            }</span>
+              </div>
+              <div class="clock-segment">
+                <div class="clock-bg"><span class="clock-value">${pad(
+              seconds
+            )}</span></div>
+                <span class="clock-label">Second${seconds === 1 ? "" : "s"
+            }</span>
+              </div>
+            `;
+        }
+
+        // Calculate months/days/hours/minutes/seconds between now and event
+        function getCountdownParts(toDate) {
+          var now = new Date();
+          // Only compare date part for "today" logic
+          var isToday =
+            now.getFullYear() === toDate.getFullYear() &&
+            now.getMonth() === toDate.getMonth() &&
+            now.getDate() === toDate.getDate();
+          var y = toDate.getFullYear(),
+            m = toDate.getMonth(),
+            d = toDate.getDate();
+          var eventDate = new Date(
+            y,
+            m,
+            d,
+            toDate.getHours(),
+            toDate.getMinutes(),
+            toDate.getSeconds()
+          );
+          var months =
+            (eventDate.getFullYear() - now.getFullYear()) * 12 +
+            (eventDate.getMonth() - now.getMonth());
+          var temp = new Date(now.getTime());
+          temp.setMonth(temp.getMonth() + months);
+          if (temp > eventDate) {
+            months--;
+            temp.setMonth(temp.getMonth() - 1);
+          }
+          var ms = eventDate - temp;
+          var days = Math.floor(ms / (1000 * 60 * 60 * 24));
+          ms -= days * (1000 * 60 * 60 * 24);
+          var hours = Math.floor(ms / (1000 * 60 * 60));
+          ms -= hours * (1000 * 60 * 60);
+          var minutes = Math.floor(ms / (1000 * 60));
+          ms -= minutes * (1000 * 60);
+          var seconds = Math.floor(ms / 1000);
+          // If event is in the past, show zeroes (not today)
+          if (eventDate < now && !isToday) {
+            months = days = hours = minutes = seconds = 0;
+          }
+          return { months, days, hours, minutes, seconds, isToday };
+        }
+
+        function updateCountdown() {
+          var timer = document.getElementById("timer");
+          if (!timer) return;
+          var eventDate = getEventDate();
+          var diff = getCountdownParts(eventDate);
+          renderCountdown(timer, diff, diff.isToday);
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      })();
+    </script>
+    <!-- end wpo-wedding-date -->
+    <!-- start couple-section -->
+    <section class="couple-section section-padding" id="couple" data-aos="fade-up" data-aos-delay="100">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col col-xs-12">
+            <!-- Loader for couple section -->
+            <div id="couple-loader"
+              style="display:flex;justify-content:center;align-items:center;height:220px;width:100%;background:#fff;">
+              <div class="lds-dual-ring"></div>
+            </div>
+            <div class="couple-area clearfix" id="couple-content" style="display:none;">
+              <div class="text-grid bride">
+                <div class="couple-img">
+                  <img alt="" />
+                </div>
+                <h3></h3>
+                <p>
+                </p>
+              </div>
+              <div class="middle-couple-pic">
+                <img " alt="" />
+                  <div class=" frame-img">
+                <img src="assets/images/couple/shape.png" alt="" />
+              </div>
+            </div>
+            <div class="text-grid groom">
+              <div class="couple-img">
+                <img alt="" />
+              </div>
+              <h3></h3>
+              <p>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!-- end container -->
+  </section>
+  <style>
+    /* Couple Section Fixes */
+    .couple-area {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 30px;
+    }
+
+    .couple-area .text-grid.bride,
+    .couple-area .text-grid.groom {
+      flex: 1 1 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .couple-area .couple-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 16px #0001;
+      background: #fff;
+    }
+
+    .couple-area .couple-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .middle-couple-pic {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .middle-couple-pic img:first-child {
+      width: 35em;
+      height: 35em;
+      object-fit: cover;
+    }
+
+    .middle-couple-pic .frame-img img {
+      padding-top: -20px;
+      width: 100%;
+      height: 95%;
+      object-fit: contain;
+      display: block;
+    }
+
+    @media (max-width: 991px) {
+      .couple-area {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .middle-couple-pic img:first-child {
+        width: 25em;
+        height: 25em;
+        object-fit: cover;
+      }
+
+      .middle-couple-pic .frame-img img {
+        margin-top: -40px;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* .middle-couple-pic img:first-child,
+          .middle-couple-pic .frame-img {
+            width: 25em;
+            height: 25em;
+          } */
+
+      .middle-couple-pic .frame-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .couple-area .couple-img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
+  <!-- end couple-section -->
+  <!-- start wpo-video-section -->
+
+  <!-- end wpo-video-section-->
+
+  <!-- start story-section -->
+  <section class="story-section section-padding" id="story" data-aos="fade-up" data-aos-delay="200">
+    <div class="container">
+      <div class="row">
+        <div class="wpo-section-title-s2">
+          <div class="section-title-simg">
+            <img src="assets/images/section-title2.png" alt="" />
+          </div>
+          <h2>Our Love Story</h2>
+          <div class="section-title-img">
+            <div class="round-ball"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Loader for story section -->
+      <div id="story-loader"
+        style="display:flex;justify-content:center;align-items:center;height:400px;width:100%;background:#fff;">
+        <div class="lds-dual-ring"></div>
+      </div>
+      <div class="row" id="story-content" style="display:none;">
+        <div class="col col-xs-12">
+          <div class="story-timeline">
+            <div class="round-shape"></div>
+            <div class="row">
+              <div class="col col-lg-6 col-12">
+                <div class="story-text right-align-text">
+                  <h3>First time we met</h3>
+                  <span class="date">Nov 12,2021</span>
+                  <p>
+                    I must explain to you how all this mistaken idea of
+                    denouing pleasure and praising pain was born and I will
+                    give you com acount of system,the actual teach
+                  </p>
+                </div>
+              </div>
+              <div class="col col-lg-6 col-12">
+                <div class="img-holder story-img-placeholder">
+                  <div class="img-placeholder"></div>
+                  <img style="width: 300px; height: 300px; object-fit: cover; display:none;" alt
+                    class="img img-responsive" />
+                  <div class="story-shape-img">
+                    <img src="assets/images/story/shape.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-lg-6 col-12">
+                <div class="img-holder right-align-text left-site story-img-placeholder">
+                  <div class="img-placeholder"></div>
+                  <img style="width: 300px; height: 300px; object-fit: cover; display:none;" alt
+                    class="img img-responsive" />
+                  <div class="story-shape-img">
+                    <img src="assets/images/story/shape.png" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="col col-lg-6 col-12 text-holder">
+                <span class="heart">
+                  <i class="fi flaticon-heart"></i>
+                </span>
+                <div class="story-text">
+                  <h3>First Date</h3>
+                  <span class="date">Dec 25,2021</span>
+                  <p>
+                    I must explain to you how all this mistaken idea of
+                    denouing pleasure and praising pain was born and I will
+                    give you com acount of system,the actual teach
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-lg-6 col-12 text-holder right-heart">
+                <span class="heart">
+                  <i class="fi flaticon-calendar"></i>
+                </span>
+                <div class="story-text right-align-text">
+                  <h3>Love Proposal</h3>
+                  <span class="date">Nov 12,2021</span>
+                  <p>
+                    I must explain to you how all this mistaken idea of
+                    denouing pleasure and praising pain was born and I will
+                    give you com acount of system,the actual teach
+                  </p>
+                </div>
+              </div>
+              <div class="col col-lg-6 col-12">
+                <div class="img-holder right-align-text story-img-placeholder">
+                  <div class="img-placeholder"></div>
+                  <img style="width: 300px; height: 300px; object-fit: cover; display:none;" alt
+                    class="img img-responsive" />
+                  <div class="story-shape-img">
+                    <img src="assets/images/story/shape.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-lg-6 col-12">
+                <div class="img-holder video-holder left-site story-img-placeholder">
+                  <div class="img-placeholder"></div>
+                  <img style="width: 300px; height: 300px; object-fit: cover; display:none;" alt
+                    class="img img-responsive" />
+                  <div class="story-shape-img">
+                    <img src="assets/images/story/shape.png" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="col col-lg-6 col-12 text-holder">
+                <span class="heart">
+                  <i class="fi flaticon-dove"></i>
+                </span>
+                <div class="story-text">
+                  <h3>Our Engagement</h3>
+                  <span class="date">Dec 25,2021</span>
+                  <p>
+                    I must explain to you how all this mistaken idea of
+                    denouing pleasure and praising pain was born and I will
+                    give you com acount of system,the actual teach
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-lg-6 col-lg-6 col-12 text-holder">
+                <span class="heart">
+                  <i class="fi flaticon-wedding-rings"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+  </section>
+  <style>
+    .img-placeholder {
+      width: 300px;
+      height: 300px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #0001;
+      display: block;
+    }
+  </style>
+  <!-- end story-sectionss -->
+
+  <!-- start wpo-portfolio-section -->
+  <section class="wpo-portfolio-section-s2 section-padding" id="gallery" data-aos="fade-up" data-aos-delay="300">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="wpo-section-title-s2">
+          <div class="section-title-simg">
+            <img src="assets/images/section-title2.png" alt="" />
+          </div>
+          <h2>Sweet Moments</h2>
+          <div class="section-title-img">
+            <div class="round-ball"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sortable-gallery">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="portfolio-grids gallery-container clearfix">
+              <div class="grid">
+                <div class="img-holder">
+                  <a href="assets/images/portfolio/7.jpg" class="fancybox" data-fancybox-group="gall-1">
+                    <img class="img img-responsive" />
+                    <div class="hover-content">
+                      <i class="ti-plus"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="grid">
+                <div class="img-holder">
+                  <a href="assets/images/portfolio/8.jpg" class="fancybox" data-fancybox-group="gall-1">
+                    <img class="img img-responsive" />
+                    <div class="hover-content">
+                      <i class="ti-plus"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="grid">
+                <div class="img-holder">
+                  <a href="assets/images/portfolio/9.jpg" class="fancybox" data-fancybox-group="gall-1">
+                    <img class="img img-responsive" />
+                    <div class="hover-content">
+                      <i class="ti-plus"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="grid">
+                <div class="img-holder">
+                  <a href="assets/images/portfolio/10.jpg" class="fancybox" data-fancybox-group="gall-1">
+                    <img class="img img-responsive" />
+                    <div class="hover-content">
+                      <i class="ti-plus"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="grid">
+                <div class="img-holder">
+                  <a href="assets/images/portfolio/11.jpg" class="fancybox" data-fancybox-group="gall-1">
+                    <img class="img img-responsive" />
+                    <div class="hover-content">
+                      <i class="ti-plus"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="grid">
+                <div class="img-holder">
+                  <a href="assets/images/portfolio/12.jpg" class="fancybox" data-fancybox-group="gall-1">
+                    <img class="img img-responsive" />
+                    <div class="hover-content">
+                      <i class="ti-plus"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end container -->
+  </section>
+  <!-- end wpo-portfolio-section -->
+
+  <!-- start wpo-product-section -->
+  <section class="wpo-product-section1 section-padding" id="bridesmaids-groomsmen" data-aos="fade-up"
+    data-aos-delay="400">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="wpo-section-title-s2">
+          <div class="section-title-simg">
+            <img src="assets/images/section-title2.png" alt="" />
+          </div>
+          <h2>Bridesmaids and Groomsmen</h2>
+          <div class="section-title-img">
+            <div class="round-ball"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Loader for bridesmaids and groomsmen section -->
+      <div id="bridesmaids-groomsmen-loader"
+        style="display:flex;justify-content:center;align-items:center;height:400px;width:100%;background:#fff;">
+        <div class="lds-dual-ring"></div>
+      </div>
+      <div class="row" id="bridesmaids-groomsmen-content" style="display:none;">
+        <div class="col-lg-12">
+          <div id="bridesmaids-groomsmen-list" class="row">
+            <div class="grid">
+              <div class="img-holder"><img class="img img-responsive" /></div>
+            </div>
+            <div class="grid">
+              <div class="img-holder"><img class="img img-responsive" /></div>
+            </div>
+            <div class="grid">
+              <div class="img-holder"><img class="img img-responsive" /></div>
+            </div>
+            <div class="grid">
+              <div class="img-holder"><img class="img img-responsive" /></div>
+            </div>
+            <div class="grid">
+              <div class="img-holder"><img class="img img-responsive" /></div>
+            </div>
+            <div class="grid">
+              <div class="img-holder"><img class="img img-responsive" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end container -->
+  </section>
+  <!-- end wpo-product-section -->
+  <!-- start wpo-event-section -->
+  <section class="wpo-event-section section-padding" id="event" data-aos="fade-up" data-aos-delay="500">
+    <div class="container">
+      <div class="row">
+        <div class="wpo-section-title-s2">
+          <div class="section-title-simg">
+            <img src="assets/images/section-title2.png" alt="" />
+          </div>
+          <h2>TIME AND PLACE</h2>
+          <div class="section-title-img">
+            <div class="round-ball"></div>
+          </div>
+        </div>
+      </div>
+      <div class="wpo-event-wrap">
+        <div class="row">
+          <div class="col col-lg-4 col-md-6 col-12">
+            <div class="wpo-event-item">
+              <div class="wpo-event-text">
+                <h2></h2>
+                <ul>
+                  <li>
+                  </li>
+                  <li></li>
+                  <li>
+                  </li>
+                </ul>
+              </div>
+              <div class="event-shape-1">
+                <img src="assets/images/event-shape-1.png" alt="" />
+              </div>
+              <div class="event-shape-2">
+                <img src="assets/images/event-shape-2.png" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="col col-lg-4 col-md-6 col-12">
+            <div class="wpo-event-item">
+              <div class="wpo-event-text">
+                <h2></h2>
+                <ul>
+                  <li>
+
+                  </li>
+
+                  </li>
+                  <li>
+
+                  </li>
+                </ul>
+              </div>
+              <div class="event-shape-1">
+                <img src="assets/images/event-shape-1.png" alt="" />
+              </div>
+              <div class="event-shape-2">
+                <img src="assets/images/event-shape-2.png" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="col col-lg-4 col-md-6 col-12">
+            <div class="wpo-event-item">
+              <div class="wpo-event-text">
+                <h2></h2>
+                <ul>
+                  <li>
+                  </li>
+                  <li>
+                    <strong></strong><br />
+                  </li>
+                </ul>
+              </div>
+              <div class="event-shape-1">
+                <img src="assets/images/event-shape-1.png" alt="" />
+              </div>
+              <div class="event-shape-2">
+                <img src="assets/images/event-shape-2.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="width: 100%; height: 400px; margin-top: 30px">
+        <iframe src="about:blank" width="100%" height="100%" style="border: 0" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <!-- Gifts Info Block -->
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-12">
+          <div style="
+                  background: #f8fafd;
+                  border-radius: 12px;
+                  padding: 24px 18px;
+                  margin: 32px auto 0 auto;
+                  box-shadow: 0 2px 12px #0001;
+                  text-align: center;
+                ">
+            <h3 style="
+                    color: #86a0b6;
+                    font-family: serif;
+                    font-weight: bold;
+                    margin-bottom: 0.5em;
+                  ">
+              Gifts & Contributions
+            </h3>
+            <p style="margin-bottom: 0.7em">All gifts can be sent to:</p>
+            <ul id="gifts-list" style="
+                    list-style: none;
+                    padding: 0;
+                    margin: 0 0 0.5em 0;
+                    font-size: 1.1em;
+                    color: #353535;
+                  ">
+              <!-- Gifts will be injected here -->
+            </ul>
+            <div id="thank-you-message" style="font-size: 0.95em; color: #888">
+              Thank you for your love and support!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end container -->
+  </section>
+  <!-- start of wpo-contact-section -->
+  <section class="wpo-contact-section section-padding1" style="margin-bottom: 100px" id="RSVP" data-aos="fade-up"
+    data-aos-delay="600">
+    <div class="container">
+      <div class="wpo-contact-section-wrapper">
+        <div class="wpo-contact-form-area">
+          <div class="wpo-section-title-s2">
+            <div class="section-title-simg">
+              <img src="assets/images/section-title2.png" alt="" />
+            </div>
+            <h2>WILL YOU ATTEND?</h2>
+            <div class="section-title-img">
+              <div class="round-ball"></div>
+            </div>
+          </div>
+          <!-- RSVP FORM -->
+          <form id="rsvp-form" style="max-width: 400px; margin: auto">
+            <div>
+              <input type="text" class="form-control" name="fullname" id="fullname" placeholder="Full Name (Required)"
+                required />
+            </div>
+            <div>
+              <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number (Required)"
+                required />
+            </div>
+            <div>
+              <input type="email" class="form-control" name="email" id="email"
+                placeholder="Email (Optional, for event reminders)" />
+            </div>
+            <div>
+              <label for="guests" style="font-weight: 500">Number of Guests</label>
+              <input type="number" name="guests" id="guests" class="form-control" max="1" min="1" value="1" required />
+            </div>
+            <div style="margin: 15px 0">
+              <label style="font-weight: 500">Will You Attend? <span style="color: red">*</span></label><br />
+              <label><input type="radio" name="attend" value="yes" required />
+                Yes</label>
+              <label style="margin-left: 1em"><input type="radio" name="attend" value="no" required />
+                No</label>
+            </div>
+            <div class="submit-area" style="margin-top: 20px">
+              <button type="submit" class="theme-btn-s3">
+                Submit RSVP
+              </button>
+            </div>
+            <div id="rsvp-message" style="margin-top: 15px; text-align: center"></div>
+          </form>
+          <!-- Invitation Card Modal -->
+          <div id="invitation-modal" style="display: none; text-align: center; padding: 30px 0">
+            <div style="
+                    background: #fff;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 16px #0002;
+                    padding: 30px;
+                    max-width: 500px;
+                    margin: auto;
+                  ">
+              <div style="margin: 20px 0">
+                <button id="download-invite-img" class="theme-btn-s3" style="margin-right: 10px">
+                  Download Program Card
+                </button>
+              </div>
+              <div id="invite-image-preview" style="margin: 20px 0; display: none">
+                <img id="invite-image" src="" alt="Invitation Card" style="
+                        max-width: 100%;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 12px #0002;
+                      " />
+              </div>
+              <div style="margin-top: 10px">
+                <button
+                  onclick="document.getElementById('invitation-modal').style.display='none';document.getElementById('rsvp-form').style.display='block';"
+                  class="theme-btn-s3" style="background: #ccc; color: #333">
+                  Close
+                </button>
+              </div>
+              <!-- Hidden canvas for image generation -->
+              <canvas id="invite-canvas" width="600" height="800" style="display: none"></canvas>
+            </div>
+          </div>
+          <div class="border-style"></div>
+        </div>
+        <div class="vector-1">
+          <img src="assets/images/contact/1.png" alt="" />
+        </div>
+        <div class="vector-2">
+          <img src="assets/images/contact/2.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <script>
+      // RSVP form logic (API POST)
+      document.getElementById("rsvp-form").onsubmit = async function (e) {
+        e.preventDefault();
+        var name = document.getElementById("fullname").value.trim();
+        var phone = document.getElementById("phone").value.trim();
+        var email = document.getElementById("email").value.trim();
+        var guests =
+          parseInt(document.getElementById("guests").value, 10) || 1;
+        var attend = document.querySelector(
+          'input[name="attend"]:checked'
+        )?.value;
+        var msgDiv = document.getElementById("rsvp-message");
+        msgDiv.textContent = "";
+        // Get event slug from URL
+        var params = new URLSearchParams(window.location.search);
+        var eventSlug = params.get("slug");
+        if (!eventSlug) {
+          window.location.href = "404.html";
+          return;
+        }
+        var formData = {
+          full_name: name,
+          phone_number: phone,
+          email: email,
+          number_of_guests: guests,
+          attending: attend,
+        };
+        try {
+          const res = await fetch(
+            `${API_URL}/api/events/${eventSlug}/rsvp/`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(formData),
+            }
+          );
+          const data = await res.json();
+          if (res.ok) {
+            msgDiv.style.color = "green";
+            msgDiv.textContent = "RSVP submitted successfully!";
+            // Hide the default invitation modal popup
+            // document.getElementById("invitation-modal").style.display = "block";
+            // Instead, just show the custom invitation card block
+            document.getElementById("rsvp-form").style.display = "none";
+            document.getElementById("invitation-modal").style.display =
+              "block";
+          } else {
+            msgDiv.style.color = "red";
+            msgDiv.textContent =
+              data.detail || data.error || "Submission failed.";
+          }
+        } catch (err) {
+          msgDiv.style.color = "red";
+          msgDiv.textContent = "Network error. Please try again.";
+        }
+      };
+
+      // Store event data globally for card use
+      let eventData = null;
+
+      (function () {
+        // --- Dynamic Event Fetch by slug from query string ---
+        // Helper: format date as "Mon DD, YYYY"
+        function formatDate(iso) {
+          if (!iso) return "";
+          const d = new Date(iso);
+          if (isNaN(d)) return iso;
+          return d.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+          });
+        }
+        const params = new URLSearchParams(window.location.search);
+        let slug = params.get("slug");
+        if (slug) {
+          // Remove any trailing slash from slug
+          slug = slug.replace(/\/+$/, "");
+          fetch(`${API_URL}/api/events/` + encodeURIComponent(slug) + "/")
+            .then((res) => {
+              if (!res.ok) throw new Error("Event not found");
+              return res.json();
+            })
+            .then((data) => {
+              eventData = data; // Save for card use
+              window.eventData = data; // Make sure it's global!
+              // console.log('Fetched event data:', data);
+              // Topbar
+              document.title =
+                (data.header_text || "Event") + " – SaveMeASeat";
+              const topbarTitle = document.getElementById("event-title");
+              if (topbarTitle)
+                topbarTitle.textContent =
+                  "Welcome to " + (data.header_text || "");
+              const dateEl = document.getElementById("event-date");
+              if (dateEl) dateEl.textContent = formatDate(data.date) || "";
+              const venueEl = document.getElementById("event-venue");
+              if (venueEl) venueEl.textContent = data.venue || "";
+              const countryEl = document.getElementById("event-country");
+              if (countryEl) countryEl.textContent = data.country || "";
+
+              // Additional header text (dynamic)
+              let additionalHeaderText = data.additional_header_text || "";
+              let additionalHeaderDiv = document.getElementById(
+                "event-additional-header"
+              );
+              if (!additionalHeaderDiv) {
+                // Insert after event-title
+                const eventTitle = document.getElementById("event-title");
+                if (eventTitle) {
+                  additionalHeaderDiv = document.createElement("div");
+                  additionalHeaderDiv.id = "event-additional-header";
+                  additionalHeaderDiv.style =
+                    "color:#353535;font-size:0.95em;font-family:inherit;margin-top:0.2em;margin-bottom:0.2em;text-align:center;";
+                  eventTitle.parentNode.insertBefore(
+                    additionalHeaderDiv,
+                    eventTitle.nextSibling
+                  );
+                }
+              }
+              if (additionalHeaderDiv) {
+                additionalHeaderDiv.textContent = additionalHeaderText;
+              }
+
+
+              // Helper to get Cloudinary URL
+              function getCloudinaryUrl(filename) {
+                if (!filename) return "";
+                if (filename.startsWith("http")) return filename;
+                return "https://res.cloudinary.com/godwinb/" + filename.replace(/^\/+/, "");
+              }
+              // ...existing code.
+              const sliderImgs = [
+                getCloudinaryUrl(data.slider_image_1),
+                getCloudinaryUrl(data.slider_image_2),
+                getCloudinaryUrl(data.slider_image_3),
+                getCloudinaryUrl(data.slider_image_4),
+                getCloudinaryUrl(data.slider_image_5),
+                getCloudinaryUrl(data.slider_image_6),
+              ].filter((img) => !!img && img !== "null" && img !== "None");
+
+              const bride = data.bride_first_name || "";
+              const groom = data.groom_first_name || "";
+              const slideTitle = `${bride} & ${groom}`;
+
+              // Prepare event details for slider
+              const eventTitle = data.header_text || "";
+              const additionalHeader = data.additional_header_text || "";
+              const eventDate = data.date ? formatDate(data.date) : "";
+              const eventVenue = data.venue || "";
+              const eventCountry = data.country || "";
+
+              // Build event details HTML for slider
+              function buildEventDetailsHTML() {
+                return `
+                      <div class="slider-event-details-overlay" style="position:relative;display:flex;justify-content:center;align-items:center;min-height:220px;">
+                        <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(34,34,34,0.45);border-radius:18px;"></div>
+                        <div style="position:relative;z-index:2;width:100%;padding:32px 18px;text-align:center;max-width:600px;margin:0 auto;">
+                          <h2 style="color:#fff;font-size:2.2rem;font-weight:bold;margin-bottom:0.2em;text-shadow:0 2px 8px #0007;">${eventTitle}</h2>
+                          ${additionalHeader ? `<div style=\"color:#fff;font-size:1.1em;font-family:inherit;margin-bottom:0.2em;font-weight:400;text-shadow:0 2px 8px #0007;\">${additionalHeader}</div>` : ""}
+                          <ul style="list-style:none;padding:0;margin:0 0 0.5em 0;font-size:1.1em;color:#fff;display:flex;flex-wrap:wrap;justify-content:center;gap:1.5em;text-shadow:0 2px 8px #0007;">
+                            ${eventDate ? `<li><i class='fa fa-calendar'></i> ${eventDate}</li>` : ""}
+                            ${eventVenue ? `<li><i class='fa fa-map-marker'></i> ${eventVenue}</li>` : ""}
+                            <!-- Country intentionally hidden in slider -->
+                          </ul>
+                        </div>
+                      </div>
+                    `;
+              }
+
+              // Dynamically update or create slides to match backend images
+              const swiperWrapper = document.querySelector(
+                ".wpo-hero-slider .swiper-wrapper"
+              );
+              if (swiperWrapper) {
+                swiperWrapper.innerHTML = "";
+                // For each image, create a unique slide
+                sliderImgs.forEach((img, i) => {
+                  const slide = document.createElement("div");
+                  slide.className = "swiper-slide";
+                  slide.innerHTML = `
+                    <div class="slide-inner slide-bg-image" style="background-image: url('${img}');" data-background="${img}">
+                      <div class="container-fluid">
+                        <div class="slide-content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:350px;">
+                          ${buildEventDetailsHTML()}
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  `;
+                  swiperWrapper.appendChild(slide);
+                });
+
+                // Destroy and re-initialize Swiper to ensure correct slide mapping and autoplay
+                if (
+                  window.Swiper &&
+                  document.querySelector(".swiper-container").swiper
+                ) {
+                  document
+                    .querySelector(".swiper-container")
+                    .swiper.destroy(true, true);
+                }
+                setTimeout(function () {
+                  new Swiper(".swiper-container", {
+                    loop: sliderImgs.length > 1,
+                    autoplay: {
+                      delay: 3500,
+                      disableOnInteraction: false,
+                    },
+                    pagination: {
+                      el: ".swiper-pagination",
+                      clickable: true,
+                    },
+                    navigation: {
+                      nextEl: ".swiper-button-next",
+                      prevEl: ".swiper-button-prev",
+                    },
+                    parallax: true,
+                  });
+                }, 0);
+              }
+
+              // Couple section
+              const brideImg = document.querySelector(
+                ".text-grid.bride .couple-img img"
+              );
+              if (brideImg) brideImg.src = getCloudinaryUrl(data.bride_image) || "";
+              const brideName = document.querySelector(
+                ".text-grid.bride h3"
+              );
+              if (brideName)
+                brideName.textContent =
+                  (data.bride_first_name || "") +
+                  (data.bride_last_name ? " " + data.bride_last_name : "");
+              const brideMsg = document.querySelector(".text-grid.bride p");
+              if (brideMsg) brideMsg.textContent = data.bride_message || "";
+
+              const groomImg = document.querySelector(
+                ".text-grid.groom .couple-img img"
+              );
+              if (groomImg) groomImg.src = getCloudinaryUrl(data.groom_image) || "";
+              const groomName = document.querySelector(
+                ".text-grid.groom h3"
+              );
+              if (groomName)
+                groomName.textContent =
+                  (data.groom_first_name || "") +
+                  (data.groom_last_name ? " " + data.groom_last_name : "");
+              const groomMsg = document.querySelector(".text-grid.groom p");
+              if (groomMsg) groomMsg.textContent = data.groom_message || "";
+
+              // Center couple image
+              const centerImg = document.querySelector(
+                ".middle-couple-pic img"
+              );
+              if (centerImg) centerImg.src = getCloudinaryUrl(data.center_cover_image) || "";
+
+              // Story section
+              // First meet
+              const story1 = document.querySelectorAll(".story-timeline .row")[0];
+              if (story1) {
+                const h3 = story1.querySelector(".story-text h3");
+                if (h3) h3.textContent = "First time we meet";
+                const date = story1.querySelector(".story-text .date");
+                if (date)
+                  date.textContent = data.love_story_first_meet_date || "";
+                const p = story1.querySelector(".story-text p");
+                if (p)
+                  p.textContent = data.love_story_first_meet_desc || "";
+
+                const img = story1.querySelector(".img-holder img");
+                if (img && data.love_story_first_meet_image)
+                  img.src = getCloudinaryUrl(data.love_story_first_meet_image);
+              }
+              // First date
+              const story2 = document.querySelectorAll(".story-timeline .row")[1];
+              if (story2) {
+                const h3 = story2.querySelector(".story-text h3");
+                if (h3) h3.textContent = "First Date";
+                const date = story2.querySelector(".story-text .date");
+                if (date)
+                  date.textContent = data.love_story_first_date_date || "";
+                const p = story2.querySelector(".story-text p");
+                if (p)
+                  p.textContent = data.love_story_first_date_desc || "";
+                const img = story2.querySelector(".img-holder img");
+                if (img && data.love_story_first_date_image)
+                  img.src = getCloudinaryUrl(data.love_story_first_date_image);
+              }
+
+              // Proposal
+              const story3 = document.querySelectorAll(".story-timeline .row")[2];
+              if (story3) {
+                const h3 = story3.querySelector(".story-text h3");
+                if (h3) h3.textContent = "Love Proposal";
+                const date = story3.querySelector(".story-text .date");
+                if (date)
+                  date.textContent = data.love_story_proposal_date || "";
+                const p = story3.querySelector(".story-text p");
+                if (p) p.textContent = data.love_story_proposal_desc || "";
+                const img = story3.querySelector(".img-holder img");
+                if (img && data.love_story_proposal_image)
+                  img.src = getCloudinaryUrl(data.love_story_proposal_image);
+              }
+
+              // Engagement
+              const story4 = document.querySelectorAll(".story-timeline .row")[3];
+              if (story4) {
+                const h3 = story4.querySelector(".story-text h3");
+                if (h3) h3.textContent = "Our Engagement";
+                const date = story4.querySelector(".story-text .date");
+                if (date)
+                  date.textContent = data.love_story_engagement_date || "";
+                const p = story4.querySelector(".story-text p");
+                if (p)
+                  p.textContent = data.love_story_engagement_desc || "";
+                const img = story4.querySelector(".img-holder img");
+                if (img && data.love_story_engagement_image)
+                  img.src = getCloudinaryUrl(data.love_story_engagement_image);
+              }
+
+              //  gallery
+              const sweetImgs = [
+                getCloudinaryUrl(data.sweet_image_1),
+                getCloudinaryUrl(data.sweet_image_2),
+                getCloudinaryUrl(data.sweet_image_3),
+                getCloudinaryUrl(data.sweet_image_4),
+                getCloudinaryUrl(data.sweet_image_5),
+                getCloudinaryUrl(data.sweet_image_6),
+              ].filter(Boolean);
+
+              document
+                .querySelectorAll(
+                  ".wpo-portfolio-section-s2 .portfolio-grids .grid"
+                )
+                .forEach((grid, i) => {
+                  const img = sweetImgs[i] || "";
+                  const a = grid.querySelector("a");
+                  const imgTag = grid.querySelector("img");
+                  if (a && img) a.href = img;
+                  if (imgTag && img) imgTag.src = img;
+                });
+
+              // Gifts & Contributions
+              const giftList = [
+                data.gift_1,
+                data.gift_2,
+                data.gift_3,
+                data.gift_4,
+                data.gift_5,
+              ].filter(Boolean);
+              const giftsUl = document.getElementById("gifts-list");
+              if (giftsUl) {
+                giftsUl.innerHTML = "";
+                giftList.forEach((g) => {
+                  const li = document.createElement("li");
+                  li.textContent = g;
+                  li.style.color = "#353535";
+                  giftsUl.appendChild(li);
+                });
+              }
+              const thankYou = document.getElementById("thank-you-message");
+              if (thankYou)
+                thankYou.textContent = data.thank_you_message || "";
+
+              // Event cards
+              const eventCards = [
+                {
+                  title: data.time_card1_title,
+                  texts: [
+                    data.time_card1_text1,
+                    data.time_card1_text2,
+                    data.time_card1_text3,
+                    data.time_card1_text4,
+                    data.time_card1_text5,
+                  ],
+                  url: data.time_card1_url,
+                },
+                {
+                  title: data.time_card2_title,
+                  texts: [
+                    data.time_card2_text1,
+                    data.time_card2_text2,
+                    data.time_card2_text3,
+                    data.time_card2_text4,
+                    data.time_card2_text5,
+                  ],
+                  url: data.time_card2_url,
+                },
+                {
+                  title: data.time_card3_title,
+                  texts: [
+                    data.time_card3_text1,
+                    data.time_card3_text2,
+                    data.time_card3_text3,
+                    data.time_card3_text4,
+                    data.time_card3_text5,
+                  ],
+                  url: data.time_card3_url,
+                },
+              ];
+              document
+                .querySelectorAll(".wpo-event-item")
+                .forEach((item, i) => {
+                  if (!eventCards[i]) return;
+                  const card = eventCards[i];
+                  const h2 = item.querySelector(".wpo-event-text h2");
+                  if (h2) h2.textContent = card.title || "";
+                  const ul = item.querySelector(".wpo-event-text ul");
+                  if (ul) {
+                    ul.innerHTML = "";
+                    card.texts.forEach((t, idx) => {
+                      if (t) {
+                        const li = document.createElement("li");
+                        li.textContent = t;
+                        ul.appendChild(li);
+                      }
+                    });
+                    // if (card.url) {
+                    //   const li = document.createElement("li");
+                    //   li.innerHTML = `<a class="popup-gmaps" href="${card.url}" target="_blank">See Location</a>`;
+                    //   ul.appendChild(li);
+                    // }
+                  }
+                });
+
+              // Main map
+              const mapIframe = document.querySelector(
+                ".wpo-event-section iframe"
+              );
+              if (mapIframe && data.main_map_url) {
+                mapIframe.src = data.main_map_url;
+              } else if (mapIframe && !data.main_map_url) {
+                // Optionally hide or clear if no map
+                mapIframe.style.display = "none";
+              }
+
+              // Bridesmaids & Groomsmen (render as separate sections with cards)
+              const listContainer = document.getElementById('bridesmaids-groomsmen-list');
+              if (listContainer) {
+                const bridesmaids = Array.isArray(data.bridesmaids) ? data.bridesmaids : [];
+                const groomsmen = Array.isArray(data.groomsmen) ? data.groomsmen : [];
+                const people = [...bridesmaids, ...groomsmen];
+                listContainer.innerHTML = '';
+                const peopleRow = document.createElement('div');
+                peopleRow.className = 'row';
+                peopleRow.style.cssText = 'display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 32px; margin: 24px 0 0 0; padding: 0;';
+                people.forEach((person) => {
+                  const card = document.createElement('div');
+                  card.className = 'grid';
+                  card.style.cssText = 'margin-bottom: 30px; position: relative; display: flex; justify-content: center;';
+                  card.innerHTML = `
+                        <div class="img-holder" style="position: relative; width: 100%; max-width: 400px; border-radius: 0; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);">
+                          <img class="img img-responsive" src="${getCloudinaryUrl(person.image)}" alt="${person.full_name}" style="width: 100%; height: 550px; object-fit: cover; display: block; border-radius: 0;" />
+                          <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 20px; border-radius: 0;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                              <div style="width: 40px; height: 40px; background: #86a0b6; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fa fa-heart" style="color: white; font-size: 18px;"></i>
+                              </div>
+                              <div style="flex: 1;">
+                                <div style="font-weight: 700; font-size: 1.1rem; color: #333; margin-bottom: 4px;">${person.full_name || ''}</div>
+                                <div style="font-size: 0.9rem; color: #666;">${person.role || ''}</div>
+                              </div>
+                              <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                                <div style="width: 6px; height: 6px; background: #f72585; border-radius: 50%;"></div>
+                                <div style="width: 6px; height: 6px; background: #4361ee; border-radius: 50%;"></div>
+                                <div style="width: 6px; height: 6px; background: #4cc9f0; border-radius: 50%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      `;
+                  peopleRow.appendChild(card);
+                });
+                listContainer.appendChild(peopleRow);
+                if (people.length === 0) {
+                  listContainer.innerHTML = '<div style="width:100%;text-align:center;color:#aaa;">No Bridesmaids or Groomsmen data available.</div>';
+                }
+              }
+            })
+            .catch((err) => {
+              window.location.href = "404.html";
+              console.warn("Could not fetch event:", err);
+            });
+        }
+      })();
+
+      // Invitation image download logic (dynamic)
+      document.getElementById("download-invite-img").onclick = function () {
+        var name = document.getElementById("fullname").value.trim();
+        var canvas = document.getElementById("invite-canvas");
+        var ctx = canvas.getContext("2d");
+        var d = eventData || {};
+        var program = (d.program && d.program.length) ? d.program[0] : null;
+        // Card layout
+        var borderWidth = 9;
+        var margin = 18;
+        var borderInset = 16;
+        var cardW = canvas.width, cardH = canvas.height;
+        var innerW = cardW - 2 * margin, innerH = cardH - 2 * margin;
+        ctx.clearRect(0, 0, cardW, cardH);
+        ctx.save();
+        // Card background gradient
+        var cardGrad = ctx.createLinearGradient(cardW / 2, margin, cardW / 2, cardH - margin);
+        cardGrad.addColorStop(0, "#f8fafd");
+        cardGrad.addColorStop(1, "#f2f2f7");
+        ctx.fillStyle = cardGrad;
+        // Rounded rectangle for card
+        var r = 32;
+        ctx.beginPath();
+        ctx.moveTo(margin + r, margin);
+        ctx.lineTo(cardW - margin - r, margin);
+        ctx.quadraticCurveTo(cardW - margin, margin, cardW - margin, margin + r);
+        ctx.lineTo(cardW - margin, cardH - margin - r);
+        ctx.quadraticCurveTo(cardW - margin, cardH - margin, cardW - margin - r, cardH - margin);
+        ctx.lineTo(margin + r, cardH - margin);
+        ctx.quadraticCurveTo(margin, cardH - margin, margin, cardH - margin - r);
+        ctx.lineTo(margin, margin + r);
+        ctx.quadraticCurveTo(margin, margin, margin + r, margin);
+        ctx.closePath();
+        ctx.fill();
+        // Drop shadow (outside card)
+        ctx.save();
+        ctx.shadowColor = "#b07bce33";
+        ctx.shadowBlur = 32;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 8;
+        ctx.strokeStyle = "#e89bae";
+        ctx.lineWidth = borderWidth;
+        ctx.stroke();
+        ctx.restore();
+        // Inner shadow (for depth)
+        ctx.save();
+        ctx.globalAlpha = 0.13;
+        ctx.strokeStyle = "#b07bce";
+        ctx.lineWidth = 8;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+        ctx.restore();
+        // Gradient header bar
+        var grad = ctx.createLinearGradient(cardW / 2, margin, cardW / 2, margin + 90);
+        grad.addColorStop(0, "#b07bce");
+        grad.addColorStop(1, "#fff0");
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.moveTo(margin + borderInset + r, margin + borderInset);
+        ctx.lineTo(cardW - margin - borderInset - r, margin + borderInset);
+        ctx.quadraticCurveTo(cardW - margin - borderInset, margin + borderInset, cardW - margin - borderInset, margin + borderInset + r);
+        ctx.lineTo(cardW - margin - borderInset, margin + borderInset + 60);
+        ctx.lineTo(margin + borderInset, margin + borderInset + 60);
+        ctx.lineTo(margin + borderInset, margin + borderInset + r);
+        ctx.quadraticCurveTo(margin + borderInset, margin + borderInset, margin + borderInset + r, margin + borderInset);
+        ctx.closePath();
+        ctx.fill();
+        // Title (modern sans-serif, bold, easy to read)
+        var y = margin + 70;
+        ctx.font = "bold 38px 'Montserrat', 'Poppins', Arial, sans-serif";
+        ctx.fillStyle = "#b07bce";
+        ctx.textAlign = "center";
+        ctx.fillText("Event Program", cardW / 2, y);
+        y += 18;
+        // RSVP confirmation message (below title, wrapped)
+        ctx.font = "20px 'Montserrat', 'Poppins', Arial, sans-serif";
+        ctx.fillStyle = "#444";
+        ctx.textAlign = "center";
+        var brideFirst = (d.bride_first_name || '').trim();
+        var groomFirst = (d.groom_first_name || '').trim();
+        var coupleNames = brideFirst && groomFirst ? `${brideFirst} & ${groomFirst}` : (brideFirst || groomFirst || 'the couple');
+        var rsvpMsg = `Hello ${name}, your RSVP to ${coupleNames} wedding has been received.`;
+        function wrapText(text, x, y, maxWidth, lineHeight) {
+          var words = text.split(' ');
+          var line = '';
+          for (var n = 0; n < words.length; n++) {
+            var testLine = line + words[n] + ' ';
+            var metrics = ctx.measureText(testLine);
+            if (metrics.width > maxWidth && n > 0) {
+              ctx.fillText(line, x, y);
+              line = words[n] + ' ';
+              y += lineHeight;
+            } else {
+              line = testLine;
+            }
+          }
+          ctx.fillText(line, x, y);
+          return y + lineHeight;
+        }
+        y = wrapText(rsvpMsg, cardW / 2, y + 10, innerW - 60, 28);
+        // Gold divider under title (now after RSVP message)
+        ctx.beginPath();
+        ctx.moveTo(cardW / 2 - 120, y);
+        ctx.lineTo(cardW / 2 + 120, y);
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = "#d4af37";
+        ctx.stroke();
+        y += 30;
+        // Program section background highlight
+        var progBoxY = y - 10;
+        var progBoxH = 240;
+        ctx.save();
+        ctx.globalAlpha = 0.10;
+        ctx.fillStyle = "#b07bce";
+        ctx.fillRect(margin + borderInset + 10, progBoxY, innerW - 2 * borderInset - 20, progBoxH);
+        ctx.globalAlpha = 1;
+        ctx.restore();
+        // Program title
+        if (program && program.title) {
+          ctx.font = "bold 26px 'Montserrat', 'Poppins', Arial, sans-serif";
+          ctx.fillStyle = "#353535";
+          ctx.fillText(program.title, cardW / 2, y + 18);
+          y += 38;
+        }
+        // Program description (multi-line, left-aligned, with bullet points if detected)
+        if (program && program.description) {
+          ctx.font = "21px 'Montserrat', 'Poppins', Arial, sans-serif";
+          ctx.fillStyle = "#222";
+          ctx.textAlign = "left";
+          var lines = program.description.split(/\r?\n/);
+          var descY = y;
+          var lineHeight = 36;
+          var maxWidth = innerW - 80;
+          var xStart = margin + borderInset + 44;
+          lines.forEach(function (line) {
+            // Bullet if line starts with time (e.g., 3:00 PM)
+            var bullet = /^(\d{1,2}:\d{2}\s*[AP]M?\s*-?)/i.test(line.trim()) ? '\u2022 ' : '';
+            // Wrap long lines
+            var words = line.trim().split(' ');
+            var l = bullet;
+            for (var i = 0; i < words.length; i++) {
+              var testLine = l + words[i] + ' ';
+              var metrics = ctx.measureText(testLine);
+              if (metrics.width > maxWidth && i > 0) {
+                ctx.fillText(l, xStart, descY);
+                l = '    ' + words[i] + ' ';
+                descY += lineHeight;
+              } else {
+                l = testLine;
+              }
+            }
+            ctx.fillText(l, xStart, descY);
+            descY += lineHeight;
+          });
+          y = descY + 38; // Add extra margin after program section
+        }
+        // Gold divider before footer
+        ctx.beginPath();
+        ctx.moveTo(cardW / 2 - 100, y);
+        ctx.lineTo(cardW / 2 + 100, y);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "#d4af37";
+        ctx.stroke();
+        y += 44;
+        // Footer message
+        ctx.font = "22px 'Montserrat', 'Poppins', Arial, sans-serif";
+        ctx.fillStyle = "#444";
+        ctx.textAlign = "center";
+        var brideFirst = (d.bride_first_name || '').trim();
+        var groomFirst = (d.groom_first_name || '').trim();
+        var coupleNames = brideFirst && groomFirst ? `${brideFirst} & ${groomFirst}` : (brideFirst || groomFirst || 'the couple');
+
+        ctx.font = "bold 20px 'Montserrat', 'Poppins', Arial, sans-serif";
+        ctx.fillStyle = "#b07bce";
+        ctx.fillText(
+          "Show this card at the entrance.",
+          cardW / 2,
+          y
+        );
+        y += 38;
+        ctx.font = "italic 28px 'Dancing Script', 'Brush Script MT', 'Pacifico', 'Montserrat', Arial, cursive";
+        ctx.fillStyle = "#d4af37";
+        ctx.fillText(
+          "Yours truly, SaveMeASeat.",
+          cardW / 2,
+          y
+        );
+        ctx.restore();
+        // Download
+        var link = document.createElement("a");
+        link.download =
+          (name ? name.replace(/\s+/g, "_") + "-" : "") +
+          "program-card.png";
+        link.href = canvas.toDataURL("image/png");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        // Show image preview after download
+        var imgPreview = document.getElementById("invite-image");
+        var imgPreviewDiv = document.getElementById("invite-image-preview");
+        imgPreview.src = canvas.toDataURL("image/png");
+        imgPreviewDiv.style.display = "block";
+      };
+    </script>
+  </section>
+  <!-- end of wpo-contact-section -->
+
+  <footer class="wpo-site-footer" data-aos="fade-up" data-aos-delay="700">
+    <div class="wpo-upper-footer">
+      <div class="container-fluid">
+        <div class="row" style="display: flex; flex-wrap: wrap">
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 d-flex flex-column mb-4">
+            <div class="widget about-widget1">
+              <div class="logo widget-title">
+                <h1 style="font-size: 2rem">SaveMeASeat</h1>
+              </div>
+              <div>
+                <p>
+                  SaveMeASeat is a modern RSVP management platform designed
+                  to simplify event planning. Whether it's a wedding, party,
+                  or conference, we help you manage your guest list
+                  effortlessly.
+                </p>
+              </div>
+            </div>
+            <div class="widget about-widget">
+              <ul class="d-flex" style="gap: 10px">
+                <li>
+                  <a href="https://godwinofficial.github.io/godwinbanda/" target="_blank">
+                    <i class="ti-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://godwinofficial.github.io/godwinbanda/" target="_blank">
+                    <i class="ti-twitter-alt"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://godwinofficial.github.io/godwinbanda/" target="_blank">
+                    <i class="ti-instagram"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://godwinofficial.github.io/godwinbanda/" target="_blank">
+                    <i class="ti-google"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 d-flex flex-column mb-4">
+            <div class="widget link-widget">
+              <div class="widget-title">
+                <h3>Information</h3>
+              </div>
+              <ul>
+                <li><a href="#">About SaveMeASeat</a></li>
+                <li><a href="#">Browse Events</a></li>
+                <li><a href="#">Create an Event</a></li>
+                <li><a href="#">Contact Support</a></li>
+                <li><a href="#">FAQs</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 d-flex flex-column mb-4">
+            <div class="widget wpo-service-link-widget">
+              <div class="widget-title">
+                <h3>Contact</h3>
+              </div>
+              <div class="contact-ft">
+                <p>
+                  Have a question or need help? Reach out to us anytime.
+                </p>
+                <ul>
+                  <li>
+                    <i class="fi flaticon-email"></i>
+                    godwinbanda19@gmail.com
+                  </li>
+                  <li>
+                    <i class="fi flaticon-phone-call"></i> +260 973 848 066
+                  </li>
+                  <li>
+                    <i class="fi flaticon-maps-and-flags"></i> Lusaka,
+                    Zambia
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end container -->
+    </div>
+    <div class="wpo-lower-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col col-xs-12">
+            <p class="copyright">
+              &copy; 2025 SaveMeASeat. Designed by
+              <a style="color: coral" href="https://godwinofficial.github.io/godwinbanda/">Godwin Banda </a>. All Rights
+              Reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- end of wpo-site-footer-section -->
+  <!-- Responsive fix for footer columns -->
+  <style>
+    @media (max-width: 991px) {
+      .wpo-site-footer .wpo-upper-footer .row>div[class^="col-"] {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+      }
+
+      .wpo-site-footer .wpo-upper-footer .row {
+        flex-direction: column !important;
+      }
+
+      .w .wpo-site-footer .widget.instagram ul.d-flex {
+        justify-content: flex-start !important;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .wpo-site-footer .wpo-upper-footer .row>div[class^="col-"] {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+    }
+
+    .wpo-site-footer .widget-title h1,
+    .wpo-site-footer .widget-title h3 {
+      margin-bottom: 0.7em;
+    }
+
+    .wpo-site-footer .widget ul {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .wpo-site-footer .widget ul.d-flex {
+      gap: 10px;
+    }
+  </style>
+  </div>
+  <!-- end of page-wrapper -->
+
+  <!-- All JavaScript files
+    ================================================== -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <!-- Plugins for this template -->
+  <script src="assets/js/modernizr.custom.js"></script>
+  <script src="assets/js/jquery.dlmenu.js"></script>
+  <script src="assets/js/jquery-plugin-collection.js"></script>
+  <!-- Custom script for this template -->
+  <script src="assets/js/script.js"></script>
+  <!-- AOS Animate On Scroll JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ once: false, duration: 900, easing: 'ease-out-cubic' });</script>
+  <script>
+    window.addEventListener('load', function () {
+      var loader = document.getElementById('simple-loader');
+      if (loader) loader.style.display = 'none';
+    });
+  </script>
+  <script>
+    // ... existing code ...
+    // --- Dynamic Event Fetch by slug from query string ---
+    (function () {
+      // ...rest of your code...
+      // After data is loaded and DOM is updated:
+      // Hide loaders and show content
+      document.getElementById('hero-loader').style.display = 'none';
+      document.getElementById('hero-swiper').style.display = '';
+      document.getElementById('couple-loader').style.display = 'none';
+      document.getElementById('couple-content').style.display = '';
+      document.getElementById('story-loader').style.display = 'none';
+      document.getElementById('story-content').style.display = '';
+      document.getElementById('bridesmaids-groomsmen-loader').style.display = 'none';
+      document.getElementById('bridesmaids-groomsmen-content').style.display = '';
+
+      // For story images: show placeholder until image loads
+      document.querySelectorAll('.story-img-placeholder').forEach(function (holder) {
+        var img = holder.querySelector('img');
+        var placeholder = holder.querySelector('.img-placeholder');
+        if (img) {
+          img.onload = function () {
+            if (placeholder) placeholder.style.display = 'none';
+            img.style.display = '';
+          };
+          // If image is already cached
+          if (img.complete && img.naturalWidth > 0) {
+            if (placeholder) placeholder.style.display = 'none';
+            img.style.display = '';
+          }
+        }
+      });
+      // Hide the global loader overlay after all dynamic content is loaded
+      setTimeout(function () {
+        var overlay = document.getElementById('global-loader-overlay');
+        if (overlay) overlay.style.display = 'none';
+      }, 400); // Slight delay to ensure all content is visible
+    })();
+    // ... existing code ...
+  </script>
+  <script>
+    // ... existing code ...
+    // --- Dynamic Event Fetch by slug from query string ---
+    (function () {
+      // ...rest of your code...
+      // Bridesmaids & Groomsmen (render as separate sections with cards)
+      const listContainer = document.getElementById('bridesmaids-groomsmen-list');
+      if (window.eventData) {
+        const bridesmaids = Array.isArray(eventData.bridesmaids) ? eventData.bridesmaids : [];
+        const groomsmen = Array.isArray(eventData.groomsmen) ? eventData.groomsmen : [];
+        listContainer.innerHTML = '';
+        // Bridesmaids section
+        if (bridesmaids.length > 0) {
+          const bridesmaidsHeader = document.createElement('h3');
+          bridesmaidsHeader.textContent = 'Bridesmaids';
+          bridesmaidsHeader.style = 'width:100%;text-align:center;margin:24px 0 12px 0;color:#b07bce;font-weight:700;';
+          listContainer.appendChild(bridesmaidsHeader);
+          const bridesmaidsRow = document.createElement('div');
+          bridesmaidsRow.className = 'row';
+          bridesmaidsRow.style.cssText = 'display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin: 0; padding: 0;';
+          bridesmaids.forEach((bm) => {
+            const card = document.createElement('div');
+            card.className = 'grid';
+            card.style.cssText = 'margin-bottom: 30px; position: relative; display: flex; justify-content: center;';
+            card.innerHTML = `
+                <div class="img-holder" style="position: relative; width: 100%; max-width: 400px; border-radius: 0; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);">
+                  <img class="img img-responsive" src="${getCloudinaryUrl(bm.image)}" alt="${bm.full_name}" style="width: 100%; height: 550px; object-fit: cover; display: block; border-radius: 0;" />
+                  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 20px; border-radius: 0;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                      <div style="width: 40px; height: 40px; background: #86a0b6; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa fa-heart" style="color: white; font-size: 18px;"></i>
+                      </div>
+                      <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 1.1rem; color: #333; margin-bottom: 4px;">${bm.full_name || ''}</div>
+                        <div style="font-size: 0.9rem; color: #666;">${bm.role || ''}</div>
+                      </div>
+                      <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                        <div style="width: 6px; height: 6px; background: #f72585; border-radius: 50%;"></div>
+                        <div style="width: 6px; height: 6px; background: #4361ee; border-radius: 50%;"></div>
+                        <div style="width: 6px; height: 6px; background: #4cc9f0; border-radius: 50%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              `;
+            bridesmaidsRow.appendChild(card);
+          });
+          listContainer.appendChild(bridesmaidsRow);
+        }
+        // Groomsmen section
+        if (groomsmen.length > 0) {
+          const groomsmenHeader = document.createElement('h3');
+          groomsmenHeader.textContent = 'Groomsmen';
+          groomsmenHeader.style = 'width:100%;text-align:center;margin:32px 0 12px 0;color:#738ea5;font-weight:700;';
+          listContainer.appendChild(groomsmenHeader);
+          const groomsmenRow = document.createElement('div');
+          groomsmenRow.className = 'row';
+          groomsmenRow.style.cssText = 'display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin: 0; padding: 0;';
+          groomsmen.forEach((gm) => {
+            const card = document.createElement('div');
+            card.className = 'grid';
+            card.style.cssText = 'margin-bottom: 30px; position: relative; display: flex; justify-content: center;';
+            card.innerHTML = `
+                <div class="img-holder" style="position: relative; width: 100%; max-width: 400px; border-radius: 0; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);">
+                  <img class="img img-responsive" src="${getCloudinaryUrl(gm.image)}" alt="${gm.full_name}" style="width: 100%; height: 550px; object-fit: cover; display: block; border-radius: 0;" />
+                  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 20px; border-radius: 0;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                      <div style="width: 40px; height: 40px; background: #86a0b6; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa fa-star" style="color: white; font-size: 18px;"></i>
+                      </div>
+                      <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 1.1rem; color: #333; margin-bottom: 4px;">${gm.full_name || ''}</div>
+                        <div style="font-size: 0.9rem; color: #666;">${gm.role || ''}</div>
+                      </div>
+                      <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                        <div style="width: 6px; height: 6px; background: #4361ee; border-radius: 50%;"></div>
+                        <div style="width: 6px; height: 6px; background: #4cc9f0; border-radius: 50%;"></div>
+                        <div style="width: 6px; height: 6px; background: #f72585; border-radius: 50%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              `;
+            groomsmenRow.appendChild(card);
+          });
+          listContainer.appendChild(groomsmenRow);
+        }
+        // If no data
+        if (bridesmaids.length === 0 && groomsmen.length === 0) {
+          listContainer.innerHTML = '<div style="width:100%;text-align:center;color:#aaa;">No Bridesmaids or Groomsmen data available.</div>';
+        }
+      }
+    })();
+
+  </script>
+  <script>
+    // ... existing code ...
+    // --- Dynamic Event Fetch by slug from query string ---
+    (function () {
+      // ...rest of your code...
+      function setEventThumbnail(url) {
+        if (!url) return;
+        var ogImg = document.querySelector('meta[property="og:image"]#ogImageMeta');
+        var twImg = document.querySelector('meta[property="twitter:image"]#twitterImageMeta');
+        if (ogImg) ogImg.setAttribute('content', url);
+        if (twImg) twImg.setAttribute('content', url);
+      }
+      // ... inside the .then((data) => { ... }) after eventData is set ...
+      // Find the best event image for sharing
+      let eventThumb = '';
+      if (data.slider_image_1) {
+        eventThumb = getCloudinaryUrl(data.slider_image_1);
+      } else if (data.center_cover_image) {
+        eventThumb = getCloudinaryUrl(data.center_cover_image);
+      }
+      if (eventThumb) setEventThumbnail(eventThumb);
+      // ... rest of your code ...
+    })();
+    // ... existing code ...
+  </script>
+</body>
+
+</html>

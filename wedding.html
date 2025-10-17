@@ -342,7 +342,7 @@
 
       // === API URL switch ===
       // Change this to your production or test server as needed
-      //const API_URL = "http://localhost:8000";
+      // const API_URL = "http://localhost:8000";
       const API_URL = "https://savemeaseat-backend.onrender.com";
       // Helper to get Cloudinary URL
       function getCloudinaryUrl(filename) {
@@ -1608,6 +1608,28 @@
                 if (people.length === 0) {
                   listContainer.innerHTML = '<div style="width:100%;text-align:center;color:#aaa;">No Bridesmaids or Groomsmen data available.</div>';
                 }
+              }
+              // Conditional rendering: hide RSVP section if invitations are done
+              try {
+                var rsvpSection = document.getElementById('RSVP');
+                var invitationModal = document.getElementById('invitation-modal');
+                var rsvpForm = document.getElementById('rsvp-form');
+                if (rsvpSection) {
+                  if (data.invitations_done === true || data.invitations_done === 'true') {
+                    // Hide the whole RSVP section when invitations are done
+                    rsvpSection.style.display = 'none';
+                    // Also hide modal and form to be safe
+                    if (invitationModal) invitationModal.style.display = 'none';
+                    if (rsvpForm) rsvpForm.style.display = 'none';
+                  } else {
+                    // Ensure visible when invitations not done
+                    rsvpSection.style.display = '';
+                    if (rsvpForm) rsvpForm.style.display = '';
+                  }
+                }
+              } catch (e) {
+                // Fail silently; do not break the rest of the page
+                console.warn('RSVP visibility toggle failed', e);
               }
             })
             .catch((err) => {

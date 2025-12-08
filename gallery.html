@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Gallery - SaveMeASeat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #f72585;
+            --accent: #4cc9f0;
+            --dark: #212529;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9f9f9;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, #4361ee, #4cc9f0);
+            color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .download-btn {
+            background: var(--white);
+            color: var(--primary);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .back-to-event {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .back-to-event:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+
+        .no-images {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 3rem;
+            color: var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-header h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-header p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .gallery-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <header class="gallery-header">
+            <h1>Our Wedding Gallery</h1>
+            <p>Thank you for being part of our special day! Here are some beautiful moments we captured.</p>
+        </header>
+
+        <div id="gallery" class="gallery-grid">
+            <!-- Images will be loaded here by JavaScript -->
+            <div class="loading">Loading beautiful memories...</div>
+        </div>
+
+        <a href="#" id="backToEvent" class="back-to-event">
+            <i class="fas fa-arrow-left"></i> Back to Event
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the event slug from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            let eventSlug = urlParams.get('event');
+            
+            if (!eventSlug) {
+                console.error('No event slug provided in URL');
+                document.getElementById('gallery').innerHTML = '<p>Error: No event specified. Please go back to the wedding page and try again.</p>';
+                return;
+            }
+            
+            // Clean up the event slug
+            eventSlug = eventSlug.replace(/^\/+|\/+$/g, ''); // Remove leading/trailing slashes
+            
+            const galleryContainer = document.getElementById('gallery');
+            const backButton = document.getElementById('backToEvent');
+            
+            // Set the back button to return to the event page
+            backButton.href = `wedding.html?event=${eventSlug}`;
+            
+            // Function to fetch event images
+            async function fetchEventImages() {
+                try {
+                    console.log('Fetching images for event:', eventSlug);
+                    const response = await fetch(`/api/events/${eventSlug}/gallery/`);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch images');
+                    }
+                    const images = await response.json();
+                    
+                    if (images.length === 0) {
+                        galleryContainer.innerHTML = `
+                            <div class="no-images">
+                                <h3>No images available yet</h3>
+                                <p>Check back soon for photos from the event!</p>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    displayImages(images);
+                } catch (error) {
+                    console.error('Error fetching images:', error);
+                    galleryContainer.innerHTML = `
+                        <div class="no-images">
+                            <h3>Unable to load images</h3>
+                            <p>Please try again later or contact us if the problem persists.</p>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Function to display images in the gallery
+            function displayImages(images) {
+                galleryContainer.innerHTML = ''; // Clear loading message
+                
+                images.forEach((image, index) => {
+                    const imageUrl = image.url || image.image || image.path; // Handle different API response formats
+                    if (!imageUrl) return;
+                    
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    item.innerHTML = `
+                        <img src="${imageUrl}" alt="Wedding photo ${index + 1}" loading="lazy">
+                        <div class="gallery-overlay">
+                            <a href="${imageUrl}" download class="download-btn" aria-label="Download image">
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                        </div>
+                    `;
+                    galleryContainer.appendChild(item);
+                });
+            }
+            
+            // Fetch images when the page loads
+            fetchEventImages();
+            
+            // Add smooth scroll to top when clicking the back button
+            backButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                // Small delay to allow scroll to complete before navigation
+                setTimeout(() => {
+                    window.location.href = this.href;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>

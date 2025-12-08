@@ -1,0 +1,4123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sophia & Alexander | Wedding</title>
+    <style>
+        /* Page Loader */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        .page-loader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Simple Spinner */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(166, 138, 100, 0.2);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FAFAF9;
+            --secondary-color: #E7E5E4;
+            --accent-color: #A68A64;
+            --text-color: #292524;
+            --light-text: #57534E;
+            --white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            padding: 1rem 0;
+        }
+
+        header.scrolled {
+            padding: 1.5rem 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logonobold {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--text-color);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: var(--transition);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links li {
+            margin-left: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            opacity: 1;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(1.1);
+            transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .slide-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            font-family: 'Cormorant Garamond', serif;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide-content p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .slide-content .date {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            margin-top: 30px;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            letter-spacing: 1px;
+            padding: 15px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .slide-content .date:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Slider Navigation */
+        .slider-nav {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .slider-dot:hover,
+        .slider-dot.active {
+            background: #fff;
+            transform: scale(1.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Slider Arrows */
+        .slider-arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 10;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .slider-arrow {
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+            background: rgba(0, 0, 0, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            pointer-events: all;
+        }
+
+        .slider-arrow:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 10;
+        }
+
+        .scroll-indicator i {
+            font-size: 1.5rem;
+            color: var(--white);
+            opacity: 0.7;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            background-color: var(--primary-color);
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            margin-bottom: 60px;
+            color: var(--text-color);
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .countdown-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .countdown-item {
+            text-align: center;
+            min-width: 140px;
+            position: relative;
+        }
+
+        .countdown-item:not(:last-child)::after {
+            content: ':';
+            position: absolute;
+            right: -30px;
+            top: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--accent-color);
+            opacity: 0.5;
+        }
+
+        .countdown-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 300;
+            display: block;
+            line-height: 1;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .countdown-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            font-weight: 500;
+            color: var(--light-text);
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            color: var(--text-color);
+            display: inline-block;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .section-title p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            font-weight: 500;
+        }
+
+        .couple-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 900px;
+            margin: 0 auto;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .couple {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .couple.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .couple-img {
+            width: 300px;
+            height: 300px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            margin: 0 auto 30px;
+            transition: var(--transition);
+            border-radius: 50%;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            /* filter: grayscale(100%); */
+        }
+
+        .couple:hover .couple-img {
+            /* filter: grayscale(0%); */
+        }
+
+        .couple h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+            color: var(--text-color);
+        }
+
+        .couple p {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* Social icons removed */
+
+        /* Wedding Party Section */
+        .wedding-party {
+            background-color: var(--primary-color);
+            padding: 120px 0;
+        }
+
+        .party-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 80px;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .party-group {
+            width: 100%;
+        }
+
+        .party-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .party-title h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            display: inline-block;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .party-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 50px;
+        }
+
+        .party-member {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .party-member.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .member-img {
+            width: 250px;
+            height: 250px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            /* filter: grayscale(100%); */
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+
+        .party-member:hover .member-img {
+            /* filter: grayscale(0%); */
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .member-role {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .party-member h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            font-weight: 400;
+            color: var(--text-color);
+        }
+
+        .party-member p {
+            color: var(--light-text);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .party-member:hover .member-social {
+            opacity: 1;
+        }
+
+        .member-social a {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .member-social a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Location Section */
+        .location {
+            background-color: var(--white);
+        }
+
+        .location-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .location-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* Wedding Details Section */
+        .wedding-details {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--white) 0%, #fafaf9 100%);
+        }
+
+        .wedding-details .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .details-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .event-card {
+            display: block;
+            background: transparent;
+            border: none;
+            margin: 0 auto 50px;
+            width: 100%;
+            transition: var(--transition);
+            border-radius: 0;
+            box-shadow: none;
+            overflow: visible;
+            padding: 0;
+            display: none;
+        }
+
+        .event-card:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: transparent;
+        }
+
+        .event-date {
+            background: transparent;
+            color: var(--text-color);
+            padding: 0 0 30px 0;
+            text-align: left;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            border-right: none;
+            gap: 20px;
+        }
+
+        .event-date .date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 0;
+            color: var(--accent-color);
+        }
+
+        .event-date .month {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+        .event-date .year {
+            font-size: 0.75rem;
+            opacity: 0.6;
+            letter-spacing: 0.05em;
+        }
+
+        .event-details {
+            padding: 0;
+            flex: 1;
+            position: relative;
+            display: block;
+        }
+
+        .event-icon {
+            display: none;
+        }
+
+        .event-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-color);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            font-weight: 400;
+            font-style: normal;
+            letter-spacing: 0.3px;
+        }
+
+        .event-time,
+        .event-location {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .event-time i,
+        .event-location i {
+            color: var(--accent-color);
+            margin-right: 12px;
+            margin-top: 2px;
+            font-size: 0.9rem;
+            min-width: 16px;
+            flex-shrink: 0;
+        }
+
+        .event-location .venue {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 3px;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+        }
+
+        .event-location p {
+            margin: 1px 0;
+            font-size: 0.85rem;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 80px auto 0;
+            max-width: 1200px;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 45px 35px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            transition: var(--transition);
+            border: 1px solid rgba(166, 138, 100, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-color);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(166, 138, 100, 0.1) 0%, rgba(166, 138, 100, 0.05) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--accent-color);
+            font-size: 28px;
+            border: 2px solid rgba(166, 138, 100, 0.2);
+            transition: var(--transition);
+        }
+
+        .info-card:hover .info-icon {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #b38b5d 100%);
+            color: var(--white);
+            border-color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .info-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .info-card p {
+            color: var(--light-text);
+            margin-bottom: 8px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .info-card .hint {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .info-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .info-link i {
+            margin-left: 8px;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .info-link:hover {
+            color: #b38b5d;
+        }
+
+        .info-link:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Location Map Section */
+        .location-map-section {
+            position: relative;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            background: var(--white);
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .map-overlay {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            max-width: 100%;
+            box-shadow: none;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .map-overlay h3 {
+            display: none;
+        }
+
+        .map-overlay p {
+            display: none;
+        }
+
+        .directions-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #b38b5d 100%);
+            color: white;
+            padding: 0;
+            border-radius: 50%;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 70px;
+            height: 70px;
+            font-size: 2rem;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .directions-btn i {
+            margin-right: 0;
+        }
+
+        .directions-btn:hover {
+            background: linear-gradient(135deg, #b38b5d 0%, var(--accent-color) 100%);
+            transform: scale(1.15);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+            border-color: var(--white);
+        }
+
+        .directions-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .event-card {
+                grid-template-columns: 1fr;
+            }
+
+            .event-date {
+                flex-direction: row;
+                justify-content: center;
+                padding: 30px 20px;
+                min-width: 100%;
+            }
+
+            .event-date .date {
+                margin: 0 15px 0 0;
+                font-size: 2.5rem;
+            }
+
+            .event-date .month,
+            .event-date .year {
+                margin: 0 10px;
+                font-size: 0.9rem;
+            }
+
+            .event-details {
+                padding: 35px 25px;
+            }
+
+            .event-icon {
+                top: 20px;
+                right: 20px;
+            }
+
+            .map-overlay {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .directions-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .details-container {
+                padding: 0 20px;
+            }
+
+            .event-card {
+                max-width: 100%;
+                margin: 0 0 30px;
+            }
+
+            .info-cards {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wedding-details {
+                padding: 60px 0;
+            }
+
+            .details-container {
+                padding: 0 15px;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 40px auto 0;
+                padding: 0;
+                gap: 20px;
+            }
+
+            .event-card {
+                flex-direction: column;
+            }
+
+            .event-date {
+                flex-direction: row;
+                justify-content: center;
+                padding: 20px 15px;
+                min-width: 100%;
+            }
+
+            .event-date .date {
+                margin: 0 15px 0 0;
+                font-size: 2rem;
+            }
+
+            .event-details {
+                padding: 25px;
+            }
+
+            .event-card h3 {
+                text-align: center;
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .event-time,
+            .event-location {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .event-icon {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0 auto 20px;
+            }
+
+            .map-container {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .event-date {
+                padding: 10px;
+            }
+
+            .event-date .date {
+                font-size: 1.8rem;
+            }
+
+            .event-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+
+            .map-overlay {
+                padding: 20px;
+            }
+
+            .map-overlay h3 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+        }
+
+        .location-details {
+            margin-top: 30px;
+        }
+
+        .location-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .location-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .location-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .location-text p {
+            color: var(--light-text);
+        }
+
+        /* Story Section */
+        .story {
+            background-color: var(--primary-color);
+            position: relative;
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: var(--light-text);
+        }
+
+        .story-highlight {
+            display: inline-block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--accent-color);
+            margin: 40px 0;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .story-highlight::before,
+        .story-highlight::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--secondary-color);
+            position: absolute;
+            top: -10px;
+        }
+
+        .story-highlight::before {
+            left: -10px;
+        }
+
+        .story-highlight::after {
+            right: -10px;
+        }
+
+        /* Details Section */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .detail-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 2px;
+            text-align: center;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .detail-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .detail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .detail-icon {
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+        }
+
+        .detail-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .detail-card p {
+            color: var(--light-text);
+            margin-bottom: 10px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: var(--primary-color);
+            padding-bottom: 100px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 0;
+            margin-top: 60px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gallery-item {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            /* filter: grayscale(20%); */
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            opacity: 1;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            background: rgba(0, 0, 0, 0);
+        }
+
+        /* RSVP Section */
+        .rsvp {
+            background: #1c1917;
+            padding: 120px 0;
+            color: var(--white);
+            position: relative;
+        }
+
+        .rsvp::before {
+            /* Add a texture or subtle pattern here if desired */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .rsvp .section-title h2 {
+            color: var(--white);
+        }
+
+        .rsvp .section-title p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .rsvp-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            background: transparent;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: #ffffff;
+        }
+
+        .form-control:focus {
+            background: transparent;
+            border: none;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        select.form-control option {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            border: 1px solid var(--accent-color);
+            padding: 18px 45px;
+            letter-spacing: 0.2rem;
+            font-size: 0.9rem;
+            margin-top: 30px;
+            width: auto;
+            max-width: 300px;
+            transition: var(--transition);
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 30px auto;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            border-color: var(--white);
+            color: var(--white);
+
+/* Elegant Footer Styles */
+.elegant-footer {
+    background-color: var(--primary-color);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0;
+}
+
+.footer-pattern {
+    display: none;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 40px;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.couple-footer {
+    padding-right: 0;
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 25px;
+    color: #fff;
+    letter-spacing: 0em;
+    display: inline-block;
+    font-style: italic;
+}
+
+.divider {
+    display: none;
+    width: 40px;
+    height: 1px;
+    background: var(--accent-color);
+    margin: 0 0 30px;
+    border-radius: 0;
+}
+
+.footer-text {
+    color: rgb(19, 19, 19);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    font-weight: 400;
+    max-width: 400px;
+}
+            max-width: 400px;
+        }
+
+        /* Company Footer Styles */
+        .company-footer {
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            backdrop-filter: none;
+            border: none;
+        }
+
+        .company-brand {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .company-logo img {
+            max-width: 50px;
+            height: auto;
+            margin-right: 20px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+
+        .company-info h4 {
+            font-size: 1.1rem;
+            margin: 0 0 5px;
+            color: #fff;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .tagline {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .contact-section {
+            margin: 30px 0;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .contact-section h5 {
+            color: #fff;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .contact-section h5:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 1px;
+            background: var(--accent-color);
+            margin-left: -50px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .contact-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            padding: 0;
+            font-size: 0.9rem;
+        }
+
+        .contact-link i {
+            color: var(--accent-color);
+            margin-right: 15px;
+            width: 20px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .contact-link:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .footer-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-cta p {
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: transparent;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+        }
+
+        .cta-button:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: none;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 25px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            /* color: #777; */
+
+        }
+
+        .footer-love {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color:"#777"
+        }
+
+        .heart-emoji {
+            color: #ff6b6b;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .couple-footer {
+                padding-right: 0;
+                text-align: center;
+            }
+
+            .divider {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .detail-item {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .company-brand {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .company-logo img {
+                margin: 0 0 15px 0;
+            }
+
+            .contact-section h5 {
+                text-align: center;
+                padding-left: 0;
+            }
+
+            .contact-section h5:before {
+                display: none;
+            }
+
+            .contact-details {
+                align-items: center;
+            }
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .footer-text {
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .footer-love {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .slide-content h1 {
+                font-size: 4rem;
+            }
+
+            .section-title h2 {
+                font-size: 3rem;
+            }
+
+            .countdown-number {
+                font-size: 2.5rem;
+            }
+
+            .countdown-item {
+                min-width: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .slide-content h1 {
+                font-size: 3rem;
+            }
+
+            .slide-content p {
+                font-size: 1rem;
+            }
+
+            .date {
+                font-size: 1.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .couple-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .rsvp-form {
+                padding: 30px;
+            }
+
+            .slider-arrows {
+                padding: 0 15px;
+            }
+
+            .slider-arrow {
+                font-size: 1.5rem;
+            }
+
+            .countdown {
+                gap: 10px;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+
+            .countdown-item {
+                min-width: 70px;
+            }
+
+            .party-container {
+                gap: 40px;
+            }
+
+            .party-group {
+                min-width: 100%;
+            }
+
+            .location-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .slide-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .date {
+                font-size: 1rem;
+            }
+
+            .couple-img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .countdown {
+                flex-wrap: wrap;
+            }
+
+            .countdown-item {
+                min-width: 60px;
+            }
+
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+
+            .countdown-label {
+                font-size: 0.8rem;
+            }
+
+            .member-img {
+                width: 150px;
+                height: 150px;
+                aspect-ratio: 1/1;
+                max-width: 200px;
+                border-radius: 50%;
+            }
+
+            .party-members {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 30px;
+            }
+        }
+    </style>
+    <style>
+        .hero {
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 120px;
+            padding-bottom: 100px;
+            min-height: 100vh;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(1.1);
+            transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* No default images: slides will be built from API images */
+
+        .hero-slide::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: var(--white);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 6rem);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            font-weight: 700;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            color: var(--white);
+        }
+
+        .hero .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 0.04em;
+        }
+
+        .hero .hero-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 0;
+            background: transparent;
+            backdrop-filter: none;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        
+        .hero .hero-meta > div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .hero .hero-meta .sep {
+            opacity: 0.8;
+            display: none;
+        }
+        .hero .hero-meta a {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.5);
+        }
+        .hero .hero-meta a:hover {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            padding: 14px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-btn.primary {
+            background: linear-gradient(135deg, var(--white), #f8f9fa);
+            color: var(--text-color);
+            border: 2px solid var(--white);
+        }
+
+        .hero-btn.secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .hero .slider-dots {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 2;
+        }
+
+        .hero .slider-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 2px solid transparent;
+            outline: none;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .slider-dot::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--white);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .hero .slider-dot.active {
+            background: transparent;
+            border-color: var(--white);
+            transform: scale(1.15);
+        }
+
+        .hero .slider-dot.active::before {
+            width: 8px;
+            height: 8px;
+        }
+
+        /* Enhanced Slider Controls */
+        .hero .slider-controls {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            z-index: 10;
+        }
+
+        .hero .slider-arrows-container {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hero .slider-arrow-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            backdrop-filter: blur(10px);
+            font-size: 1.2rem;
+        }
+
+        .hero .slider-arrow-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: scale(1.1);
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+        }
+
+        .hero .slider-arrow-btn:active {
+            transform: scale(0.95);
+        }
+
+        .hero .slider-progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero .progress-bar {
+            width: 60px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .hero .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hero .progress-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            min-width: 30px;
+        }
+
+        /* Enhanced Hero Content Animation */
+        .hero-content {
+            animation: slideInContent 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        .hero-content h1 {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content .hero-tagline {
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+        }
+
+        .hero-content .hero-meta {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.5s forwards;
+        }
+
+        /* Slide transition enhancement */
+        .hero-slide {
+            filter: brightness(0.8);
+        }
+
+        .hero-slide.active {
+            filter: brightness(1);
+        }
+
+        .hero-slide.active::after {
+            animation: slideOverlay 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        @keyframes slideInContent {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideOverlay {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Dots enhancement */
+        .hero .slider-dots {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 300px;
+        }
+
+        .hero .slider-dot {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .hero .slider-dot:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 120px;
+                min-height: 90vh;
+            }
+            .hero .slider-dots {
+                display: flex;
+                bottom: 100px;
+            }
+            .hero .slider-controls {
+                bottom: 30px;
+                gap: 20px;
+            }
+            .hero .slider-arrow-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .hero .progress-bar {
+                width: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="spinner"></div>
+    </div>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logonobold" id="couple-initials">S & A</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#party">Wedding Party</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#details">Details</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#rsvp">RSVP</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Slider -->
+    <section class="hero" id="home">
+        <div class="hero-slider"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Sophia & Alexander</h1>
+                <div class="hero-tagline">We are getting married</div>
+                <div class="hero-meta">
+                    <div>
+                        <span class="hero-date">November 24, 2025</span>
+                    </div>
+                    <div>
+                        <span class="hero-location">The Grand Ballroom, New York</span>
+                    </div>
+                    <div>
+                        <a class="hero-view" href="#" target="_blank" rel="noopener">View Map</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-dots"></div>
+        <div class="slider-controls">
+            <div class="slider-arrows-container">
+                <button class="slider-arrow-btn" id="prevSlide" aria-label="Previous slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-arrow-btn" id="nextSlide" aria-label="Next slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="slider-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text"><span id="currentSlide">1</span>/<span id="totalSlides">3</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <div class="container">
+            <h2 class="countdown-title">Counting Down to Our Special Day</h2>
+            <div class="countdown-container">
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Story</h2>
+            </div>
+            <div class="couple-container">
+                <div class="couple" id="bride">
+                    <img src="" alt="Bride" class="couple-img bride-image">
+                    <h3 class="bride-name">Bride</h3>
+                    <p class="bride-description">Bride's description</p>
+                </div>
+                <div class="couple" id="groom">
+                    <img src="" alt="Groom" class="couple-img groom-image">
+                    <h3 class="groom-name">Groom</h3>
+                    <p class="groom-description">Groom's description</p>
+                </div>
+            </div>
+            <div class="story-content">
+                <!-- <p class="story-text" id="story-part1">Loading our story...</p> -->
+                <p class="story-highlight" id="story-highlight">Loading highlight...</p>
+                <p class="story-text" id="story-part2">Loading more of our story...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wedding Party Section -->
+    <section class="party" id="party">
+        <div class="container">
+        
+            <div class="party-container">
+                <div class="party-group">
+                    <div class="party-title">
+                        <h3>Bridesmaids</h3>
+                    </div>
+                    <div class="party-members">
+                        <!-- Bridesmaids will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="party-group">
+                    <div class="party-title">
+                        <h3>Groomsmen</h3>
+                    </div>
+                    <div class="party-members">
+                        <!-- Groomsmen will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wedding Details Section -->
+    <section class="wedding-details" id="details">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">The Celebration</span>
+                <h2>Wedding Details</h2>
+                <div class="divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-line"></span>
+                </div>
+            </div>
+
+            <div class="details-container">
+                <div class="event-item">
+                    <div class="event-header">
+                        <h3>Ceremony</h3>
+                        <span class="event-date">14 OCT 2023</span>
+                    </div>
+                    <div class="event-info">
+                        <p class="time"><strong>Time:</strong> 4:00 PM</p>
+                        <p class="venue"><strong>Venue:</strong> The Glass House</p>
+                        <p class="address">123 Modern Avenue, New York, NY 10001</p>
+                    </div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-header">
+                        <h3>Reception</h3>
+                        <span class="event-date">14 OCT 2023</span>
+                    </div>
+                    <div class="event-info">
+                        <p class="time"><strong>Time:</strong> 6:00 PM - 12:00 AM</p>
+                        <p class="venue"><strong>Venue:</strong> The Grand Ballroom</p>
+                        <p class="address">123 Modern Avenue, New York, NY 10001</p>
+                    </div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-header">
+                        <h3>Dress Code</h3>
+                    </div>
+                    <div class="event-info">
+                        <p>Black Tie Optional - Formal & Sophisticated</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Map Section -->
+    <section class="location-map-section" id="location-map">
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796587!2d-73.99870848459418!3d40.71911697933063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316e12cd71%3A0x6a22e8b2c7a4b4e2!2s123%20Modern%20Ave%2C%20New%20York%2C%20NY%2010001!5e0!3m2!1sen!2sus!4v1629990000000!5m2!1sen!2sus"
+                width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+            
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="rsvp" id="rsvp">
+        <div class="container">
+            <div class="section-title">
+                <h2>RSVP</h2>
+                <p>Kindly respond by September 1st, 2023</p>
+            </div>
+            <form class="rsvp-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="Your Phone Number">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Your email">
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <select style="color: #757575;" id="guests" name="guests" class="form-control" required>
+                        <option style="color: #fff;" value="" disabled selected>Select number of guests</option>
+                        <option style="color: #fff;" value="1">1</option>
+                                       </select>
+                </div>
+                <div class="form-group">
+                    <label for="attendance">Will you attend?</label>
+                    <select style="color: #757575;" id="attendance" name="attendance" class="form-control" required>
+                        <option value="" disabled selected>Select your response</option>
+                        <option value="yes">Yes, with pleasure</option>
+                        <option value="no">Regretfully, no</option>
+                    </select>
+                </div>
+                                <button type="submit" class="btn">Submit Response</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="elegant-footer">
+        <!-- <div class="container"> -->
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 SaveMeASeat. All rights reserved.
+                </div>
+                <!-- <div class="footer-love">
+                    Made with <span class="heart-emoji">❤</span> by <span id="couple-names">Sophia & Alexander</span>
+                </div> -->
+            <!-- </div> -->
+        </div>
+    </footer>
+
+
+    <script>
+        // Configuration
+        const API_BASE_URL = 'http://172.20.10.2:8000';
+
+        // Get slug from URL
+        function getSlugFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const slug = urlParams.get('slug');
+            console.log('Extracted slug from URL:', slug);
+            return slug || 'dd-dd-2025-11-01'; // Default fallback to existing event
+        }
+
+        // DOM Elements
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        // Fetch event data
+        async function fetchEventDetails(slug) {
+            try {
+                console.log(`Fetching event details for slug: ${slug}`);
+                // Use the correct wedding-events endpoint
+                const apiUrl = `${API_BASE_URL}/api/wedding-events/${slug}/`;
+                console.log('API URL:', apiUrl);
+
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                console.log('API Response status:', response.status);
+                console.log('API Response headers:', response.headers);
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('API Error Response:', errorText);
+                    throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response data:', data);
+
+                // Debug: Log the complete data structure
+                console.group('API Data Structure - Complete');
+                console.log('Event Type:', data.event_type);
+                console.log('Couple Names:', data.couple_names);
+                console.log('Bride Name:', data.bride_name);
+                console.log('Bride Image:', data.bride_image);
+                console.log('Bride Description:', data.bride_description);
+                console.log('Groom Name:', data.groom_name);
+                console.log('Groom Image:', data.groom_image);
+                console.log('Groom Description:', data.groom_description);
+                console.log('Event Date:', data.event_date);
+                console.log('Event Location:', data.event_location);
+                console.log('Venue Name:', data.venue_name);
+                console.log('Venue Address:', data.venue_address);
+                console.log('Venue Description:', data.venue_description);
+                console.log('Ceremony Time:', data.ceremony_time);
+                console.log('Reception Time:', data.reception_time);
+                console.log('Story Paragraph 1:', data.story_paragraph1);
+                console.log('Story Highlight:', data.story_highlight);
+                console.log('Story Paragraph 2:', data.story_paragraph2);
+                console.log('Dress Code:', data.dress_code);
+                console.log('Dress Code Description:', data.dress_code_description);
+                console.log('Accommodation Name:', data.accommodation_name);
+                console.log('Accommodation Address:', data.accommodation_address);
+                console.log('Parking Info:', data.parking_info);
+                console.log('Transport Info:', data.transport_info);
+                console.log('Map Method:', data.map_method);
+                console.log('Map Latitude:', data.map_latitude);
+                console.log('Map Longitude:', data.map_longitude);
+                console.log('Google Maps URL:', data.google_maps_url);
+                console.log('RSVP Title:', data.rsvp_title);
+                console.log('RSVP Subtitle:', data.rsvp_subtitle);
+                console.log('RSVP Background Image:', data.rsvp_background_image);
+                console.log('Slider Images:', data.slider_images);
+                console.log('Bridesmaids:', data.bridesmaids);
+                console.log('Groomsmen:', data.groomsmen);
+                console.log('Gallery Images:', data.gallery_images);
+                console.log('RSVPs:', data.rsvps);
+                console.log('Primary Color:', data.primary_color);
+                console.log('Secondary Color:', data.secondary_color);
+                console.log('Accent Color:', data.accent_color);
+                console.log('Event API URL:', data.event_api_url);
+                console.log('Event Public URL:', data.event_public_url);
+                console.groupEnd();
+
+                return data;
+            } catch (error) {
+                console.error('Error in fetchEventDetails:', error);
+                console.error('Error stack:', error.stack);
+
+                // Fallback to default values if API fails
+                const fallbackData = {
+                    bride_name: 'Bride',
+                    groom_name: 'Groom',
+                    couple_names: 'Bride & Groom',
+                    event_date: new Date().toISOString(),
+                    event_location: 'Location',
+                    venue_name: 'Venue',
+                    venue_address: 'Address',
+                    venue_description: '',
+                    ceremony_time: '15:00',
+                    reception_time: '18:00',
+                    story_paragraph1: 'Our love story begins...',
+                    story_highlight: 'And then we fell in love...',
+                    story_paragraph2: 'And we lived happily ever after...',
+                    dress_code: 'Formal',
+                    dress_code_description: 'Black Tie Optional',
+                    accommodation_name: 'Hotel',
+                    accommodation_address: 'Hotel Address',
+                    parking_info: 'Parking available',
+                    transport_info: 'Transport info',
+                    slider_images: [],
+                    bridesmaids: [],
+                    groomsmen: [],
+                    gallery_images: [],
+                    rsvps: []
+                };
+                console.log('Using fallback data:', fallbackData);
+                return fallbackData;
+            }
+        }
+
+        // Helper function to format date
+        function formatWeddingDate(dateString) {
+            if (!dateString) return '';
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Helper function to format time
+        function formatWeddingTime(timeString) {
+            if (!timeString) return '';
+            const [hours, minutes] = timeString.split(':');
+            const hour = parseInt(hours, 10);
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+            const hour12 = hour % 12 || 12;
+            return `${hour12}:${minutes} ${ampm}`;
+        }
+
+        // Function to update theme colors from API data
+        function updateThemeColors(eventData) {
+            if (!eventData) return;
+
+            const root = document.documentElement;
+
+            // Update colors if they exist in the API response
+            if (eventData.primary_color && eventData.primary_color !== 'e') {
+                root.style.setProperty('--primary-color', eventData.primary_color);
+                console.log('Updated primary color to:', eventData.primary_color);
+            }
+
+            if (eventData.secondary_color && eventData.secondary_color !== 'e') {
+                root.style.setProperty('--secondary-color', eventData.secondary_color);
+                console.log('Updated secondary color to:', eventData.secondary_color);
+            }
+
+            if (eventData.accent_color && eventData.accent_color !== 'e') {
+                root.style.setProperty('--accent-color', eventData.accent_color);
+                console.log('Updated accent color to:', eventData.accent_color);
+            }
+        }
+
+        // Update the UI with event data
+        function updateEventUI(eventData) {
+            console.log('Updating UI with event data:', eventData);
+            if (!eventData) {
+                console.error('No event data provided to updateEventUI');
+                return null;
+            }
+
+            // Update theme colors first
+            updateThemeColors(eventData);
+
+            // Update couple's names for consistent use
+            const coupleNames = eventData.couple_names || `${eventData.bride_name || 'Bride'} & ${eventData.groom_name || 'Groom'}`;
+            const weddingDate = eventData.wedding_date || eventData.event_date;
+            const venueName = eventData.venue_name || 'Venue';
+            const venueAddress = eventData.venue_address || 'Location';
+
+            // Update footer content
+            const footerCoupleNames = document.getElementById('footer-couple-names');
+            const footerMessage = document.getElementById('footer-message');
+            const footerDate = document.getElementById('footer-date');
+            const footerLocation = document.getElementById('footer-location');
+            const coupleNamesElement = document.getElementById('couple-names');
+
+            if (footerCoupleNames) {
+                // Use footer_logo if available, otherwise use couple names
+                if (eventData.footer_logo && eventData.footer_logo !== 'e') {
+                    footerCoupleNames.textContent = eventData.footer_logo;
+                } else {
+                    footerCoupleNames.textContent = coupleNames;
+                }
+            }
+
+            if (footerMessage) {
+                // Use footer_text if available
+                if (eventData.footer_text && eventData.footer_text !== 'e') {
+                    footerMessage.textContent = eventData.footer_text;
+                } else {
+                    footerMessage.textContent = eventData.welcome_message || 'We are so excited to celebrate our special day with you';
+                }
+            }
+
+            if (footerDate && weddingDate) {
+                footerDate.textContent = new Date(weddingDate).toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+
+            if (footerLocation) {
+                // Use footer_date_location if available, otherwise use venue name
+                if (eventData.footer_date_location && eventData.footer_date_location !== 'e') {
+                    footerLocation.textContent = eventData.footer_date_location;
+                } else {
+                    footerLocation.textContent = venueName;
+                }
+            }
+
+            if (coupleNamesElement) coupleNamesElement.textContent = coupleNames;
+
+            // Update logo text in header
+            const logoElement = document.querySelector('.logo');
+            if (logoElement && eventData.logo_text && eventData.logo_text !== 'e') {
+                logoElement.textContent = eventData.logo_text;
+                console.log('Updated logo text to:', eventData.logo_text);
+            } else if (logoElement) {
+                logoElement.textContent = coupleNames;
+            }
+
+            // Update countdown title
+            const countdownTitle = document.querySelector('.countdown-title');
+            if (countdownTitle && eventData.countdown_title && eventData.countdown_title !== 'e') {
+                countdownTitle.textContent = eventData.countdown_title;
+                console.log('Updated countdown title to:', eventData.countdown_title);
+            }
+
+            // Update couple's initials in the header
+            updateCoupleInitials(eventData);
+
+            // Update the details grid
+            updateDetailsGrid(eventData);
+
+            // Debug: Log all available properties
+            console.log('Available properties in eventData:', Object.keys(eventData));
+
+            // Build the hero slider from API images
+            buildHeroSlides(eventData);
+
+            // Update page title and hero section
+            if (eventData.bride_name && eventData.groom_name) {
+                // Update page title
+                document.title = `${eventData.bride_name} & ${eventData.groom_name} | Wedding`;
+
+                // Update hero section (title, date, location)
+                const heroTitleEl = document.querySelector('.hero-title');
+                const heroDateEl = document.querySelector('.hero-date');
+                const heroLocationEl = document.querySelector('.hero-location');
+
+                if (heroTitleEl) {
+                    const title = eventData.event_title && eventData.event_title !== 'e'
+                        ? eventData.event_title
+                        : `${eventData.bride_name || 'Bride'} & ${eventData.groom_name || 'Groom'}`;
+                    heroTitleEl.textContent = title;
+                }
+
+                if (heroDateEl) {
+                    const dateText = formatWeddingDate(eventData.event_date || new Date().toISOString());
+                    heroDateEl.textContent = dateText;
+                }
+
+                if (heroLocationEl) {
+                    heroLocationEl.textContent = eventData.event_location || eventData.venue_name || 'Location TBD';
+                }
+
+                const heroViewEl = document.querySelector('.hero-view');
+                if (heroViewEl) {
+                    let mapHref = '#';
+                    if (eventData.map_latitude && eventData.map_longitude) {
+                        mapHref = `https://www.google.com/maps?q=${eventData.map_latitude},${eventData.map_longitude}`;
+                    } else if (eventData.google_maps_url) {
+                        mapHref = eventData.google_maps_url;
+                    } else {
+                        const where = eventData.venue_address || eventData.event_location || '';
+                        if (where) mapHref = `https://www.google.com/maps/dir//${encodeURIComponent(where)}`;
+                    }
+                    heroViewEl.href = mapHref;
+                }
+            }
+
+            // Update about section with bride and groom info
+            const aboutSection = document.querySelector('.about');
+            if (aboutSection) {
+                // Update bride info
+                const bride = {
+                    image: document.querySelector('.bride-image'),
+                    name: document.querySelector('.bride-name'),
+                    description: document.querySelector('.bride-description'),
+                    instagram: document.querySelector('.bride-instagram'),
+                    pinterest: document.querySelector('.bride-pinterest')
+                };
+
+                if (eventData.bride_image && bride.image) bride.image.src = getCloudinaryUrl(eventData.bride_image);
+                if (eventData.bride_name && bride.name) bride.name.textContent = eventData.bride_name;
+                if (eventData.bride_description && bride.description) bride.description.textContent = eventData.bride_description;
+                if (eventData.bride_instagram && bride.instagram) bride.instagram.href = eventData.bride_instagram;
+                if (eventData.bride_pinterest && bride.pinterest) bride.pinterest.href = eventData.bride_pinterest;
+
+                // Update groom info
+                const groom = {
+                    image: document.querySelector('.groom-image'),
+                    name: document.querySelector('.groom-name'),
+                    description: document.querySelector('.groom-description'),
+                    instagram: document.querySelector('.groom-instagram'),
+                    twitter: document.querySelector('.groom-twitter')
+                };
+
+                if (eventData.groom_image && groom.image) groom.image.src = getCloudinaryUrl(eventData.groom_image);
+                if (eventData.groom_name && groom.name) groom.name.textContent = eventData.groom_name;
+                if (eventData.groom_description && groom.description) groom.description.textContent = eventData.groom_description;
+                if (eventData.groom_instagram && groom.instagram) groom.instagram.href = eventData.groom_instagram;
+                if (eventData.groom_twitter && groom.twitter) groom.twitter.href = eventData.groom_twitter;
+
+                // Update story sections from backend data
+                const storyPart1 = document.getElementById('story-part1');
+                const storyPart2 = document.getElementById('story-part2');
+                const storyHighlight = document.getElementById('story-highlight');
+
+                // Update story content if available in the backend response
+                if (eventData.story) {
+                    // If story is an array, use the first two elements for the paragraphs
+                    if (Array.isArray(eventData.story) && eventData.story.length >= 2) {
+                        if (storyPart1) storyPart1.textContent = eventData.story[0];
+                        if (storyPart2) storyPart2.textContent = eventData.story[2] || '';
+                        if (storyHighlight && eventData.story[1]) storyHighlight.textContent = eventData.story[1];
+                    }
+                    // Fallback to individual properties if story is an object
+                    else if (typeof eventData.story === 'object') {
+                        if (storyPart1 && eventData.story.part1) storyPart1.textContent = eventData.story.part1;
+                        if (storyPart2 && eventData.story.part2) storyPart2.textContent = eventData.story.part2;
+                        if (storyHighlight && eventData.story.highlight) storyHighlight.textContent = eventData.story.highlight;
+                    }
+                }
+                // Fallback to legacy fields if they exist
+                else {
+                    if (storyPart1 && eventData.story_paragraph1) storyPart1.textContent = eventData.story_paragraph1;
+                    if (storyPart2 && eventData.story_paragraph2) storyPart2.textContent = eventData.story_paragraph2;
+                    if (storyHighlight && eventData.story_highlight) storyHighlight.textContent = eventData.story_highlight;
+                }
+            }
+
+            // Update location section
+            if (eventData.venue_name || eventData.venue_address) {
+                // Update venue name and description
+                const venueTitle = document.querySelector('.location h3');
+                if (venueTitle && eventData.venue_name) venueTitle.textContent = eventData.venue_name;
+
+                const venueDescription = document.querySelector('.location-info > p');
+                if (venueDescription && eventData.venue_description) {
+                    venueDescription.textContent = eventData.venue_description;
+                }
+
+                // Update address details
+                const addressDetails = [
+                    { icon: 'map-marker-alt', title: 'Address', value: eventData.venue_address },
+                    { icon: 'clock', title: 'Ceremony Time', value: eventData.ceremony_time },
+                    { icon: 'car', title: 'Parking', value: eventData.parking_info || 'Valet parking available at the venue' },
+                    { icon: 'subway', title: 'Public Transport', value: eventData.public_transport || '5-minute walk from Central Station' }
+                ];
+
+                const locationDetails = document.querySelector('.location-details');
+                if (locationDetails) {
+                    locationDetails.innerHTML = addressDetails
+                        .filter(detail => detail.value)
+                        .map(detail => `
+                            <div class="location-detail">
+                                <div class="location-icon">
+                                    <i class="fas fa-${detail.icon}"></i>
+                                </div>
+                                <div class="location-text">
+                                    <h4>${detail.title}</h4>
+                                    <p>${detail.value}</p>
+                                </div>
+                            </div>
+                        `).join('');
+                }
+
+                // Update Google Maps iframe if present
+                const mapIframe = document.querySelector('.location-map-section iframe');
+                if (mapIframe) {
+                    if (eventData.map_latitude && eventData.map_longitude) {
+                        mapIframe.src = `https://maps.google.com/maps?q=${eventData.map_latitude},${eventData.map_longitude}&z=15&output=embed`;
+                    } else if (eventData.google_maps_url) {
+                        // Extract embed URL if it's a share URL, or use as is if it looks like an embed
+                        // This is a simple check, might need more robust parsing depending on API input
+                        const embedUrl = eventData.google_maps_url.includes('embed')
+                            ? eventData.google_maps_url
+                            : `https://maps.google.com/maps?q=${encodeURIComponent(eventData.venue_address)}&z=15&output=embed`;
+                        mapIframe.src = embedUrl;
+                    }
+                }
+
+                // Update Get Directions link
+                const directionsLink = document.querySelector('.directions-btn');
+                if (directionsLink && eventData.venue_address) {
+                    const encodedAddress = encodeURIComponent(eventData.venue_address);
+                    directionsLink.href = `https://www.google.com/maps/dir//${encodedAddress}`;
+                }
+            }
+
+            // Update RSVP section
+            const rsvpSection = document.querySelector('.rsvp');
+            if (rsvpSection) {
+                // Update RSVP title if available
+                const rsvpTitle = rsvpSection.querySelector('.section-title h2');
+                if (rsvpTitle && eventData.rsvp_title && eventData.rsvp_title !== 'RSVP') {
+                    rsvpTitle.textContent = eventData.rsvp_title;
+                }
+
+                // Update RSVP subtitle/description
+                const rsvpSubtitle = rsvpSection.querySelector('.section-title p');
+                if (rsvpSubtitle) {
+                    if (eventData.rsvp_subtitle && eventData.rsvp_subtitle !== 'r') {
+                        rsvpSubtitle.textContent = eventData.rsvp_subtitle;
+                    } else {
+                        const eventDate = eventData.event_date ? new Date(eventData.event_date) : new Date();
+                        rsvpSubtitle.textContent = `Kindly respond by ${eventDate.toLocaleDateString('en-US', {
+                            month: 'long',
+                            day: 'numeric',
+                            year: 'numeric'
+                        })}`;
+                    }
+                }
+
+                // Update RSVP background image if available
+                if (eventData.rsvp_background_image && eventData.rsvp_background_image !== 'image/upload/e') {
+                    const bgImageUrl = getCloudinaryUrl(eventData.rsvp_background_image);
+                    if (bgImageUrl) {
+                        rsvpSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${bgImageUrl}')`;
+                        rsvpSection.style.backgroundSize = 'cover';
+                        rsvpSection.style.backgroundPosition = 'center';
+                        console.log('Updated RSVP background image to:', bgImageUrl);
+                    }
+                }
+            }
+
+            // Update wedding party if data is available
+            console.log('Updating wedding party with data:', eventData);
+
+            // Update Bridesmaids
+            const bridesmaidsContainer = document.querySelector('#party .party-group:first-child .party-members');
+            if (bridesmaidsContainer) {
+                bridesmaidsContainer.innerHTML = ''; // Clear existing content
+
+                // Get bridesmaids from API or use default data
+                const bridesmaids = eventData.bridesmaids || [
+                    {
+                        name: 'Emma Wilson',
+                        role: 'Maid of Honor',
+                        description: "Sophia's sister and best friend since childhood",
+                        photo: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+                        instagram: '#'
+                    },
+                    {
+                        name: 'Olivia Martinez',
+                        role: 'Bridesmaid',
+                        description: 'College roommate and travel partner',
+                        photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                        instagram: '#'
+                    }
+                ];
+
+                // Add each bridesmaid
+                bridesmaids.forEach(member => {
+                    if (!member) return;
+
+                    // specific handling for image path
+                    const rawImage = member.photo || member.image;
+                    const imageUrl = rawImage ? getCloudinaryUrl(rawImage) : 'https://placehold.co/200x250?text=Member';
+
+                    const memberElement = document.createElement('div');
+                    memberElement.className = 'party-member';
+                    memberElement.innerHTML = `
+                        <img src="${imageUrl}" 
+                             alt="${member.name || 'Bridesmaid'}" 
+                             class="member-img"
+                             onerror="this.onerror=null; this.src='https://placehold.co/200x250?text=No+Image'">
+                        ${member.role ? `<div class="member-role">${member.role}</div>` : ''}
+                        <h4>${member.name || 'Name'}</h4>
+                        ${member.description ? `<p>${member.description}</p>` : ''}
+                        ${member.instagram ? `
+                            <div class="member-social">
+                                <a href="${member.instagram.startsWith('http') ? member.instagram : 'https://instagram.com/' + member.instagram}" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        ` : ''}
+                    `;
+                    bridesmaidsContainer.appendChild(memberElement);
+                });
+            }
+
+            // Update Groomsmen
+            const groomsmenContainer = document.querySelector('#party .party-group:last-child .party-members');
+            if (groomsmenContainer) {
+                groomsmenContainer.innerHTML = ''; // Clear existing content
+
+                // Get groomsmen from API or use default data
+                const groomsmen = eventData.groomsmen || [
+                    {
+                        name: 'James Thompson',
+                        role: 'Best Man',
+                        description: 'Childhood friend and college roommate',
+                        photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+                        instagram: '#'
+                    },
+                    {
+                        name: 'Michael Rodriguez',
+                        role: 'Groomsman',
+                        description: 'College friend and hiking buddy',
+                        photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+                        instagram: '#'
+                    }
+                ];
+
+                // Add each groomsman
+                groomsmen.forEach(member => {
+                    if (!member) return;
+
+                    // specific handling for image path
+                    const rawImage = member.photo || member.image;
+                    const imageUrl = rawImage ? getCloudinaryUrl(rawImage) : 'https://placehold.co/200x250?text=Member';
+
+                    const memberElement = document.createElement('div');
+                    memberElement.className = 'party-member';
+                    memberElement.innerHTML = `
+                        <img src="${imageUrl}" 
+                             alt="${member.name || 'Groomsman'}" 
+                             class="member-img"
+                             onerror="this.onerror=null; this.src='https://placehold.co/200x250?text=No+Image'">
+                        ${member.role ? `<div class="member-role">${member.role}</div>` : ''}
+                        <h4>${member.name || 'Name'}</h4>
+                        ${member.description ? `<p>${member.description}</p>` : ''}
+                        ${member.instagram ? `
+                            <div class="member-social">
+                                <a href="${member.instagram.startsWith('http') ? member.instagram : 'https://instagram.com/' + member.instagram}" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        ` : ''}
+                    `;
+                    groomsmenContainer.appendChild(memberElement);
+                });
+            }
+
+            // Update wedding details section
+            const ceremonyContainer = document.getElementById('ceremony-details');
+            const receptionContainer = document.getElementById('reception-details');
+
+            if (ceremonyContainer) {
+                const ceremonyData = eventData.ceremony || {
+                    venue: 'The Glass House',
+                    date: eventData.event_date || new Date(),
+                    time: '4:00 PM',
+                    address: '123 Modern Avenue, New York, NY 10001',
+                    description: 'Our ceremony will take place in the beautiful garden with a breathtaking view of the city skyline.'
+                };
+
+                const formattedDate = new Date(ceremonyData.date).toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+
+                ceremonyContainer.innerHTML = `
+                    <div class="party-member">
+                        <h4>${ceremonyData.venue}</h4>
+                        <div class="detail-item">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>${formattedDate}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="far fa-clock"></i>
+                            <span>${ceremonyData.time}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${ceremonyData.address}</span>
+                        </div>
+                        <p>${ceremonyData.description}</p>
+                    </div>
+                `;
+            }
+
+            if (receptionContainer) {
+                const receptionData = eventData.reception || {
+                    venue: 'The Grand Ballroom',
+                    date: eventData.event_date || new Date(),
+                    time: '6:00 PM',
+                    address: '123 Modern Avenue, New York, NY 10001',
+                    description: 'Join us for dinner, dancing, and celebration in our elegant ballroom.'
+                };
+
+                const formattedDate = new Date(receptionData.date).toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+
+                receptionContainer.innerHTML = `
+                    <div class="party-member">
+                        <h4>${receptionData.venue}</h4>
+                        <div class="detail-item">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>${formattedDate}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="far fa-clock"></i>
+                            <span>${receptionData.time}</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${receptionData.address}</span>
+                        </div>
+                        <p>${receptionData.description}</p>
+                    </div>
+                `;
+            }
+
+            // Gallery will be loaded separately by loadGalleryImages()
+
+            // Return the event date for countdown
+            return eventData.event_date || new Date().toISOString();
+        }
+
+        // Countdown Timer
+        function updateCountdown(weddingDate) {
+            if (!weddingDate) return;
+
+            const now = new Date().getTime();
+            const distance = new Date(weddingDate).getTime() - now;
+
+            if (distance < 0) {
+                const countdownElement = document.getElementById('countdown');
+                if (countdownElement) countdownElement.innerHTML = "The wedding has passed!";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update countdown display
+            const updateElement = (id, value) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = value.toString().padStart(2, '0');
+            };
+
+            updateElement('days', days);
+            updateElement('hours', hours);
+            updateElement('minutes', minutes);
+            updateElement('seconds', seconds);
+        }
+
+        // Function to update slider content
+        // Global variable for slider interval
+        let sliderInterval;
+
+        // Function to update slider content
+        function updateSliderContent(eventData) {
+            console.log('Updating slider content with:', eventData);
+
+            // Select elements based on HTML structure
+            const heroSliderSection = document.querySelector('.hero-slider');
+            const sliderContainer = document.querySelector('.slider-container');
+            const sliderNav = document.querySelector('.slider-nav');
+            const prevArrow = document.querySelector('.prev-arrow');
+            const nextArrow = document.querySelector('.next-arrow');
+
+            if (!sliderContainer || !sliderNav) {
+                console.error('Slider elements not found in the DOM');
+                return;
+            }
+
+            // Clean up existing interval
+            if (sliderInterval) clearInterval(sliderInterval);
+
+            // 1. Gather all valid images
+            let images = [];
+
+            // Prioritize slider_images array
+            if (eventData.slider_images && Array.isArray(eventData.slider_images)) {
+                images = eventData.slider_images
+                    .map(img => {
+                        const url = typeof img === 'string' ? img : (img.image || img.url);
+                        return getCloudinaryUrl(url);
+                    })
+                    .filter(url => url);
+            }
+
+            // Fallback to single fields if no array images
+            if (images.length === 0) {
+                const possibleImageFields = ['hero_image', 'slider_image', 'main_image', 'image'];
+                for (const field of possibleImageFields) {
+                    if (eventData[field]) {
+                        const val = eventData[field];
+                        const url = getCloudinaryUrl(typeof val === 'string' ? val : (val.image || val.url));
+                        if (url) {
+                            images.push(url);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Final fallback
+            if (images.length === 0) {
+                console.warn('No images found for slider');
+                // Optional: Add placeholder or keep empty to show background color
+            }
+
+            console.log(`Found ${images.length} images for slider:`, images);
+
+            // Format text data
+            const formattedDate = formatWeddingDate(eventData.event_date);
+            const location = eventData.venue_name || 'New York';
+            const titleHtml = `${eventData.bride_name || 'Bride'} <span style="font-weight: 300; opacity: 0.8;">&</span> ${eventData.groom_name || 'Groom'}`;
+            const dateText = formattedDate;
+
+            // Clear containers
+            sliderContainer.innerHTML = '';
+            sliderNav.innerHTML = '';
+
+            // Helper to create slide content
+            const createSlideContent = () => `
+                <div class="slide-content">
+                    <h1>${titleHtml}</h1>
+                    <p>We are getting married</p>
+                    <div class="date">${dateText}</div>
+                </div>
+            `;
+
+            // Slider Logic variables
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                const slides = sliderContainer.querySelectorAll(".slide");
+                const dots = sliderNav.querySelectorAll(".slider-dot");
+
+                if (slides.length === 0) return;
+
+                // Wrap index if out of bounds
+                const validIndex = (index + slides.length) % slides.length;
+
+                // Remove active class from current
+                const currentActive = sliderContainer.querySelector('.slide.active');
+                const currentDot = sliderNav.querySelector('.slider-dot.active');
+
+                if (currentActive) currentActive.classList.remove('active');
+                if (currentDot) currentDot.classList.remove('active');
+
+                // Add active class to new
+                slides[validIndex].classList.add("active");
+                if (dots[validIndex]) dots[validIndex].classList.add("active");
+
+                currentSlide = validIndex;
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            function startSlider() {
+                if (sliderInterval) clearInterval(sliderInterval);
+                if (images.length > 1) {
+                    sliderInterval = setInterval(nextSlide, 6000);
+                }
+            }
+
+            function resetTimer() {
+                if (sliderInterval) clearInterval(sliderInterval);
+                startSlider();
+            }
+
+            // Create Slide Elements
+            if (images.length > 0) {
+                images.forEach((url, index) => {
+                    // Create Slide
+                    const slideDiv = document.createElement('div');
+                    slideDiv.className = `slide ${index === 0 ? 'active' : ''}`;
+                    slideDiv.style.backgroundImage = `url('${url}')`;
+
+                    // Add content to every slide (or just the first one if preferred, but usually every slide has content)
+                    slideDiv.innerHTML = createSlideContent();
+
+                    sliderContainer.appendChild(slideDiv);
+
+                    // Create Dot
+                    const dot = document.createElement('div');
+                    dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
+                    dot.addEventListener('click', () => {
+                        showSlide(index);
+                        resetTimer();
+                    });
+                    sliderNav.appendChild(dot);
+                });
+            } else {
+                // Determine a fallback background color or image if no images provided
+                // Try to use rsvp_background_image or a default color
+                const fallbackUrl = eventData.rsvp_background_image ? getCloudinaryUrl(eventData.rsvp_background_image) : '';
+
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'slide active';
+                if (fallbackUrl) {
+                    slideDiv.style.backgroundImage = `url('${fallbackUrl}')`;
+                } else {
+                    slideDiv.style.backgroundColor = '#1c1917';
+                }
+
+                slideDiv.innerHTML = createSlideContent();
+                sliderContainer.appendChild(slideDiv);
+            }
+
+            // Attach Arrow Events
+            if (prevArrow) {
+                // Remove old listeners by cloning (simple trick) or just assigning onclick (simpler for this context)
+                prevArrow.onclick = (e) => {
+                    e.preventDefault();
+                    prevSlide();
+                    resetTimer();
+                };
+            }
+
+            if (nextArrow) {
+                nextArrow.onclick = (e) => {
+                    e.preventDefault();
+                    nextSlide();
+                    resetTimer();
+                };
+            }
+
+            // Start Rotation
+            startSlider();
+
+            console.log('Slider content updated successfully');
+        }
+
+        // Function to update couple's initials in the header
+        function updateCoupleInitials(eventData) {
+            const initialsElement = document.getElementById('couple-initials');
+            if (initialsElement) {
+                const brideInitial = eventData.bride_name ? eventData.bride_name.charAt(0) : 'B';
+                const groomInitial = eventData.groom_name ? eventData.groom_name.charAt(0) : 'G';
+                initialsElement.textContent = `${brideInitial} & ${groomInitial} `;
+                console.log('Updated couple initials to:', initialsElement.textContent);
+            } else {
+                console.warn('Could not find couple initials element');
+            }
+        }
+
+        // Function to update the details grid
+        function updateDetailsGrid(eventData) {
+            console.log('Updating details grid with:', eventData);
+
+            // Helper to update date components
+            const updateDateDisplay = (container) => {
+                if (!container || !eventData.event_date) return;
+                const dateObj = new Date(eventData.event_date);
+                const dateSpan = container.querySelector('.date');
+                const monthSpan = container.querySelector('.month');
+                const yearSpan = container.querySelector('.year');
+
+                if (dateSpan) dateSpan.textContent = dateObj.getDate();
+                if (monthSpan) monthSpan.textContent = dateObj.toLocaleString('default', { month: 'short' }).toUpperCase();
+                if (yearSpan) yearSpan.textContent = dateObj.getFullYear();
+            };
+
+            // 1. Update Ceremony Card
+            const ceremonyCard = document.querySelector('.event-card.ceremony');
+            if (ceremonyCard) {
+                // Update Date
+                updateDateDisplay(ceremonyCard.querySelector('.event-date'));
+
+                // Update Time
+                const timeSpan = ceremonyCard.querySelector('.event-time span');
+                if (timeSpan && eventData.ceremony_time) {
+                    timeSpan.textContent = formatWeddingTime(eventData.ceremony_time);
+                }
+
+                // Update Location
+                const locationContainer = ceremonyCard.querySelector('.event-location div');
+                if (locationContainer) {
+                    const venueP = locationContainer.querySelector('.venue');
+                    const addressPs = locationContainer.querySelectorAll('p:not(.venue)');
+
+                    if (venueP) venueP.textContent = eventData.venue_name || 'Venue Name';
+
+                    // Clear existing address lines and add new one
+                    addressPs.forEach(p => p.remove());
+                    if (eventData.venue_address) {
+                        const addressP = document.createElement('p');
+                        addressP.textContent = eventData.venue_address;
+                        locationContainer.appendChild(addressP);
+                    }
+                }
+            }
+
+            // 2. Update Reception Card
+            const receptionCard = document.querySelector('.event-card.reception');
+            if (receptionCard) {
+                // Update Date
+                updateDateDisplay(receptionCard.querySelector('.event-date'));
+
+                // Update Time
+                const timeSpan = receptionCard.querySelector('.event-time span');
+                if (timeSpan && eventData.reception_time) {
+                    // Start time is reception_time, End time is assumed or omitted
+                    timeSpan.textContent = formatWeddingTime(eventData.reception_time);
+                }
+
+                // Update Location (Same as Ceremony usually, but good to set potentially different)
+                const locationContainer = receptionCard.querySelector('.event-location div');
+                if (locationContainer) {
+                    const venueP = locationContainer.querySelector('.venue');
+                    const addressPs = locationContainer.querySelectorAll('p:not(.venue)');
+
+                    if (venueP) venueP.textContent = eventData.venue_name || 'Venue Name';
+
+                    addressPs.forEach(p => p.remove());
+                    if (eventData.venue_address) {
+                        const addressP = document.createElement('p');
+                        addressP.textContent = eventData.venue_address;
+                        locationContainer.appendChild(addressP);
+                    }
+                }
+            }
+
+            // 3. Update Info Cards
+            const infoCards = document.querySelectorAll('.info-card');
+            if (infoCards.length >= 3) {
+                // Dress Code (1st card)
+                const dressCodeCard = infoCards[0];
+                const dressPs = dressCodeCard.querySelectorAll('p');
+                if (dressPs.length >= 1) dressPs[0].textContent = eventData.dress_code || 'Formal';
+                if (dressPs.length >= 2) dressPs[1].textContent = eventData.dress_code_description || '';
+
+                // Accommodations (2nd card)
+                const accomCard = infoCards[1];
+                const accomPs = accomCard.querySelectorAll('p');
+                if (accomPs.length >= 1) accomPs[0].textContent = eventData.accommodation_name || 'Nearby Hotels';
+                if (accomPs.length >= 2) accomPs[1].textContent = eventData.accommodation_address || 'Check map for details';
+
+                // Transportation (3rd card)
+                const transportCard = infoCards[2];
+                const transPs = transportCard.querySelectorAll('p');
+                if (transPs.length >= 1) transPs[0].textContent = eventData.parking_info || 'Parking Available';
+                if (transPs.length >= 2) transPs[1].textContent = eventData.transport_info || 'Transport details';
+            }
+        }
+
+        // Helper to get Cloudinary URL
+        function getCloudinaryUrl(filename) {
+            if (!filename) return "";
+            if (filename.startsWith("http")) return filename;
+            return "https://res.cloudinary.com/godwinb/" + filename.replace(/^\/+/g, "");
+        }
+        function applyHeroImagesFromEvent(eventData) {
+            try {
+                const slides = document.querySelectorAll('.hero-slide');
+                if (!slides || slides.length === 0) return;
+                let images = [];
+                if (eventData && Array.isArray(eventData.slider_images)) {
+                    images = eventData.slider_images
+                        .map(img => {
+                            const url = typeof img === 'string' ? img : (img.image || img.url);
+                            return getCloudinaryUrl(url);
+                        })
+                        .filter(Boolean);
+                }
+                if (images.length === 0 && eventData && eventData.rsvp_background_image) {
+                    const url = getCloudinaryUrl(eventData.rsvp_background_image);
+                    if (url) images = [url];
+                }
+                slides.forEach((slide, index) => {
+                    if (images[index]) {
+                        slide.style.backgroundImage = `linear-gradient(135deg, rgba(67, 97, 238, 0.4), rgba(247, 37, 133, 0.4)), url('${images[index]}')`;
+                    }
+                });
+            } catch (e) {}
+        }
+
+        function extractEventImages(eventData) {
+            let images = [];
+            if (eventData && Array.isArray(eventData.slider_images) && eventData.slider_images.length) {
+                images = eventData.slider_images
+                    .map(img => {
+                        const url = typeof img === 'string' ? img : (img.image || img.url);
+                        return getCloudinaryUrl(url);
+                    })
+                    .filter(Boolean);
+            } else {
+                const fallbacks = [eventData?.bride_image, eventData?.groom_image, eventData?.rsvp_background_image]
+                    .filter(Boolean)
+                    .map(getCloudinaryUrl)
+                    .filter(Boolean);
+                images = fallbacks;
+            }
+            // Ensure unique
+            return [...new Set(images)];
+        }
+
+        function buildHeroSlides(eventData) {
+            const heroSlider = document.querySelector('.hero-slider');
+            const dotsContainer = document.querySelector('.hero .slider-dots');
+            if (!heroSlider || !dotsContainer) return;
+
+            heroSlider.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            const images = extractEventImages(eventData);
+            if (!images || images.length === 0) {
+                // No images; leave empty background; slider not started
+                return;
+            }
+
+            images.forEach((url, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'hero-slide' + (index === 0 ? ' active' : '');
+                slide.style.backgroundImage = `url('${url}')`;
+                heroSlider.appendChild(slide);
+
+                const dot = document.createElement('button');
+                dot.className = 'slider-dot' + (index === 0 ? ' active' : '');
+                dot.setAttribute('data-slide', index.toString());
+                dotsContainer.appendChild(dot);
+            });
+
+            initHeroSlider();
+        }
+
+        function initHeroSlider() {
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.hero .slider-dot');
+            if (!slides || slides.length === 0) return;
+
+            let current = 0;
+            const show = (i) => {
+                slides.forEach(s => s.classList.remove('active'));
+                dots.forEach(d => d.classList.remove('active'));
+                const valid = ((i % slides.length) + slides.length) % slides.length;
+                slides[valid].classList.add('active');
+                if (dots[valid]) dots[valid].classList.add('active');
+                current = valid;
+            };
+
+            const next = () => show(current + 1);
+            const stop = () => { if (window.__heroSlideInterval) clearInterval(window.__heroSlideInterval); };
+            const start = () => { stop(); window.__heroSlideInterval = setInterval(next, 6000); };
+
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    if (idx === current) return;
+                    show(idx);
+                    start();
+                });
+            });
+
+            start();
+
+            const heroSliderEl = document.querySelector('.hero-slider');
+            if (heroSliderEl) {
+                heroSliderEl.addEventListener('mouseenter', stop);
+                heroSliderEl.addEventListener('mouseleave', start);
+            }
+        }
+
+        // Function to load gallery images
+        async function loadGalleryImages() {
+            console.log('Loading gallery images...');
+            const galleryGrid = document.querySelector('.gallery-grid');
+            if (!galleryGrid) {
+                console.error('Gallery grid element not found in the DOM');
+                return;
+            }
+
+            try {
+                const slug = getSlugFromUrl();
+                const apiUrl = `${API_BASE_URL}/api/wedding-events/${slug}/`;
+                console.log('Fetching gallery images from:', apiUrl);
+
+                const response = await fetch(apiUrl, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! status: ${response.status}, ${errorText}`);
+                }
+
+                const eventData = await response.json();
+                console.log('Event data received:', eventData);
+
+                if (eventData.gallery_images && eventData.gallery_images.length > 0) {
+                    console.log('Found gallery images:', eventData.gallery_images);
+
+                    const imageUrls = eventData.gallery_images
+                        .map((item, index) => {
+                            try {
+                                if (!item || !item.image) {
+                                    console.warn(`Gallery image at index ${index} is missing image property`);
+                                    return null;
+                                }
+                                const url = getCloudinaryUrl(item.image);
+                                console.log(`Processed image ${index + 1}:`, { original: item.image, processed: url });
+                                return url;
+                            } catch (error) {
+                                console.error(`Error processing gallery image at index ${index}:`, item, error);
+                                return null;
+                            }
+                        })
+                        .filter(url => {
+                            if (!url) return false;
+                            if (typeof url !== 'string') {
+                                console.warn('Invalid image URL (not a string):', url);
+                                return false;
+                            }
+                            return true;
+                        });
+
+                    console.log('Processed image URLs:', imageUrls);
+
+                    if (imageUrls.length > 0) {
+                        renderGallery(imageUrls);
+                        return;
+                    } else {
+                        console.warn('No valid image URLs found after processing');
+                    }
+                } else {
+                    console.warn('No gallery_images array found in response or it is empty');
+                }
+
+                // If we get here, no valid images were found
+                showNoImagesMessage(galleryGrid);
+
+            } catch (error) {
+                console.error('Error loading gallery images:', error);
+                const galleryGrid = document.querySelector('.gallery-grid');
+                if (galleryGrid) {
+                    showNoImagesMessage(galleryGrid);
+                }
+            }
+        }
+
+        // Helper function to show no images message
+        function showNoImagesMessage(container) {
+            container.innerHTML = `
+                <div class="no-images-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                    <p>No gallery images available at the moment.</p>
+                </div>
+            `;
+        }
+
+        // Function to render gallery items
+        function renderGallery(images) {
+            const galleryGrid = document.querySelector('.gallery-grid');
+            if (!galleryGrid) return;
+
+            // Clear existing content
+            galleryGrid.innerHTML = '';
+
+            // Add CSS for the gallery grid if not already present
+            if (!document.getElementById('gallery-styles')) {
+                const style = document.createElement('style');
+                style.id = 'gallery-styles';
+                style.textContent = `
+                    .gallery-section {
+                        background-color: #fff;
+                        padding: 80px 0;
+                    }
+                    .gallery-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                        gap: 20px;
+                        padding: 20px 0;
+                    }
+                    .gallery-item {
+                        position: relative;
+                        overflow: hidden;
+                        border-radius: 8px;
+                        aspect-ratio: 1;
+                        cursor: pointer;
+                        transition: transform 0.3s ease;
+                    }
+                    .gallery-item:hover {
+                        transform: scale(1.03);
+                    }
+                    .gallery-item img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            // Ensure we have valid images array
+            if (!Array.isArray(images) || images.length === 0) {
+                galleryGrid.innerHTML = `
+                    <div class="no-images-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                        <p>No gallery images available at the moment.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Create gallery items for each image
+            images.forEach((imageUrl, index) => {
+                // Skip if no URL is provided
+                if (!imageUrl) return;
+
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+
+                // Create image element with loading="lazy" for better performance
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = `Gallery image ${index + 1}`;
+                img.loading = 'lazy';
+
+                // Handle image loading errors
+                img.onerror = function () {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'image-placeholder';
+                    placeholder.textContent = 'Image not available';
+                    galleryItem.innerHTML = '';
+                    galleryItem.appendChild(placeholder);
+                };
+
+                // Create overlay with zoom icon
+                const overlay = document.createElement('div');
+                overlay.className = 'gallery-overlay';
+                overlay.innerHTML = '<i class="fas fa-search-plus"></i>';
+
+                // Add click handler for lightbox functionality
+                galleryItem.addEventListener('click', () => {
+                    // You can implement a lightbox here if needed
+                    // For now, just open the image in a new tab
+                    window.open(imageUrl, '_blank');
+                });
+
+                // Add elements to the gallery item
+                galleryItem.appendChild(img);
+                galleryItem.appendChild(overlay);
+
+                // Add the gallery item to the grid
+                galleryGrid.appendChild(galleryItem);
+            });
+
+            // If no images were added (all were invalid), show a message
+            if (galleryGrid.children.length === 0) {
+                galleryGrid.innerHTML = `
+                    <div class="no-images-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                        <p>No gallery images available at the moment.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', async () => {
+            const pageLoader = document.getElementById('pageLoader');
+            const mobileMenu = document.getElementById('base-mobile-menu'); // Using a more specific ID if possible, or fallback
+            const navLinks = document.querySelector('.nav-links');
+
+            // Function to hide loader
+            function hideLoader() {
+                if (pageLoader) {
+                    pageLoader.classList.add('fade-out');
+                    // Remove loader from DOM after animation completes
+                    setTimeout(() => {
+                        if (pageLoader && pageLoader.parentNode) {
+                            pageLoader.parentNode.removeChild(pageLoader);
+                        }
+                    }, 500);
+                }
+            }
+
+            // Set a timeout to hide the loader after 3 seconds max (in case something goes wrong)
+            const loaderTimeout = setTimeout(hideLoader, 3000);
+
+            // Hide loader when everything is loaded
+            window.addEventListener('load', () => {
+                clearTimeout(loaderTimeout);
+                hideLoader();
+            });
+            console.log('DOM fully loaded and parsed');
+
+            // Load gallery images
+            loadGalleryImages();
+
+            // Mobile Menu Toggle
+            if (mobileMenu && navLinks) {
+                mobileMenu.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+
+            // Header Scroll Effect
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (header) {
+                    header.classList.toggle('scrolled', window.scrollY > 50);
+                }
+            });
+
+            try {
+                console.log('Starting initialization...');
+
+                // Get slug from URL
+                const slug = getSlugFromUrl();
+                console.log('Slug from URL:', slug);
+
+                // Fetch event data
+                console.log('Fetching event data...');
+                const eventData = await fetchEventDetails(slug);
+                console.log('Event data received:', eventData);
+
+                // Update UI with event data
+                console.log('Updating UI...');
+                const eventDate = updateEventUI(eventData);
+                console.log('UI update complete');
+
+                // Start countdown if we have an event date
+                if (eventDate) {
+                    console.log('Starting countdown...');
+                    updateCountdown(eventDate);
+                    setInterval(() => updateCountdown(eventDate), 1000);
+                }
+
+                console.log('Initialization complete');
+            } catch (error) {
+                console.error('Error initializing page:', error);
+
+                // Show error to user if needed
+                const errorElement = document.createElement('div');
+                errorElement.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #ffebee; color: #c62828; padding: 15px; border-radius: 4px; z-index: 1000;';
+                errorElement.textContent = 'Error loading event data. Please check console for details.';
+                document.body.appendChild(errorElement);
+
+                // Remove error message after 5 seconds
+                setTimeout(() => {
+                    if (document.body.contains(errorElement)) {
+                        document.body.removeChild(errorElement);
+                    }
+                }, 5000);
+            }
+        }); // Added missing closing brace and parenthesis
+        document.addEventListener('DOMContentLoaded', function () {
+            const heroSlides = document.querySelectorAll('.hero-slide');
+            const heroDots = document.querySelectorAll('.hero .slider-dot');
+            if (!heroSlides || heroSlides.length === 0) return;
+            
+            let currentHeroSlide = 0;
+            let heroSlideInterval;
+            const SLIDE_DURATION = 6000;
+            
+            // Update total slides count
+            const totalSlidesEl = document.getElementById('totalSlides');
+            if (totalSlidesEl) totalSlidesEl.textContent = heroSlides.length;
+            
+            function updateProgressBar() {
+                const progressFill = document.querySelector('.progress-fill');
+                const currentSlideEl = document.getElementById('currentSlide');
+                if (progressFill) {
+                    const progress = ((currentHeroSlide + 1) / heroSlides.length) * 100;
+                    progressFill.style.width = progress + '%';
+                }
+                if (currentSlideEl) currentSlideEl.textContent = currentHeroSlide + 1;
+            }
+            
+            function showHeroSlide(index) {
+                heroSlides.forEach((s) => s.classList.remove('active'));
+                heroDots.forEach((d) => d.classList.remove('active'));
+                const valid = ((index % heroSlides.length) + heroSlides.length) % heroSlides.length;
+                heroSlides[valid].classList.add('active');
+                if (heroDots[valid]) heroDots[valid].classList.add('active');
+                currentHeroSlide = valid;
+                updateProgressBar();
+            }
+            
+            function nextHeroSlide() { showHeroSlide(currentHeroSlide + 1); }
+            function prevHeroSlide() { showHeroSlide(currentHeroSlide - 1); }
+            
+            function startHeroSlider() { 
+                heroSlideInterval = setInterval(nextHeroSlide, SLIDE_DURATION); 
+            }
+            
+            function stopHeroSlider() { 
+                clearInterval(heroSlideInterval); 
+            }
+            
+            function resetHeroSlider() {
+                stopHeroSlider();
+                startHeroSlider();
+            }
+            
+            // Dot click handlers
+            heroDots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    if (idx === currentHeroSlide) return;
+                    showHeroSlide(idx);
+                    resetHeroSlider();
+                });
+            });
+            
+            // Arrow button handlers
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    prevHeroSlide();
+                    resetHeroSlider();
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    nextHeroSlide();
+                    resetHeroSlider();
+                });
+            }
+            
+            // Initialize progress bar
+            updateProgressBar();
+            
+            // Start slider
+            startHeroSlider();
+            
+            // Pause on hover
+            const heroSliderEl = document.querySelector('.hero-slider');
+            if (heroSliderEl) {
+                heroSliderEl.addEventListener('mouseenter', stopHeroSlider);
+                heroSliderEl.addEventListener('mouseleave', startHeroSlider);
+            }
+            
+            // Also pause on control hover
+            const sliderControls = document.querySelector('.slider-controls');
+            if (sliderControls) {
+                sliderControls.addEventListener('mouseenter', stopHeroSlider);
+                sliderControls.addEventListener('mouseleave', startHeroSlider);
+            }
+        });
+
+        // Legacy slider logic removed to prevent conflicts with dynamic content.
+        // The updateSliderContent function handles the interactive slider now.
+
+        // Scroll Animations
+        function checkVisibility() {
+            const elements = document.querySelectorAll('.couple, .detail-card, .party-member');
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('load', checkVisibility);
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Form Submission
+        const rsvpForm = document.querySelector('.rsvp-form');
+        rsvpForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const rsvpData = {
+                full_name: formData.get('name') || document.getElementById('name').value,
+                email: formData.get('email') || document.getElementById('email').value,
+                phone_number: formData.get('phone') || document.getElementById('phone').value,
+                number_of_guests: parseInt(formData.get('guests') || document.getElementById('guests').value) || 1,
+                attending: formData.get('attendance') || document.getElementById('attendance').value
+            };
+            
+            // Validate required fields
+            if (!rsvpData.full_name || !rsvpData.attending) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Get the wedding slug
+            const weddingSlug = getSlugFromUrl();
+            
+            try {
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+                
+                // Submit RSVP to API
+                const response = await fetch(`${API_BASE_URL}/api/wedding-events/${weddingSlug}/rsvp/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(rsvpData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // Success message
+                    alert('Thank you for your RSVP! We look forward to celebrating with you.');
+                    this.reset();
+                } else {
+                    // Error message
+                    alert(`RSVP submission failed: ${result.error || 'Unknown error'}`);
+                }
+            } catch (error) {
+                console.error('RSVP submission error:', error);
+                alert('Failed to submit RSVP. Please try again later.');
+            } finally {
+                // Reset button state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

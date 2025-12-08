@@ -250,7 +250,23 @@
         }
       }
     </style>
-    <!-- Here add clock countdoewn -->
+    <!-- Event Passed Message -->
+    <div id="event-passed-message" style="display: none; text-align: center; padding: 50px 20px; background: #f9f9f9; border-radius: 10px; margin: 30px 0;">
+      <div class="container">
+        <h2 style="color: #333; margin-bottom: 20px; font-size: 2.5rem; font-weight: 300;">Thank You For Being Part of Our Special Day!</h2>
+        <p style="font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto 30px; line-height: 1.6;">
+          We are so grateful you could celebrate with us. Relive the beautiful moments from our wedding day in the gallery below.
+        </p>
+        <a href="gallery.html" class="gallery-btn" 
+           style="display: inline-block; padding: 15px 40px; background: #4361ee; color: white; 
+                  text-decoration: none; border-radius: 50px; font-weight: 500; font-size: 1.1rem;
+                  transition: all 0.3s ease; border: 2px solid #4361ee; margin-top: 20px;
+                  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);">
+          View Wedding Gallery
+        </a>
+      </div>
+    </div>
+    <!-- Countdown Timer (will be hidden if event has passed) -->
     <div id="timer" class="custom-countdown" style="margin-bottom: 30px"></div>
     <style>
       /* Countdown timer styles */
@@ -476,16 +492,53 @@
           return { months, days, hours, minutes, seconds, isToday };
         }
 
-        function updateCountdown() {
-          var timer = document.getElementById("timer");
-          if (!timer) return;
-          var eventDate = getEventDate();
-          var diff = getCountdownParts(eventDate);
-          renderCountdown(timer, diff, diff.isToday);
+        function hasEventPassed(eventDate) {
+          // Check if the event date is in the past (with a small buffer to handle timezone issues)
+          const now = new Date();
+          // Add 1 day buffer to ensure we don't show the message too early
+          const buffer = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+          return (eventDate.getTime() + buffer) < now.getTime();
         }
 
+        function updateCountdown() {
+          var timer = document.getElementById("timer");
+          var thankYouMessage = document.getElementById("event-passed-message");
+          if (!timer) return;
+          
+          var eventDate = getEventDate();
+          
+          // Check if event has passed
+          if (hasEventPassed(eventDate)) {
+            // Hide countdown and show thank you message
+            if (timer) timer.style.display = 'none';
+            if (thankYouMessage) {
+              thankYouMessage.style.display = 'block';
+              // Update the gallery link with the current event slug
+              const urlParams = new URLSearchParams(window.location.search);
+              const eventSlug = urlParams.get('event') || urlParams.get('slug');
+              if (eventSlug) {
+                const galleryLink = thankYouMessage.querySelector('.gallery-btn');
+                if (galleryLink) {
+                  galleryLink.href = `gallery.html?event=${eventSlug}`;
+                }
+              }
+            }
+            return;
+          } else {
+            // Event hasn't passed, show countdown
+            if (timer) timer.style.display = '';
+            if (thankYouMessage) thankYouMessage.style.display = 'none';
+            var diff = getCountdownParts(eventDate);
+            renderCountdown(timer, diff, diff.isToday);
+          }
+        }
+
+        // Initial check
         updateCountdown();
-        setInterval(updateCountdown, 1000);
+        // Only set interval if event hasn't passed
+        if (!hasEventPassed(getEventDate())) {
+          setInterval(updateCountdown, 1000);
+        }
       })();
     </script>
     <!-- end wpo-wedding-date -->
@@ -1143,9 +1196,9 @@
         )?.value;
         var msgDiv = document.getElementById("rsvp-message");
         msgDiv.textContent = "";
-        // Get event slug from URL
+        // Get event slug from URL (check both 'event' and 'slug' parameters)
         var params = new URLSearchParams(window.location.search);
-        var eventSlug = params.get("slug");
+        var eventSlug = params.get("event") || params.get("slug");
         if (!eventSlug) {
           window.location.href = "404.html";
           return;
@@ -1204,7 +1257,7 @@
           });
         }
         const params = new URLSearchParams(window.location.search);
-        let slug = params.get("slug");
+        let slug = params.get("event") || params.get("slug");
         if (slug) {
           // Remove any trailing slash from slug
           slug = slug.replace(/\/+$/, "");

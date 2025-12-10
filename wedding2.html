@@ -1416,6 +1416,10 @@
     background-color: var(--primary-color);
     color: #fff;
     position: relative;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    min-height: 100px;
     overflow: hidden;
     padding: 40px 0;
 }
@@ -2527,32 +2531,40 @@
 
     <!-- Footer -->
     <footer class="elegant-footer">
-        <!-- <div class="container"> -->
-
-            <!-- Copyright -->
-            <div class="footer-bottom">
-                <div class="copyright">
-                    &copy; 2025 SaveMeASeat. All rights reserved.
-                </div>
-                <!-- <div class="footer-love">
-                    Made with <span class="heart-emoji">❤</span> by <span id="couple-names">Sophia & Alexander</span>
-                </div> -->
-            <!-- </div> -->
+        <div class="footer-bottom" style="width: 100%; text-align: center; padding: 20px 0;">
+            <div class="copyright" style="font-size: 1rem; color: var(--text-color); margin: 0; padding: 10px 0; line-height: 1.5;">
+                &copy; 2025 SaveMeASeat. All rights reserved.
+            </div>
         </div>
     </footer>
 
 
     <script>
-        // Configuration
-        const API_URL = "https://savemeaseat-backend.onrender.com";
-        // const API_BASE_URL = 'http://172.20.10.2:8000';
+        // API Configuration
+        const API_BASE_URL = 'https://savemeaseat-backend.onrender.com';
+        
+        // Helper to get Cloudinary URL
+        function getCloudinaryUrl(filename) {
+            if (!filename) return '';
+            if (filename.startsWith('http')) return filename;
+            return 'https://res.cloudinary.com/godwinb/' + filename.replace(/^\/+/, '');
+        }
 
-        // Get slug from URL
+        // Get slug from URL with better error handling
         function getSlugFromUrl() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const slug = urlParams.get('slug');
-            console.log('Extracted slug from URL:', slug);
-            return slug || 'dd-dd-2025-11-01'; // Default fallback to existing event
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const slug = urlParams.get('slug');
+                console.log('Extracted slug from URL:', slug);
+                if (!slug) {
+                    console.warn('No slug found in URL, using default');
+                    return 'dd-dd-2025-11-01'; // Default fallback
+                }
+                return slug;
+            } catch (error) {
+                console.error('Error getting slug from URL:', error);
+                return 'dd-dd-2025-11-01';
+            }
         }
 
         // DOM Elements
@@ -2567,13 +2579,19 @@
                 const apiUrl = `${API_BASE_URL}/api/wedding-events/${slug}/`;
                 console.log('API URL:', apiUrl);
 
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+                
                 const response = await fetch(apiUrl, {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
-                    }
-                });
+                    },
+                    signal: controller.signal,
+                    mode: 'cors',
+                    credentials: 'same-origin'
+                }).finally(() => clearTimeout(timeoutId));
 
                 console.log('API Response status:', response.status);
                 console.log('API Response headers:', response.headers);

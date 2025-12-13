@@ -2747,66 +2747,9 @@
             const venueName = eventData.venue_name || 'Venue';
             const venueAddress = eventData.venue_address || 'Location';
 
-            // Update footer content
-            const footerCoupleNames = document.getElementById('footer-couple-names');
-            const footerMessage = document.getElementById('footer-message');
-            const footerDate = document.getElementById('footer-date');
-            const footerLocation = document.getElementById('footer-location');
-            const coupleNamesElement = document.getElementById('couple-names');
+            console.log('Updating couple names to:', coupleNames);
 
-            if (footerCoupleNames) {
-                // Use footer_logo if available, otherwise use couple names
-                if (eventData.footer_logo && eventData.footer_logo !== 'e') {
-                    footerCoupleNames.textContent = eventData.footer_logo;
-                } else {
-                    footerCoupleNames.textContent = coupleNames;
-                }
-            }
-
-            if (footerMessage) {
-                // Use footer_text if available
-                if (eventData.footer_text && eventData.footer_text !== 'e') {
-                    footerMessage.textContent = eventData.footer_text;
-                } else {
-                    footerMessage.textContent = eventData.welcome_message || 'We are so excited to celebrate our special day with you';
-                }
-            }
-
-            if (footerDate && weddingDate) {
-                footerDate.textContent = new Date(weddingDate).toLocaleDateString('en-US', {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-            }
-
-            if (footerLocation) {
-                // Use footer_date_location if available, otherwise use venue name
-                if (eventData.footer_date_location && eventData.footer_date_location !== 'e') {
-                    footerLocation.textContent = eventData.footer_date_location;
-                } else {
-                    footerLocation.textContent = venueName;
-                }
-            }
-
-            if (coupleNamesElement) coupleNamesElement.textContent = coupleNames;
-
-            // Update logo text in header
-            const logoElement = document.querySelector('.logo');
-            if (logoElement && eventData.logo_text && eventData.logo_text !== 'e') {
-                logoElement.textContent = eventData.logo_text;
-                console.log('Updated logo text to:', eventData.logo_text);
-            } else if (logoElement) {
-                logoElement.textContent = coupleNames;
-            }
-
-            // Update countdown title
-            const countdownTitle = document.querySelector('.countdown-title');
-            if (countdownTitle && eventData.countdown_title && eventData.countdown_title !== 'e') {
-                countdownTitle.textContent = eventData.countdown_title;
-                console.log('Updated countdown title to:', eventData.countdown_title);
-            }
+            // Update page title immediately
 
             // Update couple's initials in the header
             updateCoupleInitials(eventData);

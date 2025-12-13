@@ -2543,8 +2543,8 @@
 
     <script>
         // API Configuration
-        // const API_BASE_URL = 'http://127.0.0.1:8000';
-        const API_BASE_URL = 'https://savemeaseat-backend.onrender.com';
+        const API_BASE_URL = 'http://127.0.0.1:8000';
+        // const API_BASE_URL = 'https://savemeaseat-backend.onrender.com';
         
         // Helper to get Cloudinary URL
         function getCloudinaryUrl(filename) {
@@ -2760,24 +2760,31 @@
             // Debug: Log all available properties
             console.log('Available properties in eventData:', Object.keys(eventData));
 
-            // Build the hero slider from API images
-            buildHeroSlides(eventData);
-
-            // Update page title and hero section
+            // Update page title and hero section FIRST (before slider)
             if (eventData.bride_name && eventData.groom_name) {
                 // Update page title
                 document.title = `${eventData.bride_name} & ${eventData.groom_name} | Wedding`;
+                console.log('Updated page title to:', document.title);
 
                 // Update hero section (title, date, location)
                 const heroTitleEl = document.querySelector('.hero-title');
                 const heroDateEl = document.querySelector('.hero-date');
                 const heroLocationEl = document.querySelector('.hero-location');
 
+                console.log('Hero elements found:', {
+                    heroTitleEl: !!heroTitleEl,
+                    heroDateEl: !!heroDateEl,
+                    heroLocationEl: !!heroLocationEl
+                });
+
                 if (heroTitleEl) {
                     const title = eventData.event_title && eventData.event_title !== 'e'
                         ? eventData.event_title
                         : `${eventData.bride_name || 'Bride'} & ${eventData.groom_name || 'Groom'}`;
                     heroTitleEl.textContent = title;
+                    console.log('Updated hero title to:', title);
+                } else {
+                    console.error('Hero title element not found with selector .hero-title');
                 }
 
                 if (heroDateEl) {
@@ -2803,6 +2810,9 @@
                     heroViewEl.href = mapHref;
                 }
             }
+
+            // Build the hero slider from API images AFTER updating content
+            buildHeroSlides(eventData);
 
             // Update about section with bride and groom info
             const aboutSection = document.querySelector('.about');

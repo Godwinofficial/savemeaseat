@@ -2543,6 +2543,7 @@
 
     <script>
         // API Configuration
+        // const API_BASE_URL = 'http://127.0.0.1:8000';
         const API_BASE_URL = 'https://savemeaseat-backend.onrender.com';
         
         // Helper to get Cloudinary URL
@@ -4102,12 +4103,15 @@
             // Get the wedding slug
             const weddingSlug = getSlugFromUrl();
             
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn ? submitBtn.textContent : 'Submit';
+            
             try {
-                // Show loading state
-                const submitBtn = this.querySelector('button[type="submit"]');
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = 'Submitting...';
-                submitBtn.disabled = true;
+                if (submitBtn) {
+                    submitBtn.textContent = 'Submitting...';
+                    submitBtn.disabled = true;
+                }
                 
                 // Submit RSVP to API
                 const response = await fetch(`${API_BASE_URL}/api/wedding-events/${weddingSlug}/rsvp/`, {
@@ -4119,23 +4123,37 @@
                 });
                 
                 const result = await response.json();
+                console.log('RSVP Response Status:', response.status);
+                console.log('RSVP Response Data:', result);
                 
                 if (response.ok && result.success) {
                     // Success message
                     alert('Thank you for your RSVP! We look forward to celebrating with you.');
                     this.reset();
                 } else {
-                    // Error message
-                    alert(`RSVP submission failed: ${result.error || 'Unknown error'}`);
+                    // Error message - check for different success indicators
+                    if (response.status === 201 || response.status === 200) {
+                        // Success based on HTTP status even if success field is missing
+                        alert('Thank you for your RSVP! We look forward to celebrating with you.');
+                        this.reset();
+                    } else {
+                        // Actual error
+                        console.error('RSVP submission failed:', {
+                            status: response.status,
+                            data: result
+                        });
+                        alert(`RSVP submission failed: ${result.error || result.detail || result.message || 'Unknown error'}`);
+                    }
                 }
             } catch (error) {
                 console.error('RSVP submission error:', error);
                 alert('Failed to submit RSVP. Please try again later.');
             } finally {
                 // Reset button state
-                const submitBtn = this.querySelector('button[type="submit"]');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+                if (submitBtn) {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
             }
         });
     </script>

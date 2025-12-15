@@ -898,6 +898,126 @@
             margin-top: 10px;
         }
 
+        /* Event Item Styles */
+        .event-item {
+            background: var(--white);
+            border-left: 3px solid var(--accent-color);
+            padding: 45px 40px;
+            margin-bottom: 35px;
+            border-radius: 4px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(166, 138, 100, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .event-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 12px 32px rgba(166, 138, 100, 0.15);
+        }
+
+        .event-item:hover::before {
+            opacity: 1;
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(166, 138, 100, 0.15);
+            padding-bottom: 20px;
+        }
+
+        .event-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-color);
+            margin: 0;
+            letter-spacing: 0.5px;
+            flex: 1;
+        }
+
+        .event-date {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            white-space: nowrap;
+            margin-left: 40px;
+        }
+
+        .event-info {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-info p {
+            color: var(--light-text);
+            font-size: 0.95rem;
+            margin: 0;
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+        }
+
+        .event-info p strong {
+            color: var(--text-color);
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        .event-info .time,
+        .event-info .venue {
+            display: block;
+        }
+
+        .event-info .address {
+            color: var(--accent-color);
+            font-style: italic;
+            font-size: 0.88rem;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .event-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .event-date {
+                margin-left: 0;
+                margin-top: 12px;
+            }
+
+            .event-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .event-item {
+                padding: 35px 25px;
+                margin-bottom: 25px;
+            }
+        }
+
         .info-link {
             display: inline-flex;
             align-items: center;
@@ -2443,37 +2563,36 @@
                 </div>
             </div>
 
-            <div class="details-container">
-                <div class="event-item">
+            <div class="details-container" id="wedding-details-container">
+                <div class="event-item" id="ceremony-item">
                     <div class="event-header">
-                        <h3>Ceremony</h3>
-                        <span class="event-date">14 OCT 2023</span>
+                        <h3>Church Service</h3>
+                        <span class="event-date" id="ceremony-date">Loading...</span>
                     </div>
-                    <div class="event-info">
-                        <p class="time"><strong>Time:</strong> 4:00 PM</p>
-                        <p class="venue"><strong>Venue:</strong> The Glass House</p>
-                        <p class="address">123 Modern Avenue, New York, NY 10001</p>
+                    <div class="event-info" id="ceremony-details">
+                        <p class="time"><strong>Time:</strong> <span id="ceremony-time">Loading...</span></p>
+                        <p class="venue"><strong>Venue:</strong> <span id="ceremony-venue">Loading...</span></p>
                     </div>
                 </div>
 
-                <div class="event-item">
+                <div class="event-item" id="reception-item">
                     <div class="event-header">
                         <h3>Reception</h3>
-                        <span class="event-date">14 OCT 2023</span>
+                        <span class="event-date" id="reception-date">Loading...</span>
                     </div>
-                    <div class="event-info">
-                        <p class="time"><strong>Time:</strong> 6:00 PM - 12:00 AM</p>
-                        <p class="venue"><strong>Venue:</strong> The Grand Ballroom</p>
-                        <p class="address">123 Modern Avenue, New York, NY 10001</p>
+                    <div class="event-info" id="reception-details">
+                        <p class="time"><strong>Time:</strong> <span id="reception-time">Loading...</span></p>
+                        <p class="venue"><strong>Venue:</strong> <span id="reception-venue">Loading...</span></p>
+                        <p class="address" id="reception-address">Loading...</p>
                     </div>
                 </div>
 
-                <div class="event-item">
+                <div class="event-item" id="dress-code-item">
                     <div class="event-header">
                         <h3>Dress Code</h3>
                     </div>
-                    <div class="event-info">
-                        <p>Black Tie Optional - Formal & Sophisticated</p>
+                    <div class="event-info" id="dress-code-details">
+                        <p id="dress-code-text">Loading...</p>
                     </div>
                 </div>
             </div>
@@ -2484,6 +2603,7 @@
     <section class="location-map-section" id="location-map">
         <div class="map-container">
             <iframe
+                id="location-map-iframe"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796587!2d-73.99870848459418!3d40.71911697933063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316e12cd71%3A0x6a22e8b2c7a4b4e2!2s123%20Modern%20Ave%2C%20New%20York%2C%20NY%2010001!5e0!3m2!1sen!2sus!4v1629990000000!5m2!1sen!2sus"
                 width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
@@ -2912,13 +3032,12 @@
                 }
 
                 // Update Google Maps iframe if present
-                const mapIframe = document.querySelector('.location-map-section iframe');
+                const mapIframe = document.getElementById('location-map-iframe');
                 if (mapIframe) {
                     if (eventData.map_latitude && eventData.map_longitude) {
                         mapIframe.src = `https://maps.google.com/maps?q=${eventData.map_latitude},${eventData.map_longitude}&z=15&output=embed`;
                     } else if (eventData.google_maps_url) {
-                        // Extract embed URL if it's a share URL, or use as is if it looks like an embed
-                        // This is a simple check, might need more robust parsing depending on API input
+                        // Use the provided google maps URL or construct one from address
                         const embedUrl = eventData.google_maps_url.includes('embed')
                             ? eventData.google_maps_url
                             : `https://maps.google.com/maps?q=${encodeURIComponent(eventData.venue_address)}&z=15&output=embed`;
@@ -3079,80 +3198,42 @@
                 });
             }
 
-            // Update wedding details section
-            const ceremonyContainer = document.getElementById('ceremony-details');
-            const receptionContainer = document.getElementById('reception-details');
+            // Update wedding details section with dynamic data
+            // Format event date
+            const formattedEventDate = new Date(eventData.event_date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            }).toUpperCase();
 
-            if (ceremonyContainer) {
-                const ceremonyData = eventData.ceremony || {
-                    venue: 'The Glass House',
-                    date: eventData.event_date || new Date(),
-                    time: '4:00 PM',
-                    address: '123 Modern Avenue, New York, NY 10001',
-                    description: 'Our ceremony will take place in the beautiful garden with a breathtaking view of the city skyline.'
-                };
+            // Format ceremony time
+            const ceremonyTimeFormatted = eventData.ceremony_time ? 
+                new Date(`2000-01-01 ${eventData.ceremony_time}`).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : 
+                'TBA';
 
-                const formattedDate = new Date(ceremonyData.date).toLocaleDateString('en-US', {
-                    weekday: 'long',
-                    month: 'long',
-                    day: 'numeric',
-                    year: 'numeric'
-                });
+            // Format reception time
+            const receptionTimeFormatted = eventData.reception_time ? 
+                new Date(`2000-01-01 ${eventData.reception_time}`).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : 
+                'TBA';
 
-                ceremonyContainer.innerHTML = `
-                    <div class="party-member">
-                        <h4>${ceremonyData.venue}</h4>
-                        <div class="detail-item">
-                            <i class="far fa-calendar-alt"></i>
-                            <span>${formattedDate}</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="far fa-clock"></i>
-                            <span>${ceremonyData.time}</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>${ceremonyData.address}</span>
-                        </div>
-                        <p>${ceremonyData.description}</p>
-                    </div>
-                `;
-            }
+            // Update ceremony section
+            document.getElementById('ceremony-date').textContent = formattedEventDate;
+            document.getElementById('ceremony-time').textContent = ceremonyTimeFormatted;
+            document.getElementById('ceremony-venue').textContent = eventData.ceremony_venue_name || eventData.event_location || 'Venue TBA';
 
-            if (receptionContainer) {
-                const receptionData = eventData.reception || {
-                    venue: 'The Grand Ballroom',
-                    date: eventData.event_date || new Date(),
-                    time: '6:00 PM',
-                    address: '123 Modern Avenue, New York, NY 10001',
-                    description: 'Join us for dinner, dancing, and celebration in our elegant ballroom.'
-                };
+            // Update reception section
+            document.getElementById('reception-date').textContent = formattedEventDate;
+            document.getElementById('reception-time').textContent = receptionTimeFormatted;
+            document.getElementById('reception-venue').textContent = eventData.reception_venue_name || eventData.event_location || 'Venue TBA';
+            document.getElementById('reception-address').textContent = eventData.reception_venue_address || eventData.event_location || 'Address TBA';
 
-                const formattedDate = new Date(receptionData.date).toLocaleDateString('en-US', {
-                    weekday: 'long',
-                    month: 'long',
-                    day: 'numeric',
-                    year: 'numeric'
-                });
-
-                receptionContainer.innerHTML = `
-                    <div class="party-member">
-                        <h4>${receptionData.venue}</h4>
-                        <div class="detail-item">
-                            <i class="far fa-calendar-alt"></i>
-                            <span>${formattedDate}</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="far fa-clock"></i>
-                            <span>${receptionData.time}</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>${receptionData.address}</span>
-                        </div>
-                        <p>${receptionData.description}</p>
-                    </div>
-                `;
+            // Update dress code section
+            document.getElementById('dress-code-text').textContent = eventData.dress_code || 'Dress Code TBA';
+            if (eventData.dress_code_description) {
+                const dressCodeDetails = document.getElementById('dress-code-details');
+                const descElement = document.createElement('p');
+                descElement.textContent = eventData.dress_code_description;
+                dressCodeDetails.appendChild(descElement);
             }
 
             // Gallery will be loaded separately by loadGalleryImages()

@@ -5,9 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sophia & Alexander | Wedding</title>
-     <link rel="shortcut icon" type="image/png" href="/imgs/favicon.png" />
- 
+    <link rel="shortcut icon" type="image/png" href="/imgs/favicon.png" />
+
     <style>
+    <style>
+        /* Compact styling for Gifts & Contributions cards */
+        #gifts-section .info-cards {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 960px;
+            margin: 40px auto 0;
+            padding: 0 10px;
+        }
+
+        #gifts-section .info-card {
+            padding: 20px 16px;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            align-items: center;
+            text-align: center;
+        }
+
+        #gifts-section .info-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        #gifts-section .info-card p {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            color: var(--light-text);
+        }
+
+        #gifts-section .info-icon {
+            width: 48px;
+            height: 48px;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        #gifts-section .btn.copy-account-btn {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            max-width: 160px;
+        }
+
+        @media (max-width: 576px) {
+            #gifts-section .info-cards { gap: 14px; }
+            #gifts-section .info-card { padding: 14px 12px; }
+            #gifts-section .info-icon { width: 44px; height: 44px; }
+        }
         /* Page Loader */
         .page-loader {
             position: fixed;
@@ -1533,66 +1582,67 @@
             border-color: var(--white);
             color: var(--white);
 
-/* Elegant Footer Styles */
-.elegant-footer {
-    background-color: var(--primary-color);
-    color: #fff;
-    position: relative;
-    padding: 20px 0;
-    display: flex;
-    align-items: center;
-    min-height: 100px;
-    overflow: hidden;
-    padding: 40px 0;
-}
+            /* Elegant Footer Styles */
+            .elegant-footer {
+                background-color: var(--primary-color);
+                color: #fff;
+                position: relative;
+                padding: 20px 0;
+                display: flex;
+                align-items: center;
+                min-height: 100px;
+                overflow: hidden;
+                padding: 40px 0;
+            }
 
-.footer-pattern {
-    display: none;
-}
+            .footer-pattern {
+                display: none;
+            }
 
-.footer-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 40px;
-    margin-bottom: 80px;
-    position: relative;
-    z-index: 2;
-}
+            .footer-content {
+                display: grid;
+                grid-template-columns: 1fr;
+                justify-items: center;
+                gap: 40px;
+                margin-bottom: 80px;
+                position: relative;
+                z-index: 2;
+            }
 
-.couple-footer {
-    padding-right: 0;
-    text-align: center;
-}
+            .couple-footer {
+                padding-right: 0;
+                text-align: center;
+            }
 
-.footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem;
-    font-weight: 300;
-    margin-bottom: 25px;
-    color: #fff;
-    letter-spacing: 0em;
-    display: inline-block;
-    font-style: italic;
-}
+            .footer-logo {
+                font-family: 'Cormorant Garamond', serif;
+                font-size: 3rem;
+                font-weight: 300;
+                margin-bottom: 25px;
+                color: #fff;
+                letter-spacing: 0em;
+                display: inline-block;
+                font-style: italic;
+            }
 
-.divider {
-    display: none;
-    width: 40px;
-    height: 1px;
-    background: var(--accent-color);
-    margin: 0 0 30px;
-    border-radius: 0;
-}
+            .divider {
+                display: none;
+                width: 40px;
+                height: 1px;
+                background: var(--accent-color);
+                margin: 0 0 30px;
+                border-radius: 0;
+            }
 
-.footer-text {
-    color: rgb(19, 19, 19);
-    font-size: 0.95rem;
-    line-height: 1.8;
-    margin-bottom: 30px;
-    font-weight: 400;
-    max-width: 400px;
-}
+            .footer-text {
+                color: rgb(19, 19, 19);
+                font-size: 0.95rem;
+                line-height: 1.8;
+                margin-bottom: 30px;
+                font-weight: 400;
+                max-width: 400px;
+            }
+
             max-width: 400px;
         }
 
@@ -1754,7 +1804,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            color:"#777"
+            color: "#777"
         }
 
         .heart-emoji {
@@ -2131,8 +2181,8 @@
             font-weight: 500;
             letter-spacing: 0.05em;
         }
-        
-        .hero .hero-meta > div {
+
+        .hero .hero-meta>div {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -2143,11 +2193,13 @@
             opacity: 0.8;
             display: none;
         }
+
         .hero .hero-meta a {
             color: rgba(255, 255, 255, 0.95);
             text-decoration: none;
             border-bottom: 1px dotted rgba(255, 255, 255, 0.5);
         }
+
         .hero .hero-meta a:hover {
             color: #fff;
             border-bottom-color: #fff;
@@ -2350,6 +2402,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -2360,6 +2413,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -2388,19 +2442,23 @@
                 padding-top: 120px;
                 min-height: 90vh;
             }
+
             .hero .slider-dots {
                 display: flex;
                 bottom: 100px;
             }
+
             .hero .slider-controls {
                 bottom: 30px;
                 gap: 20px;
             }
+
             .hero .slider-arrow-btn {
                 width: 40px;
                 height: 40px;
                 font-size: 1rem;
             }
+
             .hero .progress-bar {
                 width: 40px;
             }
@@ -2529,7 +2587,7 @@
     <!-- Wedding Party Section -->
     <section class="party" id="party">
         <div class="container">
-        
+
             <div class="party-container">
                 <div class="party-group">
                     <div class="party-title">
@@ -2599,15 +2657,29 @@
         </div>
     </section>
 
+    <!-- Gifts & Contributions Section -->
+    <section class="wedding-details" id="gifts-section" style="padding:60px 0; background: linear-gradient(135deg, #ffffff 0%, #fafaf9 100%);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Gifts & Contributions</h2>
+                <p>We are grateful for your love — if you'd like to contribute.</p>
+            </div>
+
+            <div id="gifts-list" class="info-cards" aria-live="polite">
+                <!-- Gifts will be rendered here dynamically -->
+            </div>
+        </div>
+    </section>
+
+
     <!-- Location Map Section -->
     <section class="location-map-section" id="location-map">
         <div class="map-container">
-            <iframe
-                id="location-map-iframe"
+            <iframe id="location-map-iframe"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796587!2d-73.99870848459418!3d40.71911697933063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316e12cd71%3A0x6a22e8b2c7a4b4e2!2s123%20Modern%20Ave%2C%20New%20York%2C%20NY%2010001!5e0!3m2!1sen!2sus!4v1629990000000!5m2!1sen!2sus"
                 width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
-            
+
         </div>
     </section>
 
@@ -2636,7 +2708,7 @@
                     <select style="color: #757575;" id="guests" name="guests" class="form-control" required>
                         <option style="color: #fff;" value="" disabled selected>Select number of guests</option>
                         <option style="color: #fff;" value="1">1</option>
-                                       </select>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="attendance">Will you attend?</label>
@@ -2646,15 +2718,17 @@
                         <option value="no">Regretfully, no</option>
                     </select>
                 </div>
-                                <button type="submit" class="btn">Submit Response</button>
+                <button type="submit" class="btn">Submit Response</button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
+    
     <footer class="elegant-footer">
         <div class="footer-bottom" style="width: 100%; text-align: center; padding: 20px 0;">
-            <div class="copyright" style="font-size: 1rem; color: var(--text-color); margin: 0; padding: 10px 0; line-height: 1.5;">
+            <div class="copyright"
+                style="font-size: 1rem; color: var(--text-color); margin: 0; padding: 10px 0; line-height: 1.5;">
                 &copy; 2025 SaveMeASeat. All rights reserved.
             </div>
         </div>
@@ -2665,7 +2739,7 @@
         // API Configuration
         // const API_BASE_URL = 'http://127.0.0.1:8000';
         const API_BASE_URL = 'https://savemeaseat-backend.onrender.com';
-        
+
         // Helper to get Cloudinary URL
         function getCloudinaryUrl(filename) {
             if (!filename) return '';
@@ -2704,7 +2778,7 @@
 
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-                
+
                 const response = await fetch(apiUrl, {
                     method: 'GET',
                     headers: {
@@ -3089,6 +3163,13 @@
                 }
             }
 
+            // Render gifts / contributions if provided by backend
+            try {
+                if (typeof renderGifts === 'function') renderGifts(eventData.gifts || []);
+            } catch (e) {
+                console.error('Error rendering gifts:', e);
+            }
+
             // Update wedding party if data is available
             console.log('Updating wedding party with data:', eventData);
 
@@ -3207,13 +3288,13 @@
             }).toUpperCase();
 
             // Format ceremony time
-            const ceremonyTimeFormatted = eventData.ceremony_time ? 
-                new Date(`2000-01-01 ${eventData.ceremony_time}`).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : 
+            const ceremonyTimeFormatted = eventData.ceremony_time ?
+                new Date(`2000-01-01 ${eventData.ceremony_time}`).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) :
                 'TBA';
 
             // Format reception time
-            const receptionTimeFormatted = eventData.reception_time ? 
-                new Date(`2000-01-01 ${eventData.reception_time}`).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : 
+            const receptionTimeFormatted = eventData.reception_time ?
+                new Date(`2000-01-01 ${eventData.reception_time}`).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) :
                 'TBA';
 
             // Update ceremony section
@@ -3578,6 +3659,68 @@
             if (filename.startsWith("http")) return filename;
             return "https://res.cloudinary.com/godwinb/" + filename.replace(/^\/+/g, "");
         }
+        
+        // Render Gifts / Contributions
+        function renderGifts(gifts) {
+            const container = document.getElementById('gifts-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            if (!Array.isArray(gifts) || gifts.length === 0) {
+                container.innerHTML = `
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-heart"></i></div>
+                        <h4>No contribution details</h4>
+                        <p class="hint">There are currently no gift or contribution details available.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            gifts.forEach(gift => {
+                try {
+                    const card = document.createElement('div');
+                    card.className = 'info-card';
+
+                    const provider = gift.provider || '';
+                    const acctName = gift.account_name || '';
+                    const acctNumber = gift.account_number || '';
+                    const instructions = gift.instructions || '';
+                    const url = gift.url || null;
+                    const giftType = gift.gift_type || '';
+
+                    card.innerHTML = `
+                        <div class="info-icon"><i class="fas fa-gift"></i></div>
+                        <h4>${provider ? provider : 'Contribution'} ${giftType ? '(' + giftType + ')' : ''}</h4>
+                        <p><strong>${acctName}</strong></p>
+                        <p style="letter-spacing:0.05em;">${acctNumber}</p>
+                        ${instructions ? `<p class="hint">${instructions}</p>` : ''}
+                        ${url ? `<p><a href="${url}" target="_blank" rel="noopener noreferrer" class="info-link">Open payment link <i class="fas fa-external-link-alt"></i></a></p>` : ''}
+                        <div style="margin-top:12px; display:flex; justify-content:center; gap:10px;">
+                            <button class="btn copy-account-btn">Copy Account</button>
+                        </div>
+                    `;
+
+                    // Attach copy handler
+                    card.querySelector('.copy-account-btn').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const textToCopy = acctNumber ? `${acctNumber}` : acctName;
+                        if (!textToCopy) return;
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            const original = e.target.textContent;
+                            e.target.textContent = 'Copied!';
+                            setTimeout(() => e.target.textContent = original, 1500);
+                        }).catch(err => {
+                            console.error('Clipboard copy failed', err);
+                        });
+                    });
+
+                    container.appendChild(card);
+                } catch (err) {
+                    console.error('Error rendering a gift item', err, gift);
+                }
+            });
+        }
         function applyHeroImagesFromEvent(eventData) {
             try {
                 const slides = document.querySelectorAll('.hero-slide');
@@ -3600,7 +3743,7 @@
                         slide.style.backgroundImage = `linear-gradient(135deg, rgba(67, 97, 238, 0.4), rgba(247, 37, 133, 0.4)), url('${images[index]}')`;
                     }
                 });
-            } catch (e) {}
+            } catch (e) { }
         }
 
         function extractEventImages(eventData) {
@@ -3977,15 +4120,15 @@
             const heroSlides = document.querySelectorAll('.hero-slide');
             const heroDots = document.querySelectorAll('.hero .slider-dot');
             if (!heroSlides || heroSlides.length === 0) return;
-            
+
             let currentHeroSlide = 0;
             let heroSlideInterval;
             const SLIDE_DURATION = 6000;
-            
+
             // Update total slides count
             const totalSlidesEl = document.getElementById('totalSlides');
             if (totalSlidesEl) totalSlidesEl.textContent = heroSlides.length;
-            
+
             function updateProgressBar() {
                 const progressFill = document.querySelector('.progress-fill');
                 const currentSlideEl = document.getElementById('currentSlide');
@@ -3995,7 +4138,7 @@
                 }
                 if (currentSlideEl) currentSlideEl.textContent = currentHeroSlide + 1;
             }
-            
+
             function showHeroSlide(index) {
                 heroSlides.forEach((s) => s.classList.remove('active'));
                 heroDots.forEach((d) => d.classList.remove('active'));
@@ -4005,23 +4148,23 @@
                 currentHeroSlide = valid;
                 updateProgressBar();
             }
-            
+
             function nextHeroSlide() { showHeroSlide(currentHeroSlide + 1); }
             function prevHeroSlide() { showHeroSlide(currentHeroSlide - 1); }
-            
-            function startHeroSlider() { 
-                heroSlideInterval = setInterval(nextHeroSlide, SLIDE_DURATION); 
+
+            function startHeroSlider() {
+                heroSlideInterval = setInterval(nextHeroSlide, SLIDE_DURATION);
             }
-            
-            function stopHeroSlider() { 
-                clearInterval(heroSlideInterval); 
+
+            function stopHeroSlider() {
+                clearInterval(heroSlideInterval);
             }
-            
+
             function resetHeroSlider() {
                 stopHeroSlider();
                 startHeroSlider();
             }
-            
+
             // Dot click handlers
             heroDots.forEach((dot, idx) => {
                 dot.addEventListener('click', () => {
@@ -4030,11 +4173,11 @@
                     resetHeroSlider();
                 });
             });
-            
+
             // Arrow button handlers
             const prevBtn = document.getElementById('prevSlide');
             const nextBtn = document.getElementById('nextSlide');
-            
+
             if (prevBtn) {
                 prevBtn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -4042,7 +4185,7 @@
                     resetHeroSlider();
                 });
             }
-            
+
             if (nextBtn) {
                 nextBtn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -4050,20 +4193,20 @@
                     resetHeroSlider();
                 });
             }
-            
+
             // Initialize progress bar
             updateProgressBar();
-            
+
             // Start slider
             startHeroSlider();
-            
+
             // Pause on hover
             const heroSliderEl = document.querySelector('.hero-slider');
             if (heroSliderEl) {
                 heroSliderEl.addEventListener('mouseenter', stopHeroSlider);
                 heroSliderEl.addEventListener('mouseleave', startHeroSlider);
             }
-            
+
             // Also pause on control hover
             const sliderControls = document.querySelector('.slider-controls');
             if (sliderControls) {
@@ -4117,7 +4260,7 @@
         const rsvpForm = document.querySelector('.rsvp-form');
         rsvpForm.addEventListener('submit', async function (e) {
             e.preventDefault();
-            
+
             // Get form data
             const formData = new FormData(this);
             const rsvpData = {
@@ -4127,26 +4270,26 @@
                 number_of_guests: parseInt(formData.get('guests') || document.getElementById('guests').value) || 1,
                 attending: formData.get('attendance') || document.getElementById('attendance').value
             };
-            
+
             // Validate required fields
             if (!rsvpData.full_name || !rsvpData.attending) {
                 alert('Please fill in all required fields.');
                 return;
             }
-            
+
             // Get the wedding slug
             const weddingSlug = getSlugFromUrl();
-            
+
             // Show loading state
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn ? submitBtn.textContent : 'Submit';
-            
+
             try {
                 if (submitBtn) {
                     submitBtn.textContent = 'Submitting...';
                     submitBtn.disabled = true;
                 }
-                
+
                 // Submit RSVP to API
                 const response = await fetch(`${API_BASE_URL}/api/wedding-events/${weddingSlug}/rsvp/`, {
                     method: 'POST',
@@ -4155,11 +4298,11 @@
                     },
                     body: JSON.stringify(rsvpData)
                 });
-                
+
                 const result = await response.json();
                 console.log('RSVP Response Status:', response.status);
                 console.log('RSVP Response Data:', result);
-                
+
                 if (response.ok && result.success) {
                     // Success message
                     alert('Thank you for your RSVP! We look forward to celebrating with you.');

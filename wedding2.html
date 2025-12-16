@@ -2675,11 +2675,9 @@
     <!-- Location Map Section -->
     <section class="location-map-section" id="location-map">
         <div class="map-container">
-            <iframe id="location-map-iframe"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796587!2d-73.99870848459418!3d40.71911697933063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316e12cd71%3A0x6a22e8b2c7a4b4e2!2s123%20Modern%20Ave%2C%20New%20York%2C%20NY%2010001!5e0!3m2!1sen!2sus!4v1629990000000!5m2!1sen!2sus"
-                width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy">
-            </iframe>
-
+            <!-- iframe left blank initially; JS will populate src dynamically from event data -->
+            <iframe id="location-map-iframe" src="" width="100%" height="500" style="border:0;display:none;" allowfullscreen="" loading="lazy"></iframe>
+            <div class="no-map-message" style="padding:24px; text-align:center; color:var(--light-text);">Map location not provided.</div>
         </div>
     </section>
 
@@ -3070,7 +3068,7 @@
             }
 
             // Update location section
-            if (eventData.venue_name || eventData.venue_address) {
+            if (eventData.venue_name || eventData.venue_address || eventData.google_maps_url || (eventData.map_latitude && eventData.map_longitude)) {
                 // Update venue name and description
                 const venueTitle = document.querySelector('.location h3');
                 if (venueTitle && eventData.venue_name) venueTitle.textContent = eventData.venue_name;
@@ -3105,17 +3103,53 @@
                         `).join('');
                 }
 
-                // Update Google Maps iframe if present
+                // Update Google Maps iframe if present (use dynamic data only)
                 const mapIframe = document.getElementById('location-map-iframe');
                 if (mapIframe) {
-                    if (eventData.map_latitude && eventData.map_longitude) {
-                        mapIframe.src = `https://maps.google.com/maps?q=${eventData.map_latitude},${eventData.map_longitude}&z=15&output=embed`;
-                    } else if (eventData.google_maps_url) {
-                        // Use the provided google maps URL or construct one from address
-                        const embedUrl = eventData.google_maps_url.includes('embed')
-                            ? eventData.google_maps_url
-                            : `https://maps.google.com/maps?q=${encodeURIComponent(eventData.venue_address)}&z=15&output=embed`;
-                        mapIframe.src = embedUrl;
+                    // Helper to build an embed URL from coordinates or address
+                    const buildEmbedFromCoords = (lat, lng, zoom = 15) => `https://maps.google.com/maps?q=${lat},${lng}&z=${zoom}&output=embed`;
+                    const buildEmbedFromQuery = (q, zoom = 15) => `https://maps.google.com/maps?q=${encodeURIComponent(q)}&z=${zoom}&output=embed`;
+
+                    let src = '';
+
+                    // Prefer explicit google_maps_url from backend
+                    if (eventData.google_maps_url) {
+                        src = (eventData.google_maps_url || '').toString().trim();
+
+                        // If the provided URL is not an embed, try to convert it safely
+                        if (!/\/embed|output=embed/.test(src)) {
+                            try {
+                                if (/google\.com\/maps/.test(src) && /[?&]q=/.test(src)) {
+                                    // If it already has a q= param, just ensure output=embed is present
+                                    src = src + (/[?&]output=/.test(src) ? '' : '&output=embed');
+                                } else {
+                                    // Fallback: use the provided URL or venue address as a query
+                                    const fallbackQuery = eventData.venue_address || src;
+                                    src = buildEmbedFromQuery(fallbackQuery);
+                                }
+                            } catch (e) {
+                                src = buildEmbedFromQuery(eventData.venue_address || '');
+                            }
+                        }
+                    }
+
+                    // If no google_maps_url, try lat/lng
+                    if (!src && eventData.map_latitude && eventData.map_longitude) {
+                        src = buildEmbedFromCoords(eventData.map_latitude, eventData.map_longitude);
+                    }
+
+                    // Apply source or show fallback message
+                    const mapContainer = mapIframe.closest('.map-container');
+                    const noMsg = mapContainer ? mapContainer.querySelector('.no-map-message') : null;
+
+                    if (src) {
+                        mapIframe.src = src;
+                        mapIframe.style.display = '';
+                        if (noMsg) noMsg.style.display = 'none';
+                    } else {
+                        mapIframe.src = '';
+                        mapIframe.style.display = 'none';
+                        if (noMsg) noMsg.style.display = '';
                     }
                 }
 

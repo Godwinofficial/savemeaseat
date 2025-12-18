@@ -2624,7 +2624,7 @@
             <div class="details-container" id="wedding-details-container">
                 <div class="event-item" id="ceremony-item">
                     <div class="event-header">
-                        <h3>Church Service</h3>
+                        <h3>Marriage Blessings</h3>
                         <span class="event-date" id="ceremony-date">Loading...</span>
                     </div>
                     <div class="event-info" id="ceremony-details">
@@ -2686,7 +2686,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>RSVP</h2>
-                <p>Kindly respond by September 1st, 2023</p>
+                <p>Kindly respond by the day before the event</p>
             </div>
             <form class="rsvp-form">
                 <div class="form-group">
@@ -2706,6 +2706,7 @@
                     <select style="color: #757575;" id="guests" name="guests" class="form-control" required>
                         <option style="color: #fff;" value="" disabled selected>Select number of guests</option>
                         <option style="color: #fff;" value="1">1</option>
+                        <option style="color: #fff;" value="2">2 (Couple)</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -3177,7 +3178,10 @@
                         rsvpSubtitle.textContent = eventData.rsvp_subtitle;
                     } else {
                         const eventDate = eventData.event_date ? new Date(eventData.event_date) : new Date();
-                        rsvpSubtitle.textContent = `Kindly respond by ${eventDate.toLocaleDateString('en-US', {
+                        // show RSVP deadline as the day before the actual event
+                        const rsvpDate = new Date(eventDate);
+                        rsvpDate.setDate(rsvpDate.getDate() - 1);
+                        rsvpSubtitle.textContent = `Kindly respond by ${rsvpDate.toLocaleDateString('en-US', {
                             month: 'long',
                             day: 'numeric',
                             year: 'numeric'
